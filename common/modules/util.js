@@ -126,6 +126,7 @@ export const defaults = {
   playerPause: true,
   playerAutocomplete: true,
   playerDeband: false,
+  playerSeek: 2,
   rssQuality: '1080',
   rssFeedsNew: SUPPORTS.extensions ? [['New Releases', 'ASW [Small Size]']] : [],
   rssAutoplay: false,

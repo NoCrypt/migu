@@ -351,10 +351,10 @@
     video.currentTime = targetTime
   }
   function forward () {
-    seek(2)
+    seek($settings.playerSeek)
   }
   function rewind () {
-    seek(-2)
+    seek(-$settings.playerSeek)
   }
   function selectAudio (id) {
     if (id !== undefined) {
@@ -465,7 +465,7 @@
   }
   let fitWidth = false
   let showKeybinds = false
-  loadWithDefaults({
+  const ld = () => loadWithDefaults({
     KeyX: {
       fn: () => screenshot(),
       id: 'screenshot_monitor',
@@ -479,7 +479,10 @@
       desc: 'Toggle Stats'
     },
     Backquote: {
-      fn: () => (showKeybinds = !showKeybinds),
+      fn: () => {
+        ld();
+        (showKeybinds = !showKeybinds);
+      },
       id: 'help_outline',
       type: 'icon',
       desc: 'Toggle Keybinds'
@@ -557,8 +560,8 @@
         e.preventDefault()
         rewind()
       },
-      id: '-2',
-      desc: 'Rewind 2s'
+      id: `-${$settings.playerSeek}`,
+      desc: `Rewind ${$settings.playerSeek}s`
     },
     ArrowRight: {
       fn: e => {
@@ -566,8 +569,8 @@
         e.preventDefault()
         forward()
       },
-      id: '+2',
-      desc: 'Seek 2s'
+      id: `+${$settings.playerSeek}`,
+      desc: `Seek ${$settings.playerSeek}s`
     },
     ArrowUp: {
       fn: e => {
@@ -630,6 +633,7 @@
     container.append(canvas)
     return { stream: canvas.captureStream(), destroy }
   }
+  ld()
 
   // function initCast (event) {
   //   // these quality settings are likely to make cast overheat, oh noes!

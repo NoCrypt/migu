@@ -142,6 +142,14 @@
     <label for='player-autocomplete'>{settings.playerAutocomplete ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
+<SettingCard title='Seek Duration' description='Seconds to seek an episode with arrow keys'>
+  <div class='input-group w-100 mw-full'>
+    <input type='number' bind:value={settings.playerSeek} min='1' max='50' class='form-control text-right bg-dark' />
+    <div class='input-group-append'>
+      <span class='input-group-text bg-dark'>s</span>
+    </div>
+  </div>
+</SettingCard>
 <SettingCard title='Deband Video' description='Reduces banding on dark and compressed videos. High performance impact, not recommended for high quality videos.'>
   <div class='custom-switch'>
     <input type='checkbox' id='player-deband' bind:checked={settings.playerDeband} />
