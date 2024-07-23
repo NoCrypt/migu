@@ -3,7 +3,8 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "build:native": "cd public/nodejs/ && npm install && docker build -t android-build:latest . && docker run -v ${PWD}:/app/ -it android-build:latest /bin/bash /app/setup-deps.sh",
+    "build:native": "cd public/nodejs/ && pnpm install && docker build -t android-build:latest . && docker run -v ${PWD}:/app/ -it android-build:latest /bin/bash /app/setup-deps.sh",
+    "build:native-win": "cd public\\nodejs && for %I in (.) do docker run -v %~fI:/app/ -it android-build:latest /bin/bash /app/setup-deps-win.sh",
     "build:app": "cross-env NODE_ENV=production run-s build:web build:native build:assets",
     "build:web": "webpack build",
     "build:assets": "capacitor-assets generate --iconBackgroundColor #e5204c --iconBackgroundColorDark #e5204c --splashBackgroundColor #e5204c --splashBackgroundColorDark #e5204c --android",
