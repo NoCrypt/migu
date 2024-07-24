@@ -16,6 +16,7 @@
   import Search from './views/Search.svelte'
   import AiringSchedule from './views/AiringSchedule.svelte'
   import { readable } from 'simple-store-svelte'
+  import { files } from './views/Player/MediaHandler.svelte' // this is sooo hacky and possibly delaying viewer on startup
 
   export let page = 'home'
 
@@ -23,7 +24,7 @@
   $: maxwidth = $isMobile ? '200px' : '60rem'
 </script>
 
-<div class='w-full h-full position-absolute overflow-hidden'>
+<div class='w-full h-full position-absolute overflow-hidden' class:sr-only={($files.length === 0)}>
   <Miniplayer active={page !== 'player'} class='bg-dark-light z-10 {page === 'player' ? 'h-full' : ''}' {minwidth} {maxwidth} width='300px' padding='2rem' resize={!$isMobile}>
     <MediaHandler miniplayer={page !== 'player'} bind:page />
   </Miniplayer>
@@ -32,9 +33,9 @@
   <Settings />
 {:else if page === 'home'}
   <Home />
-{:else if page === 'search'}
-  <Search />
-{:else if page === 'schedule'}
+<!-- {:else if page === 'search'}
+  <Search /> ye fuck search--> 
+{:else if page === 'schedule' || page === 'search'}
   <AiringSchedule />
 {:else if page === 'watchtogether'}
   <WatchTogether />

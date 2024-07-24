@@ -165,7 +165,7 @@
     <label for='torrent-streamed-download'>{settings.torrentStreamedDownload ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
-<SettingCard title='Transfer Speed Limit' description='Download/Upload speed limit for torrents, higher values increase CPU usage, and values higher than your storage write speeds will quickly fill up RAM.'>
+<!-- <SettingCard title='Transfer Speed Limit' description='Download/Upload speed limit for torrents, higher values increase CPU usage, and values higher than your storage write speeds will quickly fill up RAM.'>
   <div class='input-group w-100 mw-full'>
     <input type='number' inputmode='numeric' pattern={'[0-9]*.?[0-9]*'} bind:value={settings.torrentSpeed} min='0' max='50' step='0.1' class='form-control text-right bg-dark' />
     <div class='input-group-append'>
@@ -225,3 +225,12 @@
     </div>
   </SettingCard>
   {/if}
+<SettingCard title='Disable Loading Last Video On Startup' description='Loading last video on startup can increase your bandwidth usage while looking for new videos.'>
+  <div class='custom-switch'>
+    <input type='checkbox' id='disable-startup-video' bind:checked={settings.disableStartupVideo} />
+    <label for='disable-startup-video'>{settings.disableStartupVideo ? 'On' : 'Off'}</label>
+  </div>
+</SettingCard>
+  
+
+

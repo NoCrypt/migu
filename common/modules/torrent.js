@@ -3,6 +3,9 @@ import { page } from '@/App.svelte'
 import { toast } from 'svelte-sonner'
 import clipboard from './clipboard.js'
 import IPC from '@/modules/ipc.js'
+import { settings } from '@/modules/settings.js'
+import { get } from 'svelte/store';
+
 import 'browser-event-target-emitter'
 
 const torrentRx = /(^magnet:){1}|(^[A-F\d]{8,40}$){1}|(.*\.torrent$){1}/i
@@ -49,7 +52,8 @@ class TorrentWorker extends EventTarget {
 
 export const client = new TorrentWorker()
 
-client.send('load', localStorage.getItem('torrent'))
+if (!get(settings).disableStartupVideo) //hacky but works :p
+  client.send('load', localStorage.getItem('torrent'))
 
 client.on('files', ({ detail }) => {
   files.set(detail)

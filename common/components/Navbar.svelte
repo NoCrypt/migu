@@ -6,21 +6,22 @@
   const view = getContext('view')
   export let page
   const links = [
-    {
-      click: () => {
-        page = 'search'
-      },
-      css: 'ml-auto',
-      page: 'search',
-      icon: 'search',
-      text: 'Search'
-    },
+    // {
+    //   click: () => {
+    //     page = 'search'
+    //   },
+    //   css: 'ml-auto',
+    //   page: 'search',
+    //   icon: 'search',
+    //   text: 'Search'
+    // },
     {
       click: () => {
         page = 'schedule'
       },
+      css: 'ml-auto',
       page: 'schedule',
-      icon: 'schedule',
+      icon: 'search',
       text: 'Schedule'
     },
     {
