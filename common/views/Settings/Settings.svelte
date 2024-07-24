@@ -70,11 +70,11 @@
     app: {
       name: 'App',
       icon: 'info'
-    },
-    changelog: {
-      name: 'Changelog',
-      icon: 'description'
     }
+    // changelog: {
+    //   name: 'Changelog',
+    //   icon: 'description'
+    // }
   }
   function pathListener (data) {
     $settings.torrentPathNew = data
@@ -166,7 +166,7 @@
         <div class='h-250' />
       </div>
     </Tab>
-    <Tab>
+    <!-- <Tab>
       <div class='root my-20 px-20 overflow-y-md-auto w-full' use:smoothScroll>
         <div class='h-300 row px-20 px-sm-0'>
           <div class='col-sm-3 d-none d-sm-flex' />
@@ -232,10 +232,10 @@
               </div>
             </div>
           {/each}
-        {/await}
+        {/await} 
         <div class='h-250 d-md-none' />
       </div>
-    </Tab>
+    </Tab> -->
   </div>
 </Tabs>
 
