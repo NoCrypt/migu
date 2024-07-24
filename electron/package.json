@@ -1,11 +1,11 @@
 {
-  "name": "Miru",
+  "name": "Migu",
   "version": "5.2.5",
   "private": true,
-  "author": "ThaUnknown_ <ThaUnknown@users.noreply.github.com>",
+  "author": "NoCrypt <NoCrypt@users.noreply.github.com>",
   "description": "Stream anime torrents, real-time with no waiting for downloads.",
   "main": "build/main.js",
-  "homepage": "https://github.com/ThaUnknown/miru#readme",
+  "homepage": "https://github.com/NoCrypt/migu#readme",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack build && concurrently --kill-others \"npm run web:watch\" \"npm run electron:start\"",
     "web:watch": "webpack serve",
@@ -57,13 +57,13 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "ThaUnknown",
-        "repo": "miru"
+        "owner": "NoCrypt",
+        "repo": "migu"
       }
     ],
     "afterSign": "./buildResources/notarize.js",
-    "appId": "com.github.thaunknown.miru",
-    "productName": "Miru",
+    "appId": "com.github.nocrypt.migu",
+    "productName": "Migu",
     "files": [
       "build/**/*",
       "!node_modules/**/*.{mk,a,o,h}"
@@ -95,7 +95,7 @@
       "category": "AudioVideo;Video",
       "description": "Bittorrent streaming software for cats",
       "desktop": {
-        "Name": "Miru",
+        "Name": "Migu",
         "Comment": "Bittorrent streaming software for cats",
         "Keywords": "anime",
         "Type": "Application",

@@ -25,13 +25,13 @@
     if (!wasUpdated) {
       wasUpdated = true
       toast('Auto Updater', {
-        description: 'A new version of Miru is available. Downloading!'
+        description: 'A new version of Migu is available. Downloading!'
       })
     }
   })
   IPC.on('update-downloaded', () => {
     toast.success('Auto Updater', {
-      description: 'A new version of Miru has downloaded. You can restart to update!'
+      description: 'A new version of Migu has downloaded. You can restart to update!'
     })
   })
 
@@ -172,7 +172,7 @@
           <div class='col-sm-3 d-none d-sm-flex' />
           <div class='col-sm-6 d-flex justify-content-center flex-column'>
             <h1 class='font-weight-bold text-white title'>Changelog</h1>
-            <div class='font-size-18 text-muted'>New updates and improvements to Miru.</div>
+            <div class='font-size-18 text-muted'>New updates and improvements to Migu.</div>
           </div>
         </div>
         {#await changeLog}

@@ -184,7 +184,7 @@
 
   function setMediaSession (nowPlaying) {
     if (typeof MediaMetadata === 'undefined') return
-    const name = [nowPlaying.title, nowPlaying.episode, nowPlaying.episodeTitle, 'Miru'].filter(i => i).join(' - ')
+    const name = [nowPlaying.title, nowPlaying.episode, nowPlaying.episodeTitle, 'Migu'].filter(i => i).join(' - ')
 
     const metadata =
       nowPlaying.thumbnail
@@ -237,7 +237,7 @@
           url: 'https://github.com/ThaUnknown/miru/releases/latest'
         },
         {
-          label: 'Watch on Miru',
+          label: 'Watch on Migu',
           url: `miru://anime/${np.media?.id}`
         }
       ]

@@ -24,7 +24,7 @@
     <div>
       <h1 class='font-weight-bold'>Could not connect to Torrent API!</h1>
       <div class='font-size-16'>This happens either because the API is down, or because your ISP blocks the API, the latter being more likely.</div>
-      <div class='font-size-16'>Most features of Miru will not function correctly without being able to connect to an API.</div>
+      <div class='font-size-16'>Most features of Migu will not function correctly without being able to connect to an API.</div>
       <div class='font-size-16'>If you enable a VPN a restart might be required for it to take effect.</div>
       <!-- eslint-disable-next-line svelte/valid-compile -->
       <div class='font-size-16'>Visit <a class='text-primary pointer' use:click={() => { IPC.emit('open', 'https://thewiki.moe/tutorials/unblock/') }}>this guide</a> for a tutorial on how to bypass ISP blocks.</div>

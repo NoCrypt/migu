@@ -395,8 +395,8 @@ class AnilistClient {
         variables.status = 'COMPLETED'
         if (media.mediaListEntry?.status === 'REPEATING') variables.repeat = media.mediaListEntry.repeat + 1
       }
-      if (!lists.includes('Watched using Miru')) {
-        variables.lists.push('Watched using Miru')
+      if (!lists.includes('Watched using Migu')) {
+        variables.lists.push('Watched using Migu')
       }
       await this.entry(variables)
       this.userLists.value = this.getUserLists()
@@ -712,7 +712,7 @@ class AnilistClient {
   }
 
   customList (variables = {}) {
-    variables.lists = [...variables.lists, 'Watched using Miru']
+    variables.lists = [...variables.lists, 'Watched using Migu']
     const query = /* js */`
       mutation($lists: [String]) {
         UpdateUser(animeListOptions: { customLists: $lists }) {

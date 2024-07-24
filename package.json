@@ -1,10 +1,10 @@
 {
-  "name": "Miru",
+  "name": "Migu",
   "private": true,
-  "author": "ThaUnknown_ <ThaUnknown@users.noreply.github.com>",
+  "author": "NoCrypt <NoCrypt@users.noreply.github.com>",
   "description": "Stream anime torrents, real-time with no waiting for downloads.",
   "main": "build/main.js",
-  "homepage": "https://github.com/ThaUnknown/miru#readme",
+  "homepage": "https://github.com/NoCrypt/migu#readme",
   "standard": {
     "ignore": [
       "bundle.js",

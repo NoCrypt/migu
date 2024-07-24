@@ -45,7 +45,7 @@
 </SettingCard>
 {#if SUPPORTS.angle}
   <h4 class='mb-10 font-weight-bold'>Rendering Settings</h4>
-  <SettingCard title='ANGLE Backend' description="What ANGLE backend to use for rendering. DON'T CHANGE WITHOUT REASON! On some Windows machines D3D9 might help with flicker. Changing this setting to something your device doesn't support might prevent Miru from opening which will require a full reinstall. While Vulkan is an available option it might not be fully supported on Linux.">
+  <SettingCard title='ANGLE Backend' description="What ANGLE backend to use for rendering. DON'T CHANGE WITHOUT REASON! On some Windows machines D3D9 might help with flicker. Changing this setting to something your device doesn't support might prevent Migu from opening which will require a full reinstall. While Vulkan is an available option it might not be fully supported on Linux.">
     <select class='form-control bg-dark w-300 mw-full' bind:value={settings.angle} on:change={updateAngle}>
       <option value='default' selected>Default</option>
       <option value='d3d9'>D3D9</option>
@@ -61,7 +61,7 @@
 {/if}
 
 <h4 class='mb-10 font-weight-bold'>Home Screen Settings</h4>
-<SettingCard title='RSS Feeds' description={'RSS feeds to display on the home screen. This needs to be a CORS enabled URL to a Nyaa or Tosho like RSS feed which cotains either an "infoHash" or "enclosure" tag.\nThis only shows the releases on the home screen, it doesn\'t automatically download the content.\nSince the feeds only provide the name of the file, Miru might not always detect the anime correctly!\nSome presets for popular groups are already provided as an example, custom feeds require the FULL URL.'}>
+<SettingCard title='RSS Feeds' description={'RSS feeds to display on the home screen. This needs to be a CORS enabled URL to a Nyaa or Tosho like RSS feed which cotains either an "infoHash" or "enclosure" tag.\nThis only shows the releases on the home screen, it doesn\'t automatically download the content.\nSince the feeds only provide the name of the file, Migu might not always detect the anime correctly!\nSome presets for popular groups are already provided as an example, custom feeds require the FULL URL.'}>
   <div>
     {#each settings.rssFeedsNew as _, i}
       <div class='input-group mb-10 w-500 mw-full'>

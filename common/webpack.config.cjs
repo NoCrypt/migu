@@ -82,7 +82,7 @@ module.exports = (parentDir, alias = {}, aliasFields = 'browser', filename = 'ap
 <meta charset='utf-8'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#17191C">
-<title>Miru</title>
+<title>Migu</title>
 
 <!-- <link rel="preconnect" href="https://www.youtube-nocookie.com"> -->
 <link rel="preconnect" href="https://graphql.anilist.co/">

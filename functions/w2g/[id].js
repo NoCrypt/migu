@@ -11,7 +11,7 @@ export function onRequest ({ params }) {
     <meta http-equiv=refresh content="5; url=https://miru.watch">
     <meta property="og:title" content="Watch Together">
     <meta property="og:description" content="Stream anime torrents, real-time with no waiting for downloads">
-    <meta property="og:site_name" content="Miru">
+    <meta property="og:site_name" content="Migu">
     <meta property="og:image" content=https://miru.watch/app_original.png>
     <meta property="og:url" content=miru://w2g/${id}>
     <meta data-vmid="twitter:card" name="twitter:card" content="summary_large_image">
