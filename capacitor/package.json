@@ -7,7 +7,7 @@
     "build:native-win": "cd public\\nodejs && for %I in (.) do docker run -v %~fI:/app/ -it android-build:latest /bin/bash /app/setup-deps-win.sh",
     "build:app": "cross-env NODE_ENV=production run-s build:web build:native build:assets",
     "build:web": "webpack build",
-    "build:assets": "capacitor-assets generate --iconBackgroundColor #e5204c --iconBackgroundColorDark #e5204c --splashBackgroundColor #e5204c --splashBackgroundColorDark #e5204c --android",
+    "build:assets": "capacitor-assets generate --iconBackgroundColor #20a2ff --iconBackgroundColorDark #20a2ff --splashBackgroundColor #20a2ff --splashBackgroundColorDark #20a2ff --android",
     "dev:adb-port": "adb reverse tcp:5001 tcp:5001",
     "dev:ios": "run-p dev:start cap-run:ios",
     "dev:android": "cap run android",

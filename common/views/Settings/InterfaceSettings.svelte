@@ -35,7 +35,7 @@
   </div>
 </SettingCard>
 <SettingCard title='CSS Variables' description='Used for custom themes. Can change colors, sizes, spacing and more. Supports only variables. Best way to discover variables is to use the built-in devtools via Ctrl+Shift+I or F12.'>
-  <textarea class='form-control w-500 mw-full bg-dark' placeholder='--accent-color: #e5204c;' bind:value={$variables} />
+  <textarea class='form-control w-500 mw-full bg-dark' placeholder='--accent-color: #20a2ff;' bind:value={$variables} />
 </SettingCard>
 <SettingCard title='Card Type' description='What type of cards to display in menus.'>
   <select class='form-control bg-dark w-300 mw-full' bind:value={settings.cards}>

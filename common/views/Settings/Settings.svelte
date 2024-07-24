@@ -118,12 +118,12 @@
           </div>
         </TabLabel>
       {/each}
-      <div class='pointer my-5 rounded' tabindex='0' role='button' use:click={() => IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')}>
+      <!-- <div class='pointer my-5 rounded' tabindex='0' role='button' use:click={() => IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')}>
         <div class='px-20 py-10 d-flex'>
           <span class='material-symbols-outlined font-size-24 pr-10 d-inline-flex justify-content-center align-items-center'>favorite</span>
           <div class='font-size-16'>Donate</div>
         </div>
-      </div>
+      </div> -->
       <div class='pointer my-5 rounded' use:click={loginButton}>
         <div class='px-20 py-10 d-flex'>
           {#if anilistClient.userID?.viewer?.data?.Viewer}

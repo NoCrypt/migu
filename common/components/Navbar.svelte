@@ -38,21 +38,22 @@
       icon: 'groups',
       text: 'Watch Together'
     },
-    {
-      click: () => {
-        IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')
-      },
-      icon: 'favorite',
-      text: 'Support This App',
-      css: 'ml-auto donate'
-    },
+    // {
+    //   click: () => {
+    //      IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')
+    //   },
+    //   icon: 'favorite',
+    //   text: 'Support This App',
+    //   css: 'ml-auto donate'
+    // },
     {
       click: () => {
         page = 'settings'
       },
       page: 'settings',
       icon: 'settings',
-      text: 'Settings'
+      text: 'Settings',
+      css: 'ml-auto'
     }
   ]
   function close () {
