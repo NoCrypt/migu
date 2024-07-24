@@ -7,7 +7,7 @@ dist/
 
 *.jks
 *.pepk
-*.bat
+# *.bat
 pepk.jar
 encryption_public_key.pem
 

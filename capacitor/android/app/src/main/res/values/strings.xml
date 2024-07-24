@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Miru</string>
-    <string name="title_activity_main">Miru</string>
-    <string name="package_name">watch.miru</string>
-    <string name="custom_url_scheme">watch.miru</string>
+    <string name="app_name">Migu</string>
+    <string name="title_activity_main">Migu</string>
+    <string name="package_name">watch.migu</string>
+    <string name="custom_url_scheme">watch.migu</string>
 </resources>
