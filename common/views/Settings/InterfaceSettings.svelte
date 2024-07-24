@@ -1,5 +1,5 @@
 <script>
-  import { variables } from '@/modules/themes.js'
+  import { updateTheme, variables } from '@/modules/themes.js'
   import { click } from '@/modules/click.js'
   import HomeSections from './HomeSectionsSettings.svelte'
   import IPC from '@/modules/ipc.js'
@@ -32,6 +32,12 @@
   <div class='custom-switch'>
     <input type='checkbox' id='disable-sidebar' bind:checked={settings.expandingSidebar} />
     <label for='disable-sidebar'>{settings.expandingSidebar ? 'On' : 'Off'}</label>
+  </div>
+</SettingCard>
+<SettingCard title='Amoled Theme' description='Saves battery when using an amoled theme.'>
+  <div class='custom-switch'>
+    <input type='checkbox' id='amoled-theme' bind:checked={settings.amoledTheme} on:change={() => updateTheme()}/>
+    <label for='amoled-theme'>{settings.amoledTheme ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
 <SettingCard title='CSS Variables' description='Used for custom themes. Can change colors, sizes, spacing and more. Supports only variables. Best way to discover variables is to use the built-in devtools via Ctrl+Shift+I or F12.'>
