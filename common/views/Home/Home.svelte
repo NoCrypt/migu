@@ -35,6 +35,7 @@
 </script>
 
 <div class='h-full w-full overflow-y-scroll root overflow-x-hidden' use:smoothScroll>
+  <img src="./logo_filled.png" class="logo" alt="Migu logo"/>
   <Banner data={bannerData} />
   <div class='d-flex flex-column h-full w-full'>
     {#each manager.sections as section, i (i)}
@@ -44,3 +45,15 @@
     {/each}
   </div>
 </div>
+
+<style>
+  .logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: auto;
+    height: 12rem;
+    object-fit: contain;
+    pointer-events: none;
+  }
+</style>

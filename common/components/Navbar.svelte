@@ -19,7 +19,6 @@
       click: () => {
         page = 'schedule'
       },
-      css: 'ml-auto',
       page: 'schedule',
       icon: 'search',
       text: 'Schedule'
@@ -65,7 +64,13 @@
 
 <nav class='navbar navbar-fixed-bottom d-block d-md-none border-0 bg-dark'>
   <div class='navbar-menu h-full d-flex flex-row justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
-    <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} />
+    <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} />-->
+    <div
+        class='navbar-link navbar-link-with-icon pointer overflow-hidden'
+        use:click={close}>
+        <span class='material-symbols-outlined rounded'>home</span>
+    </div>
+
     {#each links as { click: _click, icon, text, image, css, page: _page }, i (i)}
       <div
         class='navbar-link navbar-link-with-icon pointer overflow-hidden {css}'
@@ -127,7 +132,7 @@
     transition: background .8s cubic-bezier(0.25, 0.8, 0.25, 1), color .8s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  .navbar-link:hover > span {
+  .navbar-link:active > span {
     background: #fff;
     color: var(--dark-color);
   }

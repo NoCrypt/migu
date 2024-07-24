@@ -37,20 +37,20 @@
       icon: 'home',
       text: 'Home'
     },
-    {
-      click: () => {
-        page = 'search'
-      },
-      page: 'search',
-      icon: 'search',
-      text: 'Search'
-    },
+    // {
+    //   click: () => {
+    //     page = 'search'
+    //   },
+    //   page: 'search',
+    //   icon: 'search',
+    //   text: 'Search'
+    // },
     {
       click: () => {
         page = 'schedule'
       },
       page: 'schedule',
-      icon: 'schedule',
+      icon: 'search',
       text: 'Schedule'
     },
     {
@@ -68,18 +68,19 @@
       icon: 'groups',
       text: 'Watch Together'
     },
-    {
-      click: () => {
-        IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')
-      },
-      icon: 'favorite',
-      text: 'Support This App',
-      css: 'mt-auto donate'
-    },
+    // {
+    //   click: () => {
+    //     IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')
+    //   },
+    //   icon: 'favorite',
+    //   text: 'Support This App',
+    //   css: 'mt-auto donate'
+    // },
     {
       click: () => {
         page = 'settings'
       },
+      css: 'mt-auto',
       page: 'settings',
       icon: 'settings',
       text: 'Settings'
