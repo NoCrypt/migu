@@ -172,7 +172,7 @@
       <span class='input-group-text bg-dark'>MB/s</span>
     </div>
   </div>
-</SettingCard>
+</SettingCard> -->
 <SettingCard title='Max Number of Connections' description='Number of peers per torrent. Higher values will increase download speeds but might quickly fill up available ports if your ISP limits the maximum allowed number of open connections.'>
   <input type='number' inputmode='numeric' pattern='[0-9]*' bind:value={settings.maxConns} min='1' max='512' class='form-control text-right bg-dark w-100 mw-full' />
 </SettingCard>
@@ -198,3 +198,30 @@
     <label for='torrent-pex'>{settings.torrentPeX ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
+
+
+<h4 class='mb-10 font-weight-bold'>Limited Bandwidth Settings</h4>
+<SettingCard title='Slow Seeding' description="Will limit upload speed to 1 MB/s. This might kill the swarm health. But very useful when you have a limited bandwidth.">
+  <div class='custom-switch'>
+    <input type='checkbox' id='slow-seeding' bind:checked={settings.slowSeeding} />
+    <label for='slow-seeding'>{settings.slowSeeding ? 'On' : 'Off'}</label>
+  </div>
+</SettingCard>
+<SettingCard title='Download Speed Limit' description='Download speed limit for torrents, higher values increase CPU usage, and values higher than your storage write speeds will quickly fill up RAM.'>
+  <div class='input-group w-100 mw-full'>
+    <input type='number' inputmode='numeric' pattern={'[0-9]*.?[0-9]*'} bind:value={settings.downloadSpeed} min='0' max='50' step='0.1' class='form-control text-right bg-dark' />
+    <div class='input-group-append'>
+      <span class='input-group-text bg-dark'>MB/s</span>
+    </div>
+  </div>
+</SettingCard>
+{#if !settings.slowSeeding}
+  <SettingCard title='Upload Speed Limit' description='Upload speed limit for torrents, setting this to 0 might causes problems.'>
+    <div class='input-group w-100 mw-full'>
+      <input type='number' inputmode='numeric' pattern={'[0-9]*.?[0-9]*'} bind:value={settings.uploadSpeed} min='0' max='50' step='0.1' class='form-control text-right bg-dark' />
+      <div class='input-group-append'>
+        <span class='input-group-text bg-dark'>MB/s</span>
+      </div>
+    </div>
+  </SettingCard>
+  {/if}
