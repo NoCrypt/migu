@@ -3,6 +3,7 @@
   import { media } from '../views/Player/MediaHandler.svelte'
   import { click } from '@/modules/click.js'
   import IPC from '@/modules/ipc.js'
+  import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   const view = getContext('view')
   export let page
   const links = [
@@ -19,6 +20,7 @@
       click: () => {
         page = 'schedule'
         $view = null
+        $rss = null
         
       },
       page: 'schedule',
@@ -32,6 +34,7 @@
           return
         }
         if ($media) $view = $media.media
+        $rss = null
       },
       icon: 'queue_music',
       text: 'Now Playing'
@@ -40,6 +43,7 @@
       click: () => {
         page = 'watchtogether'
         $view = null
+        $rss = null
       },
       page: 'watchtogether',
       icon: 'groups',
@@ -57,6 +61,7 @@
       click: () => {
         page = 'settings'
         $view = null
+        $rss = null
       },
       page: 'settings',
       icon: 'settings',
@@ -66,6 +71,7 @@
   ]
   function close () {
     $view = null
+    $rss = null
     page = 'home'
   }
 </script>
