@@ -1,6 +1,7 @@
 <script context='module'>
   import { click } from '@/modules/click.js'
   import { fastPrettyBytes, since } from '@/modules/util.js'
+  import { SUPPORTS } from '@/modules/support.js'
 
   /** @typedef {import('@thaunknown/ani-resourced/sources/types.d.ts').Result} Result */
   /** @typedef {import('anitomyscript').AnitomyResult} AnitomyResult */
@@ -75,7 +76,13 @@
   export let play
 </script>
 
-<div class='card bg-dark p-15 d-flex mx-0 overflow-hidden pointer mb-10 mt-0 position-relative scale' use:click={() => play(result)} title={result.parseObject.file_name}>
+<div class='card bg-dark p-15 d-flex mx-0 overflow-hidden pointer mb-10 mt-0 position-relative scale' 
+  use:click={() => {
+    play(result)
+    if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
+    }} 
+  
+  title={result.parseObject.file_name}>
   {#if media.bannerImage}
     <div class='position-absolute top-0 left-0 w-full h-full'>
       <img src={media.bannerImage} alt='bannerImage' class='img-cover w-full h-full' style='border-radius: 5px;' />

@@ -41,6 +41,7 @@
   import { add } from '@/modules/torrent.js'
   import TorrentSkeletonCard from './TorrentSkeletonCard.svelte'
   import { onDestroy } from 'svelte'
+    import { SUPPORTS } from '@/modules/support';
 
   /** @type {{ media: Media, episode?: number }} */
   export let search
@@ -58,6 +59,7 @@
         countdown--
         if (countdown === 0) {
           play(best)
+          if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
         } else {
           timeoutHandle = setTimeout(decrement, 1000)
         }

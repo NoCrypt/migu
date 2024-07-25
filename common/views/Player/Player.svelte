@@ -1108,7 +1108,7 @@
     <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={toggleFullscreen} on:click|self={() => { if (page === 'player') playPause(); page = 'player' }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={toggleFullscreen} on:click|self={toggleImmerse} />
-    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player' }} />
+    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; toggleFullscreen() }} />
     <span class='material-symbols-outlined ctrl h-full align-items-center justify-content-end w-150 mw-full mr-auto' use:click={rewind}> fast_rewind </span>
     <span class='material-symbols-outlined ctrl' data-name='playPause' use:click={playPause}> {ended ? 'replay' : paused ? 'play_arrow' : 'pause'} </span>
     <span class='material-symbols-outlined ctrl h-full align-items-center w-150 mw-full ml-auto' use:click={forward}> fast_forward </span>
