@@ -18,6 +18,8 @@
     {
       click: () => {
         page = 'schedule'
+        $view = null
+        
       },
       page: 'schedule',
       icon: 'search',
@@ -25,6 +27,10 @@
     },
     {
       click: () => {
+        if (!($view === null)) {
+          $view = null
+          return
+        }
         if ($media) $view = $media.media
       },
       icon: 'queue_music',
@@ -33,6 +39,7 @@
     {
       click: () => {
         page = 'watchtogether'
+        $view = null
       },
       page: 'watchtogether',
       icon: 'groups',
@@ -49,6 +56,7 @@
     {
       click: () => {
         page = 'settings'
+        $view = null
       },
       page: 'settings',
       icon: 'settings',
