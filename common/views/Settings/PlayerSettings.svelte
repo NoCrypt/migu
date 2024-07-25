@@ -72,6 +72,7 @@
     <option value=''>None</option>
     <option value='eng' selected>English</option>
     <option value='jpn'>Japanese</option>
+    <option value='idn'>Indonesian</option>
     <option value='chi'>Chinese</option>
     <option value='por'>Portuguese</option>
     <option value='spa'>Spanish</option>
@@ -99,6 +100,7 @@
     <option value='eng'>English</option>
     <option value='jpn' selected>Japanese</option>
     <option value='chi'>Chinese</option>
+    <option value='idn'>Indonesian</option>
     <option value='por'>Portuguese</option>
     <option value='spa'>Spanish</option>
     <option value='ger'>German</option>
