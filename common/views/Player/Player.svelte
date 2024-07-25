@@ -106,8 +106,10 @@
   document.addEventListener('fullscreenchange', () => {
     isFullscreen = !!document.fullscreenElement
     if (document.fullscreenElement) {
+      window.Capacitor.Plugins.StatusBar.hide()
       screen.orientation.lock('landscape')
     } else {
+      window.Capacitor.Plugins.StatusBar.show()
       screen.orientation.unlock()
     }
   })

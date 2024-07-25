@@ -84,7 +84,7 @@ async function updateInsets () {
 }
 updateInsets()
 
-StatusBar.hide()
+//StatusBar.hide()
 StatusBar.setStyle({ style: Style.Dark })
 StatusBar.setOverlaysWebView({ overlay: true })
 
