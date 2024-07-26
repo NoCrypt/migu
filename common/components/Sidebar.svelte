@@ -7,6 +7,7 @@
   import { toast } from 'svelte-sonner'
   import { click } from '@/modules/click.js'
   import { logout } from './Logout.svelte'
+  import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   import IPC from '@/modules/ipc.js'
   const view = getContext('view')
   export let page
@@ -32,6 +33,8 @@
     {
       click: () => {
         page = 'home'
+        $view = null
+        $rss = null
       },
       page: 'home',
       icon: 'home',
@@ -48,6 +51,8 @@
     {
       click: () => {
         page = 'schedule'
+        $view = null
+        $rss = null
       },
       page: 'schedule',
       icon: 'search',
@@ -55,7 +60,12 @@
     },
     {
       click: () => {
+        if (!($view === null)) {
+          $view = null
+          return
+        }
         if ($media) $view = $media.media
+        $rss = null
       },
       icon: 'queue_music',
       text: 'Now Playing'
@@ -63,6 +73,8 @@
     {
       click: () => {
         page = 'watchtogether'
+        $view = null
+        $rss = null
       },
       page: 'watchtogether',
       icon: 'groups',
@@ -79,6 +91,8 @@
     {
       click: () => {
         page = 'settings'
+        $view = null
+        $rss = null
       },
       css: 'mt-auto',
       page: 'settings',
