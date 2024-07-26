@@ -56,7 +56,7 @@ Mobile users often have limited bandwidth or data quotas. Miru can consume up to
 ### Building for Android (capacitor)
 - `cd capacitor`
 - `pnpm install`
-- Check what's missing: `pnpm exec capacitor doctor`
+- Check what's missing: `pnpm exec cap doctor`
 - Windows: `pnpm build:native-win` || Linux: `pnpm build:native`
 - (optional) Generate Assets: `pnpm dlx @capacitor/assets generate --iconBackgroundColor #20a2ff --iconBackgroundColorDark #20a2ff --splashBackgroundColor #20a2ff --splashBackgroundColorDark #20a2ff --android` (built-in forked capacitor/assets from this project didnt work for me)
 - `pnpm exec cap open android`
