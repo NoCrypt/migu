@@ -150,7 +150,7 @@ export const defaults = {
   doHURL: 'https://cloudflare-dns.com/dns-query',
   disableSubtitleBlur: SUPPORTS.isAndroid,
   showDetailsInRPC: true,
-  smoothScroll: !SUPPORTS.isAndroid,
+  smoothScroll: false,
   cards: 'small',
   expandingSidebar: !SUPPORTS.isAndroid,
   torrentPathNew: undefined,
