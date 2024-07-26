@@ -41,6 +41,7 @@
           }, 1000);
         }
       } else {
+        if (document.fullscreenElement) document.exitFullscreen()
         page = 'home';
         $rss = null;
         $view = null;
