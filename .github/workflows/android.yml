@@ -1,0 +1,102 @@
+name: Android Build
+
+on:
+  workflow_run:
+    workflows: ["Electron Build and Release"]
+    types:
+      - completed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./capacitor
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-tags: true
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.4.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '19'
+          check-latest: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install node-pre-gyp
+        run: pnpm install -g node-pre-gyp
+
+      - name: Remove Cached Build
+        run: rm -rf ./build && mkdir ./build
+
+      - name: Build Native + Web
+        run: pnpm run build:app
+
+      - name: Sync 
+        run: pnpm exec cap sync android
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build App
+        run: cd android && chmod +x ./gradlew && ./gradlew assembleRelease
+
+      - name: Stop Gradle daemon
+        run: cd android && ./gradlew --stop
+
+      - name: Setup build tool version variable
+        shell: bash
+        run: |
+          BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+          echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+          echo Last build tool version is: $BUILD_TOOL_VERSION
+
+      - uses: filippoLeporati93/android-release-signer@v1
+        name: Sign app APK
+        id: sign_app
+        with:
+          releaseDirectory: capacitor/android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
+
+      - uses: jungwinter/split@v2
+        id: signed_files
+        with:
+          msg: ${{ steps.sign_app.outputs.signedReleaseFiles }}
+          separator: ':'
+      
+      - name: Upload APK to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --tags
+          gh release upload --clobber $(gh release list --limit 1 --json tagName --jq '.[0].tagName') ../${{ steps.signed_files.outputs._0 }}
+          gh release upload --clobber $(gh release list --limit 1 --json tagName --jq '.[0].tagName') ../${{ steps.signed_files.outputs._1 }}
+          gh release upload --clobber $(gh release list --limit 1 --json tagName --jq '.[0].tagName') ../${{ steps.signed_files.outputs._2 }}
+          gh release upload --clobber $(gh release list --limit 1 --json tagName --jq '.[0].tagName') ../${{ steps.signed_files.outputs._3 }}

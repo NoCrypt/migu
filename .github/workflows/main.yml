@@ -1,4 +1,4 @@
-name: Build/release
+name: Electron Build and Release
 
 on:
   push:
@@ -15,28 +15,32 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
-      - name: Install Setuptools for Python
-        if: matrix.os == 'macos-latest'
-        run: pip3 install setuptools --break-system-packages
-
       - name: Check out Git repository
         uses: actions/checkout@v3
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
-          version: 8.6.3
+          version: 9.4.0
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'pnpm'
 
+      - name: Install Setuptools for Python (macOS only)
+        if: matrix.os == 'macos-latest'
+        run: pip3 install setuptools --break-system-packages
+
       - name: Install dependencies
-        run: cd electron && pnpm install --frozen-lockfile
+        run: |
+          cd electron
+          pnpm install --frozen-lockfile
 
       - name: Build and Publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: cd electron && npm run publish
+        run: |
+          cd electron
+          npm run publish

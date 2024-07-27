@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://github.com/ThaUnknown/miru">
-		<img src="./common/public/logo_filled.png" width="200">
+		<img src="./common/public/logo_filled.png" width="250">
 	</a>
 </p>
 <h1 align="center"><b>Migu</b></h1>
