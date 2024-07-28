@@ -71,30 +71,32 @@ jobs:
       - name: Stop Gradle daemon
         run: cd android && ./gradlew --stop
 
-      # - name: Setup build tool version variable
-      #   shell: bash
-      #   run: |
-      #     BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
-      #     echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
-      #     echo Last build tool version is: $BUILD_TOOL_VERSION
+      - name: Setup build tool version variable
+        shell: bash
+        run: |
+          BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+          echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+          echo Last build tool version is: $BUILD_TOOL_VERSION
 
       - uses: Wandalen/wretry.action@master
         name: Sign app APK
         id: sign_app
         with:
           attempt_limit: 3
-          action: NoCrypt/sign-android-release@1.1
+          action: filippoLeporati93/android-release-signer@v1
           with: |
-            releaseDir: capacitor/android/app/build/outputs/apk/release
-            signingKey: ${{ secrets.SIGNING_KEY }}
-            keyAlias: ${{ secrets.ALIAS }}
+            releaseDirectory: capacitor/android/app/build/outputs/apk/release
+            signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+            alias: ${{ secrets.ALIAS }}
             keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
             keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
       - uses: jungwinter/split@v2
         id: signed_files
         with:
-          msg: ${{ fromJSON( steps.sign_app.outputs.outputs ).signedFiles }}
+          msg: ${{ fromJSON( steps.sign_app.outputs.outputs ).signedReleaseFiles }}
           separator: ':'
       
       - name: Upload APK to release
