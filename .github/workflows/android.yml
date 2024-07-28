@@ -73,22 +73,25 @@ jobs:
           echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
           echo Last build tool version is: $BUILD_TOOL_VERSION
 
-      - uses: filippoLeporati93/android-release-signer@v1
+      - uses: Wandalen/wretry.action@master
         name: Sign app APK
         id: sign_app
         with:
-          releaseDirectory: capacitor/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          attempt_limit: 3
+          action: filippoLeporati93/android-release-signer@v1
+          with: |
+            releaseDirectory: capacitor/android/app/build/outputs/apk/release
+            signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+            alias: ${{ secrets.ALIAS }}
+            keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+            keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
       - uses: jungwinter/split@v2
         id: signed_files
         with:
-          msg: ${{ steps.sign_app.outputs.signedReleaseFiles }}
+          msg: ${{ fromJSON( steps.sign_app.outputs.out ).signedReleaseFiles }}
           separator: ':'
       
       - name: Upload APK to release
