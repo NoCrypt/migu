@@ -217,8 +217,8 @@
       assets: {
         large_text: np.title,
         large_image: np.thumbnail,
-        small_image: 'logo',
-        small_text: 'https://github.com/ThaUnknown/miru'
+        small_image: 'https://raw.githubusercontent.com/NoCrypt/migu/main/common/public/logo_filled.png',
+        small_text: 'https://github.com/NoCrypt/migu'
       },
       instance: true,
       type: 3
@@ -234,7 +234,7 @@
       activity.buttons = [
         {
           label: 'Download app',
-          url: 'https://github.com/ThaUnknown/miru/releases/latest'
+          url: 'https://github.com/NoCrypt/migu/releases/latest'
         },
         {
           label: 'Watch on Migu',

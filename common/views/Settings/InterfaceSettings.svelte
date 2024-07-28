@@ -13,6 +13,12 @@
 
 {#if SUPPORTS.discord}
   <h4 class='mb-10 font-weight-bold'>Rich Pressence Settings</h4>
+  <SettingCard title='Enable Discord Rich Presence' description='Enables Discord Rich Presence'>
+    <div class='custom-switch'>
+      <input type='checkbox' id='rpc-enable' bind:checked={settings.enableRPC} />
+      <label for='rpc-enable'>{settings.enableRPC ? 'On' : 'Off'}</label>
+    </div>
+  </SettingCard>
   <SettingCard title='Show Details in Discord Rich Presence' description='Shows currently played anime and episode in Discord rich presence.'>
     <div class='custom-switch'>
       <input type='checkbox' id='rpc-details' bind:checked={settings.showDetailsInRPC} />
