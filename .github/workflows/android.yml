@@ -86,7 +86,7 @@ jobs:
           action: filippoLeporati93/android-release-signer@v1
           with: |
             releaseDirectory: capacitor/android/app/build/outputs/apk/release
-            signingKeyBase64: | 
+            signingKeyBase64: > 
               ${{ secrets.SIGNING_KEY }}
             alias: ${{ secrets.ALIAS }}
             keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -97,7 +97,7 @@ jobs:
       - uses: jungwinter/split@v2
         id: signed_files
         with:
-          msg: ${{ fromJSON( steps.sign_app.outputs.out ).signedReleaseFiles }}
+          msg: ${{ fromJSON( steps.sign_app.outputs.outputs ).signedReleaseFiles }}
           separator: ':'
       
       - name: Upload APK to release
