@@ -45,6 +45,11 @@ jobs:
       - name: Remove Cached Build
         run: rm -rf ./build && mkdir ./build
 
+      - name: Forcefully Remove Developer Mode
+        run: |
+          sed -i "s@if (mode === 'development')@// if (mode === 'development')@g" ./capacitor.config.js
+          echo "Forcefully removed developer mode"
+
       - name: Build Native + Web
         run: pnpm run build:app
 
