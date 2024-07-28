@@ -86,7 +86,8 @@ jobs:
           action: filippoLeporati93/android-release-signer@v1
           with: |
             releaseDirectory: capacitor/android/app/build/outputs/apk/release
-            signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+            signingKeyBase64: | 
+              ${{ secrets.SIGNING_KEY }}
             alias: ${{ secrets.ALIAS }}
             keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
             keyPassword: ${{ secrets.KEY_PASSWORD }}
