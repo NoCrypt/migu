@@ -83,7 +83,7 @@ jobs:
         id: sign_app
         with:
           attempt_limit: 3
-          action: NoCrypt/sign-android@latest
+          action: NoCrypt/sign-android@main
           with: |
             releaseDir: capacitor/android/app/build/outputs/apk/release
             signingKey: ${{ secrets.SIGNING_KEY }}
