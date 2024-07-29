@@ -82,7 +82,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: | 
-          GIT_CURR_TAG=$(gh release list --limit 1 --json tagName --jq '.[0].tagName'
+          GIT_CURR_TAG=$(gh release list --limit 1 --json tagName --jq '.[0].tagName')
           echo "GIT_CURR_TAG=$GIT_CURR_TAG" >> $GITHUB_ENV
           echo Last Tag is: $GIT_CURR_TAG
         
@@ -91,7 +91,7 @@ jobs:
         id: sign_app
         with:
           attempt_limit: 3
-          action: NoCrypt/sign-android@main
+          action: NoCrypt/sign-android@v1.0.2
           with: |
             releaseDir: capacitor/android/app/build/outputs/apk/release
             signingKey: ${{ secrets.SIGNING_KEY }}
