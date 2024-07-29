@@ -78,8 +78,13 @@ jobs:
       #     echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
       #     echo Last build tool version is: $BUILD_TOOL_VERSION
 
-      - uses: little-core-labs/get-git-tag@v3.0.1
-        id: tag_name
+      - name: Get Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: | 
+          GIT_CURR_TAG=$(gh release list --limit 1 --json tagName --jq '.[0].tagName'
+          echo "GIT_CURR_TAG=$GIT_CURR_TAG" >> $GITHUB_ENV
+          echo Last Tag is: $GIT_CURR_TAG
         
       - uses: Wandalen/wretry.action@master
         name: Sign app APK
@@ -94,7 +99,7 @@ jobs:
             keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
             keyPassword: ${{ secrets.KEY_PASSWORD }}
             appName: Migu
-            appVersion: ${{ steps.tagName.outputs.tag }}
+            appVersion: ${{ env.GIT_CURR_TAG }}
             appPrefix: android
 
       - uses: jungwinter/split@v2
@@ -108,7 +113,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git fetch --tags
-          gh release upload --clobber ${{ steps.tagName.outputs.tag }} ../${{ steps.signed_files.outputs._0 }}
-          gh release upload --clobber ${{ steps.tagName.outputs.tag }} ../${{ steps.signed_files.outputs._1 }}
-          gh release upload --clobber ${{ steps.tagName.outputs.tag }} ../${{ steps.signed_files.outputs._2 }}
-          gh release upload --clobber ${{ steps.tagName.outputs.tag }} ../${{ steps.signed_files.outputs._3 }}
+          gh release upload --clobber ${{ env.GIT_CURR_TAG }} ../${{ steps.signed_files.outputs._0 }}
+          gh release upload --clobber ${{ env.GIT_CURR_TAG }} ../${{ steps.signed_files.outputs._1 }}
+          gh release upload --clobber ${{ env.GIT_CURR_TAG }} ../${{ steps.signed_files.outputs._2 }}
+          gh release upload --clobber ${{ env.GIT_CURR_TAG }} ../${{ steps.signed_files.outputs._3 }}
