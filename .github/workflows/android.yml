@@ -83,7 +83,7 @@ jobs:
         id: sign_app
         with:
           attempt_limit: 3
-          action: NoCrypt/sign-android@v1.0.1
+          action: NoCrypt/sign-android@latest
           with: |
             releaseDir: capacitor/android/app/build/outputs/apk/release
             signingKey: ${{ secrets.SIGNING_KEY }}
@@ -94,7 +94,7 @@ jobs:
       - uses: jungwinter/split@v2
         id: signed_files
         with:
-          msg: ${{ fromJSON( steps.sign_app.outputs.outputs ).signedReleaseFiles }}
+          msg: ${{ fromJSON( steps.sign_app.outputs.outputs ).signedFiles }}
           separator: ':'
       
       - name: Upload APK to release
