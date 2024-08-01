@@ -31,14 +31,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            splits {
+                abi {
+                    enable true
+                    reset()
+                    include "armeabi-v7a", "arm64-v8a", "x86_64"
+                    universalApk true
+                }
+            }
         }
-    }
-    splits {
-        abi {
-            enable true
-            reset()
-            include "armeabi-v7a", "arm64-v8a", "x86_64"
-            universalApk true
+
+        debug {
+            splits {
+                abi {
+                    enable false
+                }
+            }
         }
     }
 }
