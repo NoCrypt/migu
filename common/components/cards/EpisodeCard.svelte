@@ -18,6 +18,7 @@
 
   const view = getContext('view')
   function viewMedia () {
+    if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
     if (data.onclick) {
       data.onclick()
       return
@@ -30,7 +31,6 @@
 
   let thisElement;
   if (SUPPORTS.isAndroid){
-    document.querySelector('.content-wrapper').requestFullscreen()
     click(thisElement, viewMedia)
   } else {
     hoverClick(thisElement, [viewMedia, setHoverState])

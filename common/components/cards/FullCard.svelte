@@ -11,7 +11,6 @@
   const view = getContext('view')
   function viewMedia () {
     $view = media
-    if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
   }
 </script>
 
