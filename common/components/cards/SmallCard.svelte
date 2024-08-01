@@ -4,6 +4,7 @@
   import { formatMap, statusColorMap } from '@/modules/anime.js'
   import { hoverClick } from '@/modules/click.js'
   import { countdown } from '@/modules/util.js'
+  import { SUPPORTS } from '@/modules/support';
 
   import { page } from '@/App.svelte'
   /** @type {import('@/modules/al.d.ts').Media} */
@@ -13,6 +14,7 @@
   const view = getContext('view')
   function viewMedia () {
     $view = media
+    if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
   }
   function setHoverState (state) {
     preview = state

@@ -7,6 +7,8 @@
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
   import { isMobile } from '@/Router.svelte'
+  import { SUPPORTS } from '@/modules/support';
+  
   export let data
 
   let preview = false
@@ -18,6 +20,7 @@
   const view = getContext('view')
   function viewMedia () {
     $view = media
+    if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
   }
   function setHoverState (state) {
     preview = state
