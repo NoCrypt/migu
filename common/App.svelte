@@ -35,6 +35,11 @@
   <Logout />
   <Sidebar bind:page={$page} />
   <div class='overflow-hidden content-wrapper h-full z-10'>
+    <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
+      classes: {
+        closeButton: "toast-close-button"
+      }
+
     }} style="margin-top: var(--safe-area-top)"/>
     <TorrentModal />
     <Router bind:page={$page} />
@@ -43,6 +48,14 @@
 </div>
 
 <style>
+
+  :global(.toast-close-button){
+    bottom: 10px !important;
+    right: 10px !important;
+    left: unset !important;
+    top: unset !important;
+  }
+
   .content-wrapper {
     will-change: width;
     top: 0 !important;
