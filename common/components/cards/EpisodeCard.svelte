@@ -1,7 +1,7 @@
 <script>
   import { statusColorMap } from '@/modules/anime.js'
   import EpisodePreviewCard from './EpisodePreviewCard.svelte'
-  import { hoverClick } from '@/modules/click.js'
+  import { click, hoverClick } from '@/modules/click.js'
   import { since } from '@/modules/util.js'
   import { getContext } from 'svelte'
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
@@ -18,9 +18,6 @@
 
   const view = getContext('view')
   function viewMedia () {
-    if (SUPPORTS.isAndroid) {
-      document.querySelector('.content-wrapper').requestFullscreen()
-    }
     if (data.onclick) {
       data.onclick()
       return
@@ -31,10 +28,18 @@
     preview = state
   }
 
+  let thisElement;
+  if (SUPPORTS.isAndroid){
+    document.querySelector('.content-wrapper').requestFullscreen()
+    click(thisElement, viewMedia)
+  } else {
+    hoverClick(thisElement, [viewMedia, setHoverState])
+  }
+  
   const progress = liveAnimeEpisodeProgress(media?.id, data?.episode)
 </script>
 
-<div class='d-flex p-20 pb-10 position-relative episode-card' use:hoverClick={[viewMedia, setHoverState]}>
+<div class='d-flex p-20 pb-10 position-relative episode-card' bind:this={thisElement}>
   {#if preview}
     {#if !SUPPORTS.isAndroid}
     <EpisodePreviewCard {data} />
