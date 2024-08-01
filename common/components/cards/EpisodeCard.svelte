@@ -6,8 +6,7 @@
   import { getContext } from 'svelte'
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
-  import { isMobile } from '@/Router.svelte'
-  import { SUPPORTS } from '@/modules/support';
+  import { SUPPORTS } from '@/modules/support.js';
   
   export let data
 
@@ -19,7 +18,9 @@
 
   const view = getContext('view')
   function viewMedia () {
-    if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
+    if (SUPPORTS.isAndroid) {
+      document.querySelector('.content-wrapper').requestFullscreen()
+    }
     if (data.onclick) {
       data.onclick()
       return
@@ -35,7 +36,7 @@
 
 <div class='d-flex p-20 pb-10 position-relative episode-card' use:hoverClick={[viewMedia, setHoverState]}>
   {#if preview}
-    {#if !$isMobile}
+    {#if !SUPPORTS.isAndroid}
     <EpisodePreviewCard {data} />
     {/if}
   {/if}

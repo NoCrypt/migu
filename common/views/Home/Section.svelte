@@ -8,7 +8,7 @@
   import { search } from '../Search.svelte'
   import { page } from '@/App.svelte'
   import { click } from '@/modules/click.js'
-  import { isMobile } from '@/Router.svelte';
+  import { SUPPORTS } from '@/modules/support.js';
 
   export let opts
 
@@ -42,8 +42,8 @@
 <div class='position-relative '>
   <div class='pb-10 w-full d-flex flex-row justify-content-start gallery' 
        class:isRSS={opts.isRSS} 
-       class:overflow-x-scroll={opts.isRSS && $isMobile} 
-       class:fader={!$isMobile}
+       class:overflow-x-scroll={opts.isRSS && SUPPORTS.isAndroid} 
+       class:fader={!SUPPORTS.isAndroid}
        >
     {#each $preview || fakecards as card}
       <Card {card} />

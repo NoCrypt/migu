@@ -4,7 +4,7 @@
   import { formatMap, statusColorMap } from '@/modules/anime.js'
   import { hoverClick } from '@/modules/click.js'
   import { countdown } from '@/modules/util.js'
-  import { SUPPORTS } from '@/modules/support';
+  import { SUPPORTS } from '@/modules/support.js';
 
   import { page } from '@/App.svelte'
   /** @type {import('@/modules/al.d.ts').Media} */
