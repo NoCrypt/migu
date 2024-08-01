@@ -3,7 +3,7 @@
   import EpisodePreviewCard from './EpisodePreviewCard.svelte'
   import { click, hoverClick } from '@/modules/click.js'
   import { since } from '@/modules/util.js'
-  import { getContext } from 'svelte'
+  import { getContext, onMount } from 'svelte'
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
   import { SUPPORTS } from '@/modules/support.js';
@@ -30,12 +30,16 @@
   }
 
   let thisElement;
-  if (SUPPORTS.isAndroid){
-    click(thisElement, viewMedia)
-  } else {
-    hoverClick(thisElement, [viewMedia, setHoverState])
-  }
-  
+
+  onMount(() => {
+    
+    if (SUPPORTS.isAndroid){
+      click(thisElement, viewMedia)
+    } else {
+      hoverClick(thisElement, [viewMedia, setHoverState])
+    }
+    
+  })
   const progress = liveAnimeEpisodeProgress(media?.id, data?.episode)
 </script>
 
