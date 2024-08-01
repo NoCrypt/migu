@@ -54,8 +54,8 @@
   }
 </script>
 
-<form class='container-fluid py-20 px-md-50 px-20 bg-dark pb-0 position-sticky top-0 search-container z-40' on:input bind:this={form}>
-  <div class='row'>
+<form class='container-fluid py-20 px-md-50 px-20 bg-dark pb-0 position-sticky top-0 search-container z-40' on:input bind:this={form} >
+  <div class='row' style="padding-top: var(--safe-area-top)">
     <div class='col-lg col-4 p-10 d-flex flex-column justify-content-end'>
       <div class='pb-10 font-size-24 font-weight-semi-bold d-flex'>
         <div class='material-symbols-outlined mr-10 font-size-30'>title</div>

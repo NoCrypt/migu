@@ -94,7 +94,7 @@
 </script>
 
 <Tabs>
-  <div class='d-flex w-full h-full position-relative settings root flex-md-row flex-column overflow-y-auto overflow-y-md-hidden' use:smoothScroll>
+  <div class='d-flex w-full h-full position-relative settings root flex-md-row flex-column overflow-y-auto overflow-y-md-hidden' style="padding-top: var(--safe-area-top)" use:smoothScroll>
     <div class='d-flex flex-column flex-row h-full w-md-300 bg-dark position-relative px-20 px-md-0 flex-basis-0-md-custom'>
       <div class='px-20 py-15 font-size-24 font-weight-semi-bold'>Settings</div>
       {#each Object.values(groups) as group}

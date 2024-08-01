@@ -35,7 +35,7 @@
   <Logout />
   <Sidebar bind:page={$page} />
   <div class='overflow-hidden content-wrapper h-full z-10'>
-    <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton />
+    }} style="margin-top: var(--safe-area-top)"/>
     <TorrentModal />
     <Router bind:page={$page} />
   </div>

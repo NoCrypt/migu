@@ -173,7 +173,7 @@
   $: checkInvite(joinText)
 </script>
 
-<div class='d-flex h-full align-items-center flex-column content'>
+<div class='d-flex h-full align-items-center flex-column content' style="padding-top: var(--safe-area-top)">
   <div class='font-size-50 font-weight-bold pt-20 mt-20 root'>Watch Together</div>
   {#if !$state}
     <div class='d-flex flex-row flex-wrap justify-content-center align-items-center h-full mb-20 pb-20 root'>
