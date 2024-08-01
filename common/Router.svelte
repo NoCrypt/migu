@@ -62,9 +62,9 @@
   <Settings />
 {:else if page === 'home'}
   <Home />
-<!-- {:else if page === 'search'}
-  <Search /> ye fuck search--> 
-{:else if page === 'schedule' || page === 'search'}
+{:else if page === 'search'}
+  <Search /> 
+{:else if page === 'schedule'}
   <AiringSchedule />
 {:else if page === 'watchtogether'}
   <WatchTogether />
