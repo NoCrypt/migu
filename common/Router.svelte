@@ -21,6 +21,7 @@
   import { rss } from './views/TorrentSearch/TorrentModal.svelte';
   import { view } from './App.svelte';
   import { onDestroy, onMount } from 'svelte';
+  import { SUPPORTS } from '@/modules/support.js';
 
   export let page = 'home'
 
@@ -28,7 +29,7 @@
   $: maxwidth = $isMobile ? '200px' : '60rem'
 
   onMount(() => {
-    if ($isMobile) {
+    if (SUPPORTS.isAndroid) {
       let backButtonPressTimeout;
       window.Capacitor.Plugins.App.addListener("backButton", () => {
         if (page === "home" && $view === null && $rss === null) {
