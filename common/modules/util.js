@@ -127,7 +127,7 @@ export const defaults = {
   playerAutocomplete: true,
   playerDeband: false,
   rssQuality: '1080',
-  rssFeedsNew: SUPPORTS.extensions ? [['New Releases', 'SubsPlease']] : [],
+  rssFeedsNew: SUPPORTS.extensions ? [['New Releases', 'ASW [Small Size]']] : [],
   rssAutoplay: false,
   torrentSpeed: 5, // legacy
   downloadSpeed: 5,
