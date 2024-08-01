@@ -20,36 +20,40 @@
   import { files } from './views/Player/MediaHandler.svelte' // this is sooo hacky and possibly delaying viewer on startup
   import { rss } from './views/TorrentSearch/TorrentModal.svelte';
   import { view } from './App.svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   export let page = 'home'
 
   $: minwidth = $isMobile ? '200px' : '35rem'
   $: maxwidth = $isMobile ? '200px' : '60rem'
 
-  if ($isMobile) {
-    let backButtonPressTimeout;
-
-    window.Capacitor.Plugins.App.addListener('backButton', () => {
-      if (page === 'home' && $view === null && $rss === null) {
-        if (backButtonPressTimeout) {
-          clearTimeout(backButtonPressTimeout);
-          window.Capacitor.Plugins.App.exitApp();
+  onMount(() => {
+    if ($isMobile) {
+      let backButtonPressTimeout;
+      window.Capacitor.Plugins.App.addListener("backButton", () => {
+        if (page === "home" && $view === null && $rss === null) {
+          if (backButtonPressTimeout) {
+            clearTimeout(backButtonPressTimeout);
+            window.Capacitor.Plugins.App.exitApp();
+          } else {
+            toast.warning("Press again to exit", { duration: 1000 });
+            backButtonPressTimeout = setTimeout(() => {
+              backButtonPressTimeout = null;
+            }, 1000);
+          }
         } else {
-          toast.warning('Press again to exit', { duration: 1000 });
-          backButtonPressTimeout = setTimeout(() => {
-            backButtonPressTimeout = null;
-          }, 1000);
+          if (document.fullscreenElement) document.exitFullscreen();
+          page = "home";
+          $rss = null;
+          $view = null;
         }
-      } else {
-        if (document.fullscreenElement) document.exitFullscreen()
-        page = 'home';
-        $rss = null;
-        $view = null;
-      }
-    });
-  }
+      });
+    }
+  });
 
-
+  onDestroy(() => {
+    if ($isMobile) window.Capacitor.Plugins.App.removeAllListeners();
+  });
 
 </script>
 
