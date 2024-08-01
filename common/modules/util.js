@@ -134,7 +134,7 @@ export const defaults = {
   uploadSpeed: 1,
   slowSeeding: true,
   disableStartupVideo: true,
-  amoledTheme: false,
+  amoledTheme: true,
   torrentPersist: false,
   torrentDHT: false,
   torrentPeX: false,

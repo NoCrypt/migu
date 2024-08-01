@@ -40,7 +40,7 @@
     <label for='disable-sidebar'>{settings.expandingSidebar ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
-<SettingCard title='Amoled Theme' description='Saves battery when using an amoled theme.'>
+<SettingCard title='Amoled Theme' description='Saves battery when using an amoled screen. Restart is required to take full effect.'>
   <div class='custom-switch'>
     <input type='checkbox' id='amoled-theme' bind:checked={settings.amoledTheme} on:change={() => updateTheme()}/>
     <label for='amoled-theme'>{settings.amoledTheme ? 'On' : 'Off'}</label>
