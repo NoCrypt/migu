@@ -9,7 +9,7 @@
 
 <script>
   import Home from './views/Home/Home.svelte'
-  import MediaHandler from './views/Player/MediaHandler.svelte'
+  import MediaHandler, { media } from './views/Player/MediaHandler.svelte'
   import Settings from '@/views/Settings/Settings.svelte'
   import WatchTogether from './views/WatchTogether/WatchTogether.svelte'
   import Miniplayer from 'svelte-miniplayer'
@@ -22,6 +22,8 @@
   import { view } from './App.svelte';
   import { onDestroy, onMount } from 'svelte';
   import { SUPPORTS } from '@/modules/support.js';
+  import { click } from '@/modules/click.js';
+  import { client } from '@/modules/torrent.js';
 
   export let page = 'home'
 
@@ -53,15 +55,26 @@
   });
 
   onDestroy(() => {
-    if ($isMobile) window.Capacitor.Plugins.App.removeAllListeners();
+    if (SUPPORTS.isAndroid) window.Capacitor.Plugins.App.removeAllListeners();
   });
+
+  function closeMiniplayer() {
+    $files = []
+    $media = null
+    localStorage.setItem('torrent', '[]')
+    client.send('torrent', null)
+  }
 
 </script>
 
 <div class='w-full h-full position-absolute overflow-hidden' class:sr-only={($files.length === 0)}>
   <Miniplayer active={page !== 'player'} class='bg-dark-light z-10 {page === 'player' ? 'h-full' : ''}' {minwidth} {maxwidth} width='300px' padding='2rem' resize={!$isMobile}>
     <MediaHandler miniplayer={page !== 'player'} bind:page />
-  </Miniplayer>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    {#if page !== 'player'} 
+      <div tabindex="0" use:click={closeMiniplayer} style="position: absolute; top: 5px; right: 5px; cursor: alias; z-index: 100; font-size: 3rem; line-height: 2.2rem; text-shadow: 0px 0px 10px black;">&times;</div>
+    {/if}
+    </Miniplayer>
 </div>
 {#if page === 'settings'}
   <Settings />
