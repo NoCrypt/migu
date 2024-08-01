@@ -16,7 +16,7 @@ const AMOLED = `--sidebar-gradient: linear-gradient(90deg, #000000 15.62%, #0000
 --episode-card-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0) 77.08%, rgba(0, 0, 0, 0.7) 100%);
 --episode-preview-card-gradient: linear-gradient(180deg, #0000 0%, #2a2a2a00 80%, #2a2a2a 95%, #2a2a2a 100%);
 --preview-card-gradient: linear-gradient(180deg, #0000 0%, #2a2a2a00 80%, #2a2a2ae3 95%, #2a2a2a 100%);
---section-end-gradient: linear-gradient(270deg, #181818ff 0%, #18181800 100%);
+--section-end-gradient: linear-gradient(270deg, #000 0%, #00000000 100%);
 --dark-color-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 0% !important;
 --dark-color-light: #1a1a1a !important;
 `
