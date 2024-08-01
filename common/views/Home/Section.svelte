@@ -8,6 +8,7 @@
   import { search } from '../Search.svelte'
   import { page } from '@/App.svelte'
   import { click } from '@/modules/click.js'
+  import { isMobile } from '@/Router.svelte';
 
   export let opts
 
@@ -38,8 +39,12 @@
   <div class='font-size-24 font-weight-semi-bold' use:click={_click}>{opts.title}</div>
   <div class='pr-10 ml-auto font-size-12' use:click={_click}>View More</div>
 </span>
-<div class='position-relative'>
-  <div class='pb-10 w-full d-flex flex-row justify-content-start gallery' class:isRSS={opts.isRSS}>
+<div class='position-relative '>
+  <div class='pb-10 w-full d-flex flex-row justify-content-start gallery' 
+       class:isRSS={opts.isRSS} 
+       class:overflow-x-scroll={opts.isRSS && $isMobile} 
+       class:fader={!$isMobile}
+       >
     {#each $preview || fakecards as card}
       <Card {card} />
     {/each}
@@ -56,13 +61,14 @@
   .text-muted:hover {
     color: var(--dm-link-text-color-hover) !important;
   }
-  .gallery:after {
+
+  .fader:after {
+    background: var(--section-end-gradient);
     content: '';
     position: absolute;
     right: 0;
     height: 100%;
     width: 8rem;
-    background: var(--section-end-gradient);
     pointer-events: none;
   }
   .gallery {

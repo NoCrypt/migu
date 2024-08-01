@@ -1,6 +1,6 @@
 <script context='module'>
   const mql = matchMedia('(min-width: 769px)')
-  const isMobile = readable(!mql.matches, set => {
+  export const isMobile = readable(!mql.matches, set => {
     const check = ({ matches }) => set(!matches)
     mql.addEventListener('change', check)
     return () => mql.removeEventListener('change', check)

@@ -6,6 +6,7 @@
   import { getContext } from 'svelte'
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
+  import { isMobile } from '@/Router.svelte'
   export let data
 
   let preview = false
@@ -27,7 +28,9 @@
 
 <div class='d-flex p-20 pb-10 position-relative episode-card' use:hoverClick={[data.onclick || viewMedia, setHoverState]}>
   {#if preview}
+    {#if !$isMobile}
     <EpisodePreviewCard {data} />
+    {/if}
   {/if}
   <div class='item d-flex flex-column h-full pointer content-visibility-auto'>
     <div class='image h-200 w-full position-relative rounded overflow-hidden d-flex justify-content-between align-items-end text-white' class:bg-black={episodeThumbnail === ' '}>
