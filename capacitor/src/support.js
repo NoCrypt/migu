@@ -11,6 +11,7 @@ export const SUPPORTS = {
   torrentPath: false,
   torrentPersist: false,
   keybinds: false,
+  extensions: true,
   isAndroid: true,
   externalPlayer: false,
   permamentNAT: false // no way of safely closing app
