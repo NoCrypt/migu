@@ -19,8 +19,12 @@
 
   const view = getContext('view')
   function viewMedia () {
+    if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
+    if (data.onclick) {
+      data.onclick()
+      return
+    }
     $view = media
-    if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
   }
   function setHoverState (state) {
     preview = state
@@ -29,7 +33,7 @@
   const progress = liveAnimeEpisodeProgress(media?.id, data?.episode)
 </script>
 
-<div class='d-flex p-20 pb-10 position-relative episode-card' use:hoverClick={[data.onclick || viewMedia, setHoverState]}>
+<div class='d-flex p-20 pb-10 position-relative episode-card' use:hoverClick={[viewMedia, setHoverState]}>
   {#if preview}
     {#if !$isMobile}
     <EpisodePreviewCard {data} />
