@@ -80,14 +80,14 @@
   <div class='navbar-menu h-full d-flex flex-row justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
     <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} />-->
     <div
-        class='navbar-link navbar-link-with-icon pointer overflow-hidden'
+        class='navbar-link navbar-link-with-icon pointer overflow-hidden mx-auto'
         use:click={close}>
         <span class='material-symbols-outlined rounded'>home</span>
     </div>
 
     {#each links as { click: _click, icon, text, image, css, page: _page }, i (i)}
       <div
-        class='navbar-link navbar-link-with-icon pointer overflow-hidden {css}'
+        class='navbar-link navbar-link-with-icon pointer overflow-hidden mx-auto {css}'
         use:click={_click}>
         {#if image}
           <span class='material-symbols-outlined rounded' class:filled={page === _page}>
@@ -152,16 +152,16 @@
   }
 
   .navbar-link {
-    font-size: 1.4rem;
-    padding: 0.75rem;
+    font-size: 1.5rem;
+    padding: 0.65rem;
     height: 5.5rem;
   }
 
   .material-symbols-outlined {
-    font-size: 2.2rem;
-    min-width: 4rem;
-    width: 4rem;
-    height: 4rem;
+    font-size: 2.5rem;
+    min-width: 4.2rem;
+    width: 6rem;
+    height: 4.2rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
