@@ -71,14 +71,14 @@
       icon: 'home',
       text: 'Home'
     },
-    // {
-    //   click: () => {
-    //     page = 'search'
-    //   },
-    //   page: 'search',
-    //   icon: 'search',
-    //   text: 'Search'
-    // },
+    {
+      click: () => {
+        page = 'search'
+      },
+      page: 'search',
+      icon: 'search',
+      text: 'Search'
+    },
     {
       click: () => {
         page = 'schedule'
@@ -86,7 +86,7 @@
         $rss = null
       },
       page: 'schedule',
-      icon: 'search',
+      icon: 'schedule',
       text: 'Schedule'
     },
     {
