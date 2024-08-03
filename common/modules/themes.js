@@ -20,6 +20,7 @@ const AMOLED = `--sidebar-gradient: linear-gradient(90deg, #000000 15.62%, #0000
 --section-end-gradient: linear-gradient(270deg, #000 0%, #00000000 100%);
 --dark-color-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 0% !important;
 --dark-color-light: #1a1a1a !important;
+--dark-color-dim-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 0% !important;
 `
 
 const NORMAL = `--sidebar-gradient: linear-gradient(90deg, #17191D 15.62%, rgba(23, 25, 29, 0.92) 36.46%, rgba(23, 25, 29, 0.619632) 70.83%, rgba(23, 25, 29, 0) 100%);
@@ -32,6 +33,7 @@ const NORMAL = `--sidebar-gradient: linear-gradient(90deg, #17191D 15.62%, rgba(
 --section-end-gradient: linear-gradient(270deg, #17191cff 0%, #17191c00 100%);
 --dark-color-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 10% !important;
 --dark-color-light: #25292F !important;
+--dark-color-dim-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 8% !important;
 `
 
 variables.subscribe(value => {

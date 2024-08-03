@@ -31,6 +31,7 @@
   --episode-preview-card-gradient: linear-gradient(180deg, #0000 0%, #25292f00 80%, #25292f 95%, #25292f 100%);
   --preview-card-gradient: linear-gradient(180deg, #0000 0%, #25292f00 80%, #25292fe3 95%, #25292f 100%);
   --section-end-gradient: linear-gradient(270deg, #17191cff 0%, #17191c00 100%);
+  --dark-color-dim-hsl: var(--dark-color-base-hue), var(--dark-color-base-saturation), 8%;
   color-scheme: dark;
 }
 .dark-mode {
