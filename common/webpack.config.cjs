@@ -16,6 +16,9 @@ module.exports = (parentDir, alias = {}, aliasFields = 'browser', filename = 'ap
     filename: 'renderer.js'
   },
   mode,
+  optimization:{
+    minimize: false // TODO: https://github.com/NoCrypt/migu/issues/2
+  },
   module: {
     rules: [
       {
