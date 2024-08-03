@@ -131,7 +131,7 @@
                   <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' class:filled={media.mediaListEntry} use:click={toggleStatus}>
                     bookmark
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => copyToClipboard(`https://miru.watch/anime/${media.id}`)}>
+                  <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
                     share
                   </button>
                   <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>

@@ -238,7 +238,7 @@
         },
         {
           label: 'Watch on Migu',
-          url: `miru://anime/${np.media?.id}`
+          url: `migu://anime/${np.media?.id}`
         }
       ]
     }

@@ -56,19 +56,19 @@ app.setJumpList?.([
     items: [
       {
         type: 'task',
-        program: 'miru://schedule/',
+        program: 'migu://schedule/',
         title: 'Airing Schedule',
         description: 'Open The Airing Schedule'
       },
       {
         type: 'task',
-        program: 'miru://w2g/',
+        program: 'migu://w2g/',
         title: 'Watch Together',
         description: 'Create a New Watch Together Lobby'
       },
       {
         type: 'task',
-        program: 'miru://donate/',
+        program: 'migu://donate/',
         title: 'Donate',
         description: 'Support This App'
       }

@@ -49,9 +49,9 @@
       "customDir": "2ffc48f0b43f"
     },
     "protocols": {
-      "name": "miru",
+      "name": "migu",
       "schemes": [
-        "miru"
+        "migu"
       ]
     },
     "publish": [
@@ -99,7 +99,7 @@
         "Comment": "Bittorrent streaming software for cats",
         "Keywords": "anime",
         "Type": "Application",
-        "MimeType": "x-scheme-handler/miru;"
+        "MimeType": "x-scheme-handler/migu;"
       },
       "target": [
         {

@@ -40,16 +40,16 @@ IPC.on('notification', noti => {
   if (canShowNotifications) LocalNotifications.schedule({ notifications: [notification] })
 })
 
-// schema: miru://key/value
+// schema: migu://key/value
 const protocolMap = {
   auth: token => sendToken(token),
   anime: id => IPC.emit('open-anime', id),
   w2g: link => IPC.emit('w2glink', link),
   schedule: () => IPC.emit('schedule'),
-  donate: () => Browser.open({ url: 'https://github.com/sponsors/ThaUnknown/' })
+  donate: () => Browser.open({ url: 'https://github.com/sponsors/NoCrypt/' })
 }
 
-const protocolRx = /miru:\/\/([a-z0-9]+)\/(.*)/i
+const protocolRx = /migu:\/\/([a-z0-9]+)\/(.*)/i
 
 function handleProtocol (text) {
   const match = text.match(protocolRx)

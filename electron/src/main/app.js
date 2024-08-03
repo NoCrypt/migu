@@ -90,7 +90,7 @@ export default class App {
     })
 
     if (process.platform === 'win32') {
-      app.setAppUserModelId('com.github.thaunknown.miru')
+      app.setAppUserModelId('com.github.nocrypt.migu')
       // this message usually fires in dev-mode from the parent process
       process.on('message', data => {
         if (data === 'graceful-exit') this.destroy()
@@ -117,8 +117,8 @@ export default class App {
     this.mainWindow.webContents.on('render-process-gone', async (e, { reason }) => {
       if (reason === 'crashed') {
         if (++crashcount > 10) {
-          await dialog.showMessageBox({ message: 'Crashed too many times.', title: 'Miru', detail: 'App crashed too many times. For a fix visit https://miru.watch/faq/', icon: '/renderer/public/logo_filled.png' })
-          shell.openExternal('https://miru.watch/faq/')
+          await dialog.showMessageBox({ message: 'Crashed too many times.', title: 'Migu', detail: 'App crashed too many times. Make an issue at https://github.com/NoCrypt/migu/issues', icon: '/renderer/public/logo_filled.png' })
+          shell.openExternal('https://github.com/NoCrypt/migu/issues')
         } else {
           app.relaunch()
         }

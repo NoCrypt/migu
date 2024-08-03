@@ -145,7 +145,7 @@
 
   function invite () {
     if (p2pt) {
-      navigator.clipboard.writeText(`https://miru.watch/w2g/${p2pt.identifierString}`)
+      navigator.clipboard.writeText(`https://miguapp.pages.dev/w2g/${p2pt.identifierString}`)
       toast('Copied to clipboard', {
         description: 'Copied invite URL to clipboard',
         duration: 5000

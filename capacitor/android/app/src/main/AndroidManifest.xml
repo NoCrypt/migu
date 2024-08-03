@@ -32,7 +32,7 @@
             </intent-filter>
 
             <intent-filter>
-                <data android:scheme="miru" />
+                <data android:scheme="migu" />
 
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
