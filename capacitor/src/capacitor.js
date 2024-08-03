@@ -1,4 +1,4 @@
-/* globals navigationbar, PictureInPicture */
+/* globals NavigationBar, PictureInPicture */
 import { StatusBar, Style } from '@capacitor/status-bar'
 import { SafeArea } from 'capacitor-plugin-safe-area'
 import { App } from '@capacitor/app'
@@ -88,7 +88,8 @@ updateInsets()
 StatusBar.setStyle({ style: Style.Dark })
 StatusBar.setOverlaysWebView({ overlay: true })
 
-navigationbar.setUp(true)
+// @ts-ignore
+NavigationBar.setUp(true)
 
 // cordova screen orientation plugin is also used, and it patches global screen.orientation.lock
 
