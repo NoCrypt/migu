@@ -24,6 +24,8 @@
   import { SUPPORTS } from '@/modules/support.js';
   import { click } from '@/modules/click.js';
   import { client } from '@/modules/torrent.js';
+  import { settings } from '@/modules/settings.js';
+  import IPC from '@/modules/ipc.js';
 
   export let page = 'home'
 
@@ -31,6 +33,8 @@
   $: maxwidth = $isMobile ? '200px' : '60rem'
 
   onMount(() => {
+    if($settings.enableAutoUpdate && SUPPORTS.update) IPC.emit('update')
+    
     if (SUPPORTS.isAndroid) {
       let backButtonPressTimeout;
       window.Capacitor.Plugins.App.addListener("backButton", () => {

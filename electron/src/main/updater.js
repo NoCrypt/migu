@@ -9,7 +9,7 @@ ipcMain.on('update', () => {
   autoUpdater.checkForUpdatesAndNotify()
 })
 
-autoUpdater.checkForUpdatesAndNotify()
+// autoUpdater.checkForUpdatesAndNotify()
 export default class Updater {
   hasUpdate = false
   /**

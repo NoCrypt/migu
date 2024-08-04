@@ -4,6 +4,7 @@
   import { resetSettings } from '@/modules/settings.js'
   import IPC from '@/modules/ipc.js'
   import { SUPPORTS } from '@/modules/support.js'
+  import SettingCard from './SettingCard.svelte';
 
   async function importSettings () {
     localStorage.setItem('settings', await navigator.clipboard.readText())
@@ -25,6 +26,10 @@
   }
   setInterval(checkUpdate, 1200000)
 </script>
+<script>
+  export let settings
+</script>
+
 <div class='d-inline-flex flex-column'>
   <button
     use:click={importSettings}
@@ -39,6 +44,12 @@
     Export Settings To Clipboard
   </button>
   {#if SUPPORTS.update}
+    <SettingCard title='Enable auto update' description='Enables auto updater upon startup. Disable this if you have issues with it.'>
+      <div class='custom-switch'>
+        <input type='checkbox' id='enable-auto-updater' bind:checked={settings.enableAutoUpdate} />
+        <label for='enable-auto-updater'>{settings.enableAutoUpdate ? 'On' : 'Off'}</label>
+      </div>
+    </SettingCard>
     <button
       use:click={checkUpdate}
       class='btn btn-primary mx-20 mt-10'

@@ -149,7 +149,7 @@
     </Tab>
     <Tab>
       <div class='root h-full w-full overflow-y-md-auto p-20' use:smoothScroll>
-        <AppSettings />
+        <AppSettings bind:settings={$settings} />
         <div class='h-250' />
       </div>
     </Tab>
