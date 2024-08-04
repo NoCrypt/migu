@@ -1,6 +1,7 @@
 <script>
   import { click } from '@/modules/click.js'
   import { sections } from '@/modules/sections.js'
+  import { SUPPORTS } from '@/modules/support.js';
 
   const allowedHomeSections = sections.map(({ title }) => title)
   export let homeSections
@@ -19,6 +20,15 @@
 
       draggingItemIndex = hoveredItemIndex
     }
+  }
+
+  function moveItem(index, direction) {
+    if (direction === 'up' && index > 0) {
+      [homeSections[index], homeSections[index - 1]] = [homeSections[index - 1], homeSections[index]];
+    } else if (direction === 'down' && index < homeSections.length - 1) {
+      [homeSections[index], homeSections[index + 1]] = [homeSections[index + 1], homeSections[index]];
+    }
+    homeSections = homeSections; // Trigger reactivity
   }
 </script>
 
@@ -45,7 +55,7 @@
     class:tp={draggingItem === item}
     draggable='true'
     role='menuitem'
-    tabindex='0'
+    tabindex='-1'
     on:dragstart={({ clientY, target }) => {
       mouseYCoordinate = clientY
       draggingItem = item
@@ -59,10 +69,21 @@
       draggingItem = null
       hoveredItemIndex = null
     }}>
-    <div class='input-group-prepend grab'>
-      <span class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20'>swap_vert</span>
-    </div>
-    <select class='form-control bg-dark w-300 mw-full' bind:value={homeSections[index]}>
+    {#if !SUPPORTS.isAndroid}
+      <div class='input-group-prepend grab'>
+        <span class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20'>swap_vert</span>
+      </div>
+    {:else}
+      <div class='input-group-prepend'>
+        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <button on:click={() => moveItem(index, 'up')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'>arrow_upward</button>
+        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <button on:click={() => moveItem(index, 'down')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'>arrow_downward</button>
+      </div>
+    {/if}
+    <select class='form-control bg-dark w-400 mw-full' bind:value={homeSections[index]}>
       {#each allowedHomeSections as section}
         <option>{section}</option>
       {/each}
@@ -88,5 +109,9 @@
 
     .grab{
       cursor: grab;
+    }
+    
+    .pointer {
+      cursor: pointer;
     }
 </style>
