@@ -1531,6 +1531,12 @@
   .seekbar {
     font-size: 2rem !important;
   }
+  .miniplayer .mobile-focus-target {
+    display: block !important;
+  }
+  .miniplayer .mobile-focus-target:focus-visible {
+    background: hsla(209, 100%, 55%, 0.3);
+  }
 
   @media (pointer: none), (pointer: coarse) {
     .bottom .ctrl[data-name='playPause'],
@@ -1554,12 +1560,6 @@
     }
     .toggle-fullscreen {
       display: none !important;
-    }
-    .miniplayer .mobile-focus-target {
-      display: block !important;
-    }
-    .miniplayer .mobile-focus-target:focus-visible {
-      background: hsla(209, 100%, 55%, 0.3);
     }
   }
 

@@ -9,7 +9,8 @@ const config = {
       keystorePath: './watch.migu',
       keystorePassword: '',
       keystoreAlias: 'watch.migu'
-    }
+    },
+    webContentsDebuggingEnabled: true
   },
   plugins: {
     SplashScreen: { launchShowDuration: 0 },

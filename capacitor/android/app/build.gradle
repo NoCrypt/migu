@@ -13,7 +13,7 @@ versions.each (code) -> {
 
 android {
     namespace "watch.migu"
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "watch.migu"
         minSdkVersion rootProject.ext.minSdkVersion
