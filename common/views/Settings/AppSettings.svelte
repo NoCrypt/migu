@@ -39,7 +39,7 @@
   </button>
   <button
     use:click={exportSettings}
-    class='btn btn-primary mx-20 mt-10'
+    class='btn btn-primary mx-20 mt-10 mb-15'
     type='button'>
     Export Settings To Clipboard
   </button>
