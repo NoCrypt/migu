@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@capacitor/assets": "github:thaunknown/capacitor-assets",
-    "@capacitor/cli": "^6.1.1",
     "cordova-res": "^0.15.4",
     "nodejs-mobile-gyp": "^0.3.1",
     "npm-run-all": "^4.1.5",
@@ -30,6 +29,7 @@
     "@capacitor-community/file-opener": "^6.0.0",
     "@capacitor/android": "^6.1.1",
     "@capacitor/app": "^6.0.0",
+    "@capacitor/cli": "^6.1.1",
     "@capacitor/browser": "^6.0.1",
     "@capacitor/core": "^6.1.1",
     "@capacitor/filesystem": "^6.0.0",

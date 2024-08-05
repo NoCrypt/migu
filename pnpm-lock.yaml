@@ -75,6 +75,9 @@ importers:
       '@capacitor/browser':
         specifier: ^6.0.1
         version: 6.0.1(@capacitor/core@6.1.1)
+      '@capacitor/cli':
+        specifier: ^6.1.1
+        version: 6.1.1
       '@capacitor/core':
         specifier: ^6.1.1
         version: 6.1.1
@@ -115,9 +118,6 @@ importers:
       '@capacitor/assets':
         specifier: github:thaunknown/capacitor-assets
         version: https://codeload.github.com/thaunknown/capacitor-assets/tar.gz/6b1034e757096615badc49119cb25e34ed7942ad(@types/node@22.1.0)(typescript@5.5.4)
-      '@capacitor/cli':
-        specifier: ^6.1.1
-        version: 6.1.1
       cordova-res:
         specifier: ^0.15.4
         version: 0.15.4
