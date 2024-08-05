@@ -5947,6 +5947,7 @@ snapshots:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   '@ionic/utils-fs@3.1.7':
     dependencies:
@@ -6043,6 +6044,7 @@ snapshots:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   '@ionic/utils-terminal@2.3.3':
     dependencies:
@@ -6057,6 +6059,7 @@ snapshots:
       wrap-ansi: 7.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   '@ionic/utils-terminal@2.3.4':
     dependencies:
@@ -7198,6 +7201,7 @@ snapshots:
   bplist-parser@0.3.2:
     dependencies:
       big-integer: 1.6.52
+    dev: true
 
   brace-expansion@1.1.11:
     dependencies:
@@ -7668,7 +7672,7 @@ snapshots:
       debug: 4.3.6
       elementtree: 0.1.7
       sharp: 0.29.3
-      tslib: 2.6.2
+      tslib: 2.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -8086,6 +8090,7 @@ snapshots:
   elementtree@0.1.7:
     dependencies:
       sax: 1.1.4
+    dev: true
 
   emoji-regex@8.0.0: {}
 
@@ -8531,6 +8536,7 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
+    dev: true
 
   fetch-blob@3.2.0:
     dependencies:
@@ -8660,6 +8666,7 @@ snapshots:
       graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.1
+    dev: true
 
   fs-minipass@1.2.7:
     dependencies:
@@ -8668,6 +8675,7 @@ snapshots:
   fs-minipass@2.1.0:
     dependencies:
       minipass: 3.3.6
+    dev: true
 
   fs-native-extensions@1.2.7:
     dependencies:
@@ -8805,6 +8813,7 @@ snapshots:
       minimatch: 8.0.4
       minipass: 4.2.8
       path-scurry: 1.11.1
+    dev: true
 
   global-agent@3.0.0:
     dependencies:
@@ -9259,6 +9268,7 @@ snapshots:
   is-wsl@2.2.0:
     dependencies:
       is-docker: 2.2.1
+    dev: true
 
   is-wsl@3.1.0:
     dependencies:
@@ -9616,6 +9626,7 @@ snapshots:
   minimatch@8.0.4:
     dependencies:
       brace-expansion: 2.0.1
+    dev: true
 
   minimatch@9.0.3:
     dependencies:
@@ -9641,6 +9652,7 @@ snapshots:
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
+    dev: true
 
   minipass@4.2.8: {}
 
@@ -9656,6 +9668,7 @@ snapshots:
     dependencies:
       minipass: 3.3.6
       yallist: 4.0.0
+    dev: true
 
   mkdirp-classic@0.5.3: {}
 
@@ -9703,6 +9716,7 @@ snapshots:
       yauzl: 2.10.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   natural-compare@1.4.0: {}
 
@@ -9907,6 +9921,7 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+    dev: true
 
   optionator@0.9.4:
     dependencies:
@@ -10076,6 +10091,7 @@ snapshots:
       '@xmldom/xmldom': 0.8.10
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
+    dev: true
 
   possible-typed-array-names@1.0.0: {}
 
@@ -10166,6 +10182,7 @@ snapshots:
     dependencies:
       kleur: 3.0.3
       sisteransi: 1.0.5
+    dev: true
 
   proxy-addr@2.0.7:
     dependencies:
@@ -10411,6 +10428,7 @@ snapshots:
   rimraf@4.4.1:
     dependencies:
       glob: 9.3.5
+    dev: true
 
   rimraf@5.0.10:
     dependencies:
@@ -10714,6 +10732,7 @@ snapshots:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
+    dev: true
 
   smart-buffer@4.2.0: {}
 
@@ -11122,6 +11141,7 @@ snapshots:
   through2@4.0.2:
     dependencies:
       readable-stream: 3.6.2
+    dev: true
 
   through@2.3.8: {}
 
@@ -11718,6 +11738,7 @@ snapshots:
     dependencies:
       sax: 1.1.4
       xmlbuilder: 11.0.1
+    dev: true
 
   xml2js@0.6.2:
     dependencies:
