@@ -228,14 +228,14 @@ importers:
         specifier: ^24.13.3
         version: 24.13.3(electron-builder-squirrel-windows@24.13.3(dmg-builder@24.13.3))
       electron-log:
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.1.7
+        version: 5.1.7
       electron-updater:
         specifier: ^6.2.1
         version: 6.2.1
       webpack-merge:
-        specifier: ^5.10.0
-        version: 5.10.0
+        specifier: ^6.0.1
+        version: 6.0.1
 
   web:
     dependencies:
@@ -2260,8 +2260,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  electron-log@5.1.5:
-    resolution: {integrity: sha512-vuq10faUAxRbILgQx7yHoMObKZDEfj7hMSZrJPsVrDNeCpV/HN11dU7QuY4UDUe055pzBxhSCB3m0+6D3Aktjw==}
+  electron-log@5.1.7:
+    resolution: {integrity: sha512-/PjrS9zGkrZCDTHt6IgNE3FeciBbi4wd7U76NG9jAoNXF99E9IJdvBkqvaUJ1NjLojYDKs0kTvn9YhKy1/Zi+Q==}
     engines: {node: '>= 14'}
 
   electron-publish@24.13.1:
@@ -5435,6 +5435,10 @@ packages:
     resolution: {integrity: sha512-+4zXKdx7UnO+1jaN4l2lHVD+mFvnlZQP/6ljaJVb4SZiwIKeUnrT5l0gkT8z+n4hKpC+jpOv6O9R+gLtag7pSA==}
     engines: {node: '>=10.0.0'}
 
+  webpack-merge@6.0.1:
+    resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
+    engines: {node: '>=18.0.0'}
+
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
@@ -8107,7 +8111,7 @@ snapshots:
       - electron-builder-squirrel-windows
       - supports-color
 
-  electron-log@5.1.5: {}
+  electron-log@5.1.7: {}
 
   electron-publish@24.13.1:
     dependencies:
@@ -11632,6 +11636,12 @@ snapshots:
       - utf-8-validate
 
   webpack-merge@5.10.0:
+    dependencies:
+      clone-deep: 4.0.1
+      flat: 5.0.2
+      wildcard: 2.0.1
+
+  webpack-merge@6.0.1:
     dependencies:
       clone-deep: 4.0.1
       flat: 5.0.2

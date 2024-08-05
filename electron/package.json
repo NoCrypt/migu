@@ -20,9 +20,9 @@
     "discord-rpc": "4.0.1",
     "electron": "^31.3.1",
     "electron-builder": "^24.13.3",
-    "electron-log": "^5.1.5",
+    "electron-log": "^5.1.7",
     "electron-updater": "^6.2.1",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "@paymoapp/electron-shutdown-handler": "^1.1.2",
@@ -56,7 +56,6 @@
         "repo": "migu"
       }
     ],
-    "afterSign": "./buildResources/notarize.js",
     "appId": "com.github.nocrypt.migu",
     "productName": "Migu",
     "files": [
@@ -68,8 +67,10 @@
       "defaultArch": "universal",
       "singleArchFiles": "node_modules/+(register-scheme|utp-native|fs-native-extensions)/**",
       "category": "public.app-category.video",
+      "darkModeSupport": true,
       "icon": "buildResources/icon.icns",
       "hardenedRuntime": true,
+      "notarize": false,
       "entitlements": "buildResources/entitlements.mac.plist",
       "target": [
         {
