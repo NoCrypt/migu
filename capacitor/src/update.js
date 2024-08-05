@@ -26,7 +26,7 @@ export class AutoUpdater {
   }
 
   async getCPUArchitecture() {
-    const versionMap = {'arm64-v8a': 1, 'armeabi-v7a': 2, 'x86_64': 3, 'universal': 4}; //5: debug
+    const versionMap = {'arm64-v8a': 1, 'armeabi-v7a': 2, 'x86': 3, 'universal': 4}; //5: debug
     const {build} = this.appInfo;
     
     if (build.length === 7) {
