@@ -1,6 +1,7 @@
 import { App } from '@capacitor/app'
 import { NodeJS } from 'capacitor-nodejs'
 import EventEmitter from 'events'
+import { AutoUpdater } from './update'
 
 const ready = NodeJS.whenReady()
 
@@ -32,4 +33,16 @@ globalThis.version = {
 main.once('version', async () => {
   const { version } = await App.getInfo()
   main.emit('version', version)
+})
+
+const updater = new AutoUpdater('https://api.github.com/repos/NoCrypt/migu/releases/latest');
+main.on('update', async () => {
+  console.log('[Android Updater] Checking for update...')
+  await updater.initialize()
+  // await updater.performUpdate();
+  if (await updater.checkForUpdate()) main.emit('android-update-available')
+})
+
+main.on('android-install-update', async () => {
+  await updater.performUpdate();
 })

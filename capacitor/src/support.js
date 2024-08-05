@@ -2,7 +2,7 @@
 
 export const SUPPORTS = {
   offscreenRender: false,
-  update: false,
+  update: true,
   angle: false,
   doh: false,
   dht: true,

@@ -37,8 +37,33 @@ android {
         abi {
             enable gradle.startParameter.taskNames.any { it.contains("Release") } // https://stackoverflow.com/a/39950584
             reset()
-            include "armeabi-v7a", "arm64-v8a", "x86_64"
+            include "arm64-v8a", "armeabi-v7a", "x86_64"
             universalApk true
+        }
+    }
+
+    // Map for the version code
+    project.ext.versionCodes = ['arm64-v8a': 1, 'armeabi-v7a': 2, 'x86_64': 3, 'universal': 4, 'debug': 5]
+
+    android.applicationVariants.all { variant ->
+        // Assign different version code for each output
+        variant.outputs.each { output ->
+            def versionCodes = project.ext.versionCodes
+            def baseVersionCode = android.defaultConfig.versionCode
+            def abiVersionCode = 0
+
+            if (output.getFilter(com.android.build.OutputFile.ABI)) {
+                abiVersionCode = versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0)
+            } else {
+                // This is for the universal APK
+                abiVersionCode = versionCodes.get('universal', 0)
+            }
+
+            if (gradle.startParameter.taskNames.any { it.contains("Release") }) {
+                output.versionCodeOverride = abiVersionCode * 1000000 + baseVersionCode
+            } else {
+                output.versionCodeOverride = versionCodes.get('debug') * 1000000 + baseVersionCode
+            }
         }
     }
 }

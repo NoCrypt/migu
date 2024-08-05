@@ -25,6 +25,7 @@
   import { Toaster } from 'svelte-sonner'
   import Logout from './components/Logout.svelte'
   import Navbar from './components/Navbar.svelte'
+  import { SUPPORTS } from '@/modules/support.js';
 
   setContext('view', view)
 </script>
@@ -37,7 +38,7 @@
   <div class='overflow-hidden content-wrapper h-full z-10'>
     <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
       classes: {
-        closeButton: "toast-close-button"
+        closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
       }
 
     }} style="margin-top: var(--safe-area-top)"/>
@@ -50,10 +51,18 @@
 <style>
 
   :global(.toast-close-button){
-    bottom: 10px !important;
-    right: 10px !important;
+    bottom: -10px !important;
+    right: -10px !important;
     left: unset !important;
     top: unset !important;
+  }
+
+  :global(:where([data-sonner-toast]) :where([data-disabled='true']) ){
+    opacity: 0 !important;
+  }
+
+  :global(:root){
+    --normal-bg: var(--dark-color-light) !important;
   }
 
   .content-wrapper {

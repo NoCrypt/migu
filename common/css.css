@@ -62,8 +62,8 @@ a[href]:active, button:not([disabled]):active, fieldset:not([disabled]):active, 
 }
 
 [data-sonner-toaster][data-theme='dark'] {
-  --normal-bg: var(--dark-color) !important;
-  --normal-border: none !important;
+  --normal-bg: var(--dark-color-light) !important;
+  --normal-border: rgba(128, 128, 128, 0.297) !important;
   --normal-text: var(--dm-base-text-color) !important;
 
   /* --success-bg: var(--success-color) !important; */
