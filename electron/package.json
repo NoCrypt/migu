@@ -18,7 +18,7 @@
     "@electron/notarize": "^2.3.2",
     "common": "workspace:*",
     "discord-rpc": "4.0.1",
-    "electron": "^31.3.1",
+    "electron": "29.1.4",
     "electron-builder": "^24.13.3",
     "electron-log": "^5.1.7",
     "electron-updater": "^6.2.1",
