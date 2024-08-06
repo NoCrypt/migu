@@ -37,7 +37,7 @@ export default class Updater {
         this.torrentWindow.close()
         autoUpdater.quitAndInstall(true, forceRunAfter)
       })
-      if (process.platform === 'darwin') shell.openExternal('https://miru.watch/download')
+      if (process.platform === 'darwin') shell.openExternal('https://github.com/NoCrypt/migu/releases/latest')
       this.hasUpdate = false
       return true
     }
