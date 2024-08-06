@@ -238,7 +238,7 @@
         },
         {
           label: 'Watch on Migu',
-          url: `migu://anime/${np.media?.id}`
+          url: `https://miguapp.pages.dev/anime/${np.media?.id}`
         }
       ]
     }
