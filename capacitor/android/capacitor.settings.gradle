@@ -5,6 +5,9 @@ project(':capacitor-android').projectDir = new File('../../node_modules/@capacit
 include ':capacitor-community-file-opener'
 project(':capacitor-community-file-opener').projectDir = new File('../../node_modules/@capacitor-community/file-opener/android')
 
+include ':capacitor-community-screen-brightness'
+project(':capacitor-community-screen-brightness').projectDir = new File('../../node_modules/@capacitor-community/screen-brightness/android')
+
 include ':capacitor-app'
 project(':capacitor-app').projectDir = new File('../../node_modules/@capacitor/app/android')
 
@@ -25,3 +28,6 @@ project(':capacitor-nodejs').projectDir = new File('../../node_modules/capacitor
 
 include ':capacitor-plugin-safe-area'
 project(':capacitor-plugin-safe-area').projectDir = new File('../../node_modules/capacitor-plugin-safe-area/android')
+
+include ':capacitor-volume-control'
+project(':capacitor-volume-control').projectDir = new File('../../../volume-control/capacitor-volume-control/android')

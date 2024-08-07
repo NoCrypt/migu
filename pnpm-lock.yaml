@@ -66,6 +66,9 @@ importers:
       '@capacitor-community/file-opener':
         specifier: ^6.0.0
         version: 6.0.0(@capacitor/core@6.1.1)
+      '@capacitor-community/screen-brightness':
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.1.1)
       '@capacitor/android':
         specifier: ^6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
@@ -99,6 +102,9 @@ importers:
       capacitor-plugin-safe-area:
         specifier: ^3.0.3
         version: 3.0.3(@capacitor/core@6.1.1)
+      capacitor-volume-control:
+        specifier: ^0.0.1
+        version: 0.0.1(@capacitor/core@6.1.1)
       common:
         specifier: workspace:*
         version: link:../common
@@ -308,6 +314,11 @@ packages:
   '@capacitor-community/file-opener@6.0.0':
     resolution: {integrity: sha512-nJ9S5rCqnVDBKfqdjDhrYOIO9JLeScFkRfKLs2G+d6Df73vrJMes8dr+dGSEvKiPhyjRhICW5imDJEbzaD8KpA==}
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  '@capacitor-community/screen-brightness@6.0.0':
+    resolution: {integrity: sha512-8yU2Epwym7IKJ3Ae8LDlo6RDbZuo4x2B2M1oKT04kaVjWRxHzx6wETpzLJqrwix1NyqbXIx5TPPBpk0Kxmv45w==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -1630,6 +1641,11 @@ packages:
 
   capacitor-plugin-safe-area@3.0.3:
     resolution: {integrity: sha512-pDM8GQIDC9xxKLZxoO4rrshDuzZqQo6jq7Ni18cYdp2JwmLvlhTYRrvriPAicY1En59UAZ574sIvGlgUBLH3Yw==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  capacitor-volume-control@0.0.1:
+    resolution: {integrity: sha512-AuD38P2my58LsYfsJMF7KmCrLfe9mRwo30KDSq1lUVGaWyCw5byJwQCywwsC/fijrd8q6dMZ+7c3krPqwnBLLA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -5694,6 +5710,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
+  '@capacitor-community/screen-brightness@6.0.0(@capacitor/core@6.1.1)':
+    dependencies:
+      '@capacitor/core': 6.1.1
+
   '@capacitor/android@6.1.1(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
@@ -7394,6 +7414,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
+  capacitor-volume-control@0.0.1(@capacitor/core@6.1.1):
+    dependencies:
+      '@capacitor/core': 6.1.1
+
   caseless@0.12.0: {}
 
   chalk@2.4.2:
@@ -7500,7 +7524,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
       '@types/estree': 1.0.5
-      acorn: 8.11.3
+      acorn: 8.12.0
       estree-walker: 3.0.3
       periscopic: 3.1.0
 
@@ -11104,7 +11128,7 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.4.15
       '@jridgewell/trace-mapping': 0.3.25
       '@types/estree': 1.0.5
-      acorn: 8.11.3
+      acorn: 8.12.0
       aria-query: 5.3.0
       axobject-query: 4.0.0
       code-red: 1.0.4

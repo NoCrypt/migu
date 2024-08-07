@@ -18,6 +18,7 @@
   import { SUPPORTS } from '@/modules/support.js'
   import 'rvfc-polyfill'
   import IPC from '@/modules/ipc.js'
+  import { swipeControls } from '@/modules/swipecontrol';
 
   const emit = createEventDispatcher()
 
@@ -1027,6 +1028,7 @@
   class:fitWidth
   bind:this={container}
   role='none'
+  use:swipeControls={{enabled: SUPPORTS.isAndroid, immersePlayer}}
   on:pointermove={resetImmerse}
   on:keypress={resetImmerse}
   on:keydown={resetImmerse}
