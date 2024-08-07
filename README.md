@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://github.com/ThaUnknown/miru">
+	<a href="https://github.com/NoCrypt/migu">
 		<img src="./common/public/logo_filled.png" width="250">
 	</a>
 </p>
