@@ -14,25 +14,51 @@
     return media.duration > 80 && media.episodes === 1
   }
 
-  /** @param {ReturnType<typeof getResultsFromExtensions>} promise */
-  async function getBest (promise) {
-    const results = await promise
+/**
+ * @param {ReturnType<typeof getResultsFromExtensions>} promise
+ */
+ async function getBest(promise) {
+  const results = await promise
 
-    const best = results.find(result => result.type === 'best') || results.find(result => result.type === 'alt') || results[0]
+  if (settings.value.sortByEco) {
+    return results[0]
+  } else {
+    const best = results.find(result => result.type === 'best') || 
+                 results.find(result => result.type === 'alt') || 
+                 results[0]
 
     if (best?.seeders < 10) return results[0]
 
     return best
   }
+}
 
-  function filterResults (results, searchText) {
-    return results.filter(({ title }) => title.toLowerCase().includes(searchText.toLowerCase()))
-  }
+function filterResults(results, searchText) {
+  return results.filter(({ title }) => title.toLowerCase().includes(searchText.toLowerCase()))
+}
 
-  /** @param {ReturnType<typeof getResultsFromExtensions>} results */
-  async function sortResults (results) {
-    return (await results).sort((a, b) => b.seeders - a.seeders)
+/**
+ * @param {ReturnType<typeof getResultsFromExtensions>} results
+ */
+async function sortResults(results) {
+  const awaitedResults = await results
+  
+  if (settings.value.sortByEco) {
+    // Normalize size and seeders to a 0-1 scale
+    const maxSize = Math.max(...awaitedResults.map(r => r.size))
+    const maxSeeders = Math.max(...awaitedResults.map(r => r.seeders))
+    
+    return awaitedResults.sort((a, b) => {
+      // Normalize values (smaller size and more seeders are better)
+      const aScore = (1 - a.size / maxSize) *0.7 + (a.seeders / maxSeeders) * 0.3
+      const bScore = (1 - b.size / maxSize) *0.7 + (b.seeders / maxSeeders) * 0.3
+      
+      return bScore - aScore // Sort in descending order of score
+    })
+  } else {
+    return awaitedResults.sort((a, b) => b.seeders - a.seeders)
   }
+}
 </script>
 
 <script>
@@ -41,7 +67,7 @@
   import { add } from '@/modules/torrent.js'
   import TorrentSkeletonCard from './TorrentSkeletonCard.svelte'
   import { onDestroy } from 'svelte'
-    import { SUPPORTS } from '@/modules/support';
+  import { SUPPORTS } from '@/modules/support';
 
   /** @type {{ media: Media, episode?: number }} */
   export let search
@@ -59,7 +85,7 @@
         countdown--
         if (countdown === 0) {
           play(best)
-          if (SUPPORTS.isAndroid) document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
+          if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
         } else {
           timeoutHandle = setTimeout(decrement, 1000)
         }
@@ -115,7 +141,7 @@
 </script>
 
 <div class='w-full bg-very-dark position-sticky top-0 z-10 pt-20 px-30'>
-  <div class='d-flex'>
+  <div class='d-flex' style="padding-top: var(--safe-area-top)">
     <h3 class='mb-10 font-weight-bold text-white'>Find Torrents</h3>
     <button class='btn btn-square rounded-circle ml-auto pointer' type='button' use:click={close}> &times; </button>
   </div>
@@ -143,6 +169,10 @@
       <div class='custom-switch'>
         <input type='checkbox' id='rss-autoplay' bind:checked={$settings.rssAutoplay} />
         <label for='rss-autoplay'>Auto-Select Torrents [{countdown}]</label>
+      </div>
+      <div class='custom-switch'>
+        <input type='checkbox' id='eco-mode' bind:checked={$settings.sortByEco} on:change={()=>{search.episode = search.episode}} />
+        <label for='eco-mode'>Less Bandwidth</label>
       </div>
       <div class='custom-switch'>
         <input type='checkbox' id='batches' bind:checked={batch} disabled={(search.media.status !== 'FINISHED') || movie} min='1' />

@@ -201,6 +201,12 @@
 
 
 <h4 class='mb-10 font-weight-bold'>Limited Bandwidth Settings</h4>
+<SettingCard title='Sort By Size + Seeders' description="This option will sort the list of torrents by size and seeders. Resulting in less bandwidth usage.">
+  <div class='custom-switch'>
+    <input type='checkbox' id='eco-mode' bind:checked={settings.sortByEco} />
+    <label for='eco-mode'>{settings.sortByEco ? 'On' : 'Off'}</label>
+  </div>
+</SettingCard>
 <SettingCard title='Slow Seeding' description="Will limit upload speed to 1 MB/s. This might kill the swarm health. But very useful when you have a limited bandwidth.">
   <div class='custom-switch'>
     <input type='checkbox' id='slow-seeding' bind:checked={settings.slowSeeding} />

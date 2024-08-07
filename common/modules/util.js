@@ -137,6 +137,7 @@ export const defaults = {
   disableStartupVideo: true,
   amoledTheme: true,
   enableAutoUpdate: true,
+  sortByEco: true,
   torrentPersist: false,
   torrentDHT: false,
   torrentPeX: false,
