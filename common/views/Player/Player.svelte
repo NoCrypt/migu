@@ -18,7 +18,8 @@
   import { SUPPORTS } from '@/modules/support.js'
   import 'rvfc-polyfill'
   import IPC from '@/modules/ipc.js'
-  import { swipeControls } from '@/modules/swipecontrol';
+  import { swipeControls } from '@/modules/swipecontrol.js';
+  import { volumeScroll } from '@/modules/volumescroll.js';
 
   const emit = createEventDispatcher()
 
@@ -1027,6 +1028,7 @@
   bind:this={container}
   role='none'
   use:swipeControls={{enabled: SUPPORTS.isAndroid, immersePlayer}}
+  use:volumeScroll
   on:pointermove={resetImmerse}
   on:keypress={resetImmerse}
   on:keydown={resetImmerse}
