@@ -30,7 +30,7 @@ export default class Discord {
   /** @type {Discord['defaultStatus'] | undefined} */
   cachedPresence
 
-  rpcEnabled = true  // Property to track RPC state
+  rpcEnabled = false  // Property to track RPC state
 
   /** @param {import('electron').BrowserWindow} window */
   constructor (window) {
