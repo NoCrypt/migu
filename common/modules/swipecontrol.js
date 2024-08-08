@@ -152,11 +152,12 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
   async function init() {
     if (isNative) {
       try {
-        const { brightness: currentBrightness } = await ScreenBrightness.getBrightness();
+        // const { brightness: currentBrightness } = await ScreenBrightness.getBrightness();
         const { volume: currentVolume } = await VolumeControl.getVolume();
-        brightness = currentBrightness * 100;
+        brightness = 50;
         volume = currentVolume;
-        updateBrightness();
+        // updateBrightness();
+        brightnessValue.textContent = `50%`;
         debouncedUpdateVolume();
       } catch (error) {
         console.error('Error initializing brightness and volume:', error);
