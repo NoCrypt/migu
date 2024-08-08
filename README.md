@@ -9,26 +9,37 @@
 
 **Migu** is a fork of [Miru](https://github.com/ThaUnknown/miru/) that focused on better **mobile** experience with added features and polished the experience by a mile.
 
+## **Features**
 
-## Changes from Miru
+Includes all original Miru features, plus:
 
-### Limited Bandwidth Options
-- **Prevent Mini Player Loading Upon Startup:** By default, the mini player does not load on startup resulting in less bandwidth usage (this can be toggled).
-- **Separate Download and Upload Limits:** Allows setting different limits for downloading and uploading. Give user more control.
-
-### Mobile Focused Fixes
-
-- **AMOLED Theme:** Adds a sleek, battery-saving dark theme for AMOLED displays.
-- **Back Button Functionality:** The back button now works as expected. *Shocking I know!* 🤯
-- **Status Bar Enhancement:** The status bar now displays and hides dynamically when playing video in fullscreen. *Shocking I know!* 🤯
-- **Improved Tab Navigation:** Changing tabs now reliably switches to the selected tab, closing any modals. *Shocking I know!* 🤯
-- **Modal Behavior:** Re-clicking the "Now Playing" tab will now close the modal.
-- **Fullscreen Video Playback:** Videos now play in fullscreen by default, enhancing the viewing experience.
-
-
-#### Why?
-Mobile users often have limited bandwidth or data quotas. Miru can consume up to 1GB per 3 minutes upon startup due to miniplayer, which is impractical for mobile users since you might want to watch other anime but the miniplayer just keep running upon startup[.](https://rentry.org/miguarg)
-
+- Toggleable AMOLED theme
+- Optional Discord Rich Presence
+- Optional Auto-update
+- Free APK download on GitHub Releases
+- Split Android builds by CPU architecture
+- Auto-update with automatic CPU architecture selection
+- Independent seeding speed control
+- Close button on miniplayer
+- Miniplayer doesn’t load on startup
+- Swipe gestures for brightness and volume control on Android
+- Scroll wheel for volume control on PC
+- Customizable seek duration
+- Proper back button functionality on Android
+- Redesigned Android navigation bar for improved usability
+- Correctly implemented fullscreen mode on Android
+- Safe area padding and margin adjustments on Android to avoid overlap with the status bar
+- Imported Default Extension and RSS feed settings from PC to Android
+- Auto fullscreen video playback on Android
+- Scrollable RSS feed for more anime visibility on Android
+- Double-tap to seek on Android
+- Default seek duration set to 5 seconds
+- Volume and brightness indicators for swipe and scroll gestures
+- Torrent sorting by size (+seeders) to reduce bandwidth usage
+- Default new release RSS set to "ASW" to minimize bandwidth usage
+- Double-click back button to exit
+- Moved toast close button to the bottom for better reachability on Android
+- Disabled smooth scrolling by default due to poor performance on my device
 
 ## **Building and Development**
 
@@ -36,33 +47,71 @@ Mobile users often have limited bandwidth or data quotas. Miru can consume up to
 
 <u>***Please do! I highly encourage this!***</u>
 
-
 ### Requirements
-- PNPM (any packgage manager will do)
-- Nodejs LTS
-- Docker (with WSL support if you're on windows)
+- PNPM (or any package manager)
+- NodeJS 20+
+- Docker (with WSL support if you're on Windows)
 - ADB
-- Android Studio (with SDK 33, **EXACTLY 33**, no more no less)
+- Android Studio (SDK 34)
+- Java 21 (JDK)
 
-### Preparation
-- `pnpm install`
+### Building for PC (Electron)
+1. Navigate to the Electron directory:
+   ```bash
+   cd electron
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Development:
+   ```bash
+   pnpm start
+   ```
+4. Release:
+   ```bash
+   pnpm build
+   ```
 
-### Building for PC (electron)
-- `cd electron`
-- `pnpm install`
-- Development: `pnpm start`
-- Release: `pnpm build`
-
-### Building for Android (capacitor)
-- `cd capacitor`
-- `pnpm install`
-- Check what's missing: `pnpm exec cap doctor`
-- Windows: `pnpm build:native-win` || Linux: `pnpm build:native`
-- (optional) Generate Assets: `pnpm dlx @capacitor/assets generate --iconBackgroundColor #20a2ff --iconBackgroundColorDark #20a2ff --splashBackgroundColor #20a2ff --splashBackgroundColorDark #20a2ff --android` (built-in forked capacitor/assets from this project didnt work for me)
-- `pnpm exec cap open android`
-- Connect your phone with ADB
-- Development: `pnpm build:web` then `pnpm start`
-- Release: `pnpm test:e2e`
+### Building for Android (Capacitor)
+1. Navigate to the Capacitor directory:
+   ```bash
+   cd capacitor
+   ```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Check what's missing:
+   ```bash
+   pnpm exec cap doctor
+   ```
+4. (First time only) Build native code:
+   - Windows:
+     ```bash
+     pnpm build:native-win
+     ```
+   - Linux:
+     ```bash
+     pnpm build:native
+     ```
+5. (Optional) Generate assets (if built-in forked capacitor/assets doesn’t work):
+   ```bash
+   pnpm dlx @capacitor/assets generate --iconBackgroundColor #20a2ff --iconBackgroundColorDark #20a2ff --splashBackgroundColor #20a2ff --splashBackgroundColorDark #20a2ff --android
+   ```
+6. Open the Android project:
+   ```bash
+   pnpm exec cap open android
+   ```
+7. Connect your phone with ADB.
+8. Development:
+   ```bash
+   pnpm dev:start
+   ```
+9. Release:
+   ```bash
+   pnpm build:app
+   ```
 
 ## License
 
