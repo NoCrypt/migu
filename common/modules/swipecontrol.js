@@ -19,21 +19,26 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
   indicators.className = 'swipe-control-indicators';
   indicators.style.cssText = `
     position: absolute;
-    top: 75%;
+    bottom: 60px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    text-shadow: 1px 1px 2px black;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
   `;
   
   indicators.innerHTML = `
     <div class="indicator brightness">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="display:flex; justify-content:center; gap: 5px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5"/>
         <line x1="12" y1="1" x2="12" y2="3"/>
         <line x1="12" y1="21" x2="12" y2="23"/>
@@ -47,7 +52,7 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
       <span class="brightness-value">100%</span>
     </div>
     <div class="indicator volume">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="display:flex; justify-content:center; gap: 5px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
