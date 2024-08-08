@@ -5,6 +5,9 @@ on:
     branches:
       - 'main'
       - 'master'
+    paths-ignore:
+      - '**.md'
+      - '**.yml'
 
 jobs:
   release:
