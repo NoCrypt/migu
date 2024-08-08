@@ -108,11 +108,9 @@
     isFullscreen = !!document.fullscreenElement
     if (document.fullscreenElement) {
       window.Capacitor.Plugins.StatusBar.hide()
-      window.NavigationBar.hide()
       screen.orientation.lock('landscape')
     } else {
       window.Capacitor.Plugins.StatusBar.show()
-      window.NavigationBar.show()
       screen.orientation.unlock()
     }
   })

@@ -108,9 +108,9 @@ importers:
       common:
         specifier: workspace:*
         version: link:../common
-      cordova-plugin-navigationbar-color:
-        specifier: ^0.1.0
-        version: 0.1.0
+      cordova-plugin-navigationbar:
+        specifier: ^1.0.31
+        version: 1.0.31
       cordova-plugin-pip:
         specifier: ^0.0.2
         version: 0.0.2
@@ -1913,9 +1913,9 @@ packages:
     peerDependencies:
       webpack: ^5.1.0
 
-  cordova-plugin-navigationbar-color@0.1.0:
-    resolution: {integrity: sha512-O/JfdLerNc0Jcq/4nTvsW45IzojtJT0Biayl8ZKSAKtQv6U7tOLUZ1/k+dRGZnBNoQyNc5gC9Lbn6A573v9UhA==}
-    engines: {cordovaDependencies: {0.1.0: {cordova: '>=3.0.0'}, 3.0.0: {cordova: '>100'}}}
+  cordova-plugin-navigationbar@1.0.31:
+    resolution: {integrity: sha512-xt9tx5Aprf052OvuG2JohjRkkU/6U6XQ8mXOx93HaHFz6cCZI1+B0pl/uoyU/FkJsP41QIw1upnMdzgav11ifw==}
+    engines: {'0': {name: cordova, version: '>=3.0.0'}}
 
   cordova-plugin-pip@0.0.2:
     resolution: {integrity: sha512-Wy9aK7rQX3kif6+kUl7RwTG/+arixvW5Sphyr0bPxsVrkVIliseW/S/JhO7BVX25/HGU0lGMvQe8a134yvI9iQ==}
@@ -7744,7 +7744,7 @@ snapshots:
       serialize-javascript: 6.0.2
       webpack: 5.91.0(webpack-cli@5.1.4)
 
-  cordova-plugin-navigationbar-color@0.1.0: {}
+  cordova-plugin-navigationbar@1.0.31: {}
 
   cordova-plugin-pip@0.0.2: {}
 

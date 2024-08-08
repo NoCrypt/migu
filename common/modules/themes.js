@@ -2,7 +2,6 @@ import { append, element } from 'svelte/internal'
 import { writable } from 'simple-store-svelte'
 import { settings } from './settings'
 import { get } from 'svelte/store'
-import { SUPPORTS } from '@/modules/support.js'
 
 const style = element('style')
 style.id = 'customThemes'
@@ -47,6 +46,5 @@ export function updateTheme(value) {
   } else {
     value += NORMAL
   }
-  if (SUPPORTS.isAndroid) window.NavigationBar.backgroundColorByHexString(get(settings).amoledTheme ? "#000000" : "#17191D")
   style.textContent = `:root{${value.replace(/{|}/g, '')}}`
 }
