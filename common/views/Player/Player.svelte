@@ -108,10 +108,14 @@
   document.addEventListener('fullscreenchange', () => {
     isFullscreen = !!document.fullscreenElement
     if (document.fullscreenElement) {
-      window.Capacitor.Plugins.StatusBar.hide()
+      // window.Capacitor.Plugins.StatusBar.hide()
+      window.AndroidFullScreen.immersiveMode()
       screen.orientation.lock('landscape')
     } else {
-      window.Capacitor.Plugins.StatusBar.show()
+      // window.Capacitor.Plugins.StatusBar.show()
+      window.AndroidFullScreen.showSystemUI()
+      window.Capacitor.Plugins.StatusBar.setOverlaysWebView({ overlay: true })
+
       screen.orientation.unlock()
     }
   })

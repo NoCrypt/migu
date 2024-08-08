@@ -88,7 +88,7 @@ updateInsets()
 StatusBar.setStyle({ style: Style.Dark })
 StatusBar.setOverlaysWebView({ overlay: true })
 
-navigationbar.setUp(true)
+// navigationbar.setUp(true)
 
 // cordova screen orientation plugin is also used, and it patches global screen.orientation.lock
 
