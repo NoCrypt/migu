@@ -328,6 +328,14 @@
   function toggleFullscreen () {
     document.fullscreenElement ? document.exitFullscreen() : document.querySelector('.content-wrapper').requestFullscreen()
   }
+
+  function executeSeek(event){
+    console.log(event)
+    const rect = event.target.getBoundingClientRect();
+    seek( (event.clientX - rect.left) < rect.width / 2 ? -$settings.playerSeek : $settings.playerSeek );
+    immersePlayer();
+  }
+
   function skip () {
     const current = findChapter(currentTime)
     if (current) {
@@ -1119,9 +1127,9 @@
   </div>
   <div class='middle d-flex align-items-center justify-content-center flex-grow-1 position-relative'>
     <!-- eslint-disable-next-line svelte/valid-compile -->
-    <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={toggleFullscreen} on:click|self={() => { if (page === 'player') playPause(); page = 'player' }} />
+    <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={() => { if (page === 'player') playPause(); page = 'player' }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
-    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={toggleFullscreen} on:click|self={toggleImmerse} />
+    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={toggleImmerse} />
     <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; toggleFullscreen() }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <span class='material-symbols-outlined ctrl h-full align-items-center justify-content-end w-150 mw-full mr-auto' on:click={rewind}> fast_rewind </span>
