@@ -44,7 +44,7 @@
     Export Settings To Clipboard
   </button>
   {#if SUPPORTS.update}
-    <SettingCard title='Enable auto update' description='Enables auto updater upon startup. Disable this if you have issues with it.'>
+    <SettingCard title='Enable auto update' description='Enables auto updater upon startup. Automatically update to a new version of Migu if possible after exiting. Disable this if you have issues with it.'>
       <div class='custom-switch'>
         <input type='checkbox' id='enable-auto-updater' bind:checked={settings.enableAutoUpdate} />
         <label for='enable-auto-updater'>{settings.enableAutoUpdate ? 'On' : 'Off'}</label>
@@ -52,7 +52,7 @@
     </SettingCard>
     <button
       use:click={checkUpdate}
-      class='btn btn-primary mx-20 mt-10'
+      class='btn btn-primary mx-20'
       type='button'>
       Check For Updates
     </button>
