@@ -4,6 +4,7 @@
   import { click } from '@/modules/click.js'
   import IPC from '@/modules/ipc.js'
   import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
+  import { toast } from 'svelte-sonner';
   const view = getContext('view')
   export let page
   const links = [
@@ -34,6 +35,7 @@
           return
         }
         if ($media) $view = $media.media
+        else toast.error('No anime currently playing', {duration: 1300})
         $rss = null
       },
       icon: 'queue_music',
@@ -82,7 +84,7 @@
     <div
         class='navbar-link navbar-link-with-icon pointer overflow-hidden mx-auto'
         use:click={close}>
-        <span class='material-symbols-outlined rounded'>home</span>
+        <span class='material-symbols-outlined rounded' class:filled={page === 'home'}>home</span>
     </div>
 
     {#each links as { click: _click, icon, text, image, css, page: _page }, i (i)}
@@ -179,5 +181,8 @@
 
   img {
     margin-right: var(--sidebar-brand-image-margin-right);
+  }
+  .opacity-50{
+    opacity: 0.5;
   }
 </style>
