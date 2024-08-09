@@ -20,6 +20,7 @@
   import IPC from '@/modules/ipc.js'
   import { swipeControls } from '@/modules/swipecontrol.js';
   import { volumeScroll } from '@/modules/volumescroll.js';
+  import GestureLock from '@/components/GestureLock.svelte';
 
   const emit = createEventDispatcher()
 
@@ -1026,7 +1027,13 @@
       document.querySelector('[data-name=\'toggleFullscreen\']')?.focus()
     }
   }
+
+  let isLocked = false;
 </script>
+
+{#if SUPPORTS.isAndroid}
+  <GestureLock bind:isLocked/>
+{/if}
 
 <!-- <svelte:window bind:innerWidth bind:innerHeight /> -->
 <div
@@ -1173,7 +1180,10 @@
       {#if playbackRate !== 1}
         <div class='ts mr-auto'>x{playbackRate.toFixed(1)}</div>
       {/if}
-      <span class='material-symbols-outlined ctrl keybinds' title='Keybinds [`]' use:click={() => (showKeybinds = true)}> keyboard </span>
+      <span class='material-symbols-outlined ctrl keybinds' title='Keybinds [`]' use:click={() => {showKeybinds = true; immersePlayer()}}> keyboard </span>
+      {#if SUPPORTS.isAndroid}
+        <span class='material-symbols-outlined ctrl' use:click={() => (isLocked = true)}> lock </span>
+      {/if}
       {#if 'audioTracks' in HTMLVideoElement.prototype && video?.audioTracks?.length > 1}
         <div class='dropdown dropup with-arrow' use:click={toggleDropdown}>
           <span class='material-symbols-outlined ctrl' title='Audio Tracks'>

@@ -40,6 +40,7 @@ Includes all original Miru features, plus:
 - Double-click back button to exit
 - Moved toast close button to the bottom for better reachability on Android
 - Disabled smooth scrolling by default due to poor performance on my device
+- Gesture lock on Android to prevent misclick
 
 ## **Building and Development**
 
