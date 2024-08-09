@@ -7,6 +7,7 @@
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
   import { SUPPORTS } from '@/modules/support.js';
+  import { longpress } from '@/modules/longpress.js'
   
   export let data
 
@@ -18,8 +19,8 @@
 
   const view = getContext('view')
   function viewMedia () {
-    if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
     if (data.onclick) {
+      if (SUPPORTS.isAndroid) document.querySelector('.content-wrapper').requestFullscreen()
       data.onclick()
       return
     }
@@ -27,6 +28,10 @@
   }
   function setHoverState (state) {
     preview = state
+  }
+
+  function viewEpisodes(){
+    $view = media
   }
 
   let thisElement;
@@ -43,7 +48,7 @@
   const progress = liveAnimeEpisodeProgress(media?.id, data?.episode)
 </script>
 
-<div class='d-flex p-20 pb-10 position-relative episode-card' bind:this={thisElement}>
+<div class='d-flex p-20 pb-10 position-relative episode-card' bind:this={thisElement} on:contextmenu={viewEpisodes} use:longpress={viewEpisodes} role="none">
   {#if preview}
     {#if !SUPPORTS.isAndroid}
     <EpisodePreviewCard {data} />
