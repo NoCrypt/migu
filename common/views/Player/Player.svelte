@@ -804,6 +804,7 @@
   }
 
   let currentSkippable = null
+  $: currentSkippable && $settings.playerAutoSkip && skip()
   function checkSkippableChapters () {
     const current = findChapter(currentTime)
     if (current) {
@@ -1555,14 +1556,16 @@
   .seekbar {
     font-size: 2rem !important;
   }
-  .miniplayer .mobile-focus-target {
-    display: block !important;
-  }
-  .miniplayer .mobile-focus-target:focus-visible {
-    background: hsla(209, 100%, 55%, 0.3);
-  }
 
   @media (pointer: none), (pointer: coarse) {
+
+    .miniplayer .mobile-focus-target {
+      display: block !important;
+    }
+    .miniplayer .mobile-focus-target:focus-visible {
+      background: hsla(209, 100%, 55%, 0.3);
+    }
+
     .bottom .ctrl[data-name='playPause'],
     .bottom .volume,
     .bottom .keybinds {

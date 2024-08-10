@@ -42,6 +42,7 @@ Includes all original Miru features, plus:
 - Disabled smooth scrolling by default due to poor performance on my device
 - Gesture lock on Android to prevent misclick
 - Right click or long press on RSS Section will open the anime episode list
+- Toggleable auto skip intro/outro
 
 ## **Building and Development**
 

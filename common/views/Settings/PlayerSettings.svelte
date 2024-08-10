@@ -142,6 +142,12 @@
     <label for='player-autocomplete'>{settings.playerAutocomplete ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
+<SettingCard title='Auto-Skip Intro/Outro' description='Automatically skip intro and outro. Warning, sometimes it can skip wrong part of the episode and you can&apos;t view Intro/Outro at all.'>
+  <div class='custom-switch'>
+    <input type='checkbox' id='player-auto-skip' bind:checked={settings.playerAutoSkip} />
+    <label for='player-auto-skip'>{settings.playerAutoSkip ? 'On' : 'Off'}</label>
+  </div>
+</SettingCard>
 <SettingCard title='Seek Duration' description='Seconds to seek an episode with arrow keys'>
   <div class='input-group w-100 mw-full'>
     <input type='number' bind:value={settings.playerSeek} min='1' max='50' class='form-control text-right bg-dark' />

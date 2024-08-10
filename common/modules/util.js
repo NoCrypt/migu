@@ -125,6 +125,7 @@ export const defaults = {
   playerAutoplay: true,
   playerPause: true,
   playerAutocomplete: true,
+  playerAutoSkip: false,
   playerDeband: false,
   playerSeek: 5,
   rssQuality: '1080',
