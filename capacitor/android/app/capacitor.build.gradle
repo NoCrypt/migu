@@ -16,6 +16,7 @@ dependencies {
     implementation project(':capacitor-filesystem')
     implementation project(':capacitor-local-notifications')
     implementation project(':capacitor-status-bar')
+    implementation project(':jofr-capacitor-media-session')
     implementation project(':capacitor-nodejs')
     implementation project(':capacitor-plugin-safe-area')
     implementation project(':capacitor-volume-control')
