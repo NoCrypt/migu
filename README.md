@@ -43,6 +43,7 @@ Includes all original Miru features, plus:
 - Gesture lock on Android to prevent misclick
 - Right click or long press on RSS Section will open the anime episode list
 - Toggleable auto skip intro/outro
+- Media Controls in PIP on Android
 
 ## **Building and Development**
 
