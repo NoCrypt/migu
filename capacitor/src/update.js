@@ -31,7 +31,7 @@ export class AutoUpdater {
     
     if (build.length === 7) {
       const architectureCode = parseInt(build.substring(0, 1));
-      console.log(architectureCode)
+      // console.log(architectureCode)
       
       if (architectureCode < 5) {
         for (const [arch, code] of Object.entries(versionMap)) {
