@@ -30,4 +30,4 @@ include ':capacitor-plugin-safe-area'
 project(':capacitor-plugin-safe-area').projectDir = new File('../../node_modules/capacitor-plugin-safe-area/android')
 
 include ':capacitor-volume-control'
-project(':capacitor-volume-control').projectDir = new File('../../../volume-control/capacitor-volume-control/android')
+project(':capacitor-volume-control').projectDir = new File('../../node_modules/capacitor-volume-control/android')
