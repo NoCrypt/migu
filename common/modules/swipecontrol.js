@@ -69,7 +69,6 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
 
   function handleTouchStart(event) {
     if (!props.enabled) return;
-    props.immersePlayer();
     if (!isNative) return;
     isDragging = true;
     startX = event.touches[0].clientX;
