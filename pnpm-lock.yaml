@@ -97,8 +97,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0(@capacitor/core@6.1.1)
       '@jofr/capacitor-media-session':
-        specifier: ^4.0.0
-        version: 4.0.0(@capacitor/core@6.1.1)
+        specifier: github:NoCrypt/capacitor-media-session#main
+        version: https://codeload.github.com/NoCrypt/capacitor-media-session/tar.gz/25e467d7ff9b60243aa04a007e4e4694d5732315(@capacitor/core@6.1.1)
       capacitor-nodejs:
         specifier: https://github.com/hampoelz/Capacitor-NodeJS/releases/download/v1.0.0-beta.7/capacitor-nodejs.tgz
         version: https://github.com/hampoelz/Capacitor-NodeJS/releases/download/v1.0.0-beta.7/capacitor-nodejs.tgz(@capacitor/core@6.1.1)
@@ -677,8 +677,9 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@jofr/capacitor-media-session@4.0.0':
-    resolution: {integrity: sha512-IGfc6BUzeeR0sJkk+0/jij3l0h78NdTqPMwBc9LXZrojtiqNtg4tw3CnIkYGccwZ/0glV3hPl8HVNTElOPVCyg==}
+  '@jofr/capacitor-media-session@https://codeload.github.com/NoCrypt/capacitor-media-session/tar.gz/25e467d7ff9b60243aa04a007e4e4694d5732315':
+    resolution: {tarball: https://codeload.github.com/NoCrypt/capacitor-media-session/tar.gz/25e467d7ff9b60243aa04a007e4e4694d5732315}
+    version: 4.0.0
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -6181,7 +6182,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@jofr/capacitor-media-session@4.0.0(@capacitor/core@6.1.1)':
+  '@jofr/capacitor-media-session@https://codeload.github.com/NoCrypt/capacitor-media-session/tar.gz/25e467d7ff9b60243aa04a007e4e4694d5732315(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
