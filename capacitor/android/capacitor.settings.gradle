@@ -23,9 +23,6 @@ project(':capacitor-local-notifications').projectDir = new File('../../node_modu
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../../node_modules/@capacitor/status-bar/android')
 
-include ':jofr-capacitor-media-session'
-project(':jofr-capacitor-media-session').projectDir = new File('../../node_modules/@jofr/capacitor-media-session/android')
-
 include ':capacitor-nodejs'
 project(':capacitor-nodejs').projectDir = new File('../../node_modules/capacitor-nodejs/android')
 

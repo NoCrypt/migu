@@ -5,7 +5,6 @@
   import { tick } from 'svelte'
   import { state } from '../WatchTogether/WatchTogether.svelte'
   import IPC from '@/modules/ipc.js'
-  import { SUPPORTS } from '@/modules/support.js';
 
   const episodeRx = /Episode (\d+) - (.*)/
 
@@ -184,24 +183,23 @@
   })
 
   function setMediaSession (nowPlaying) {
-    const name = [nowPlaying.title, nowPlaying.episode, nowPlaying.episodeTitle, 'Migu'].filter(i => i).join(' - ')
-    
-    const metadata = {
-      title: nowPlaying.title,
-      album: nowPlaying.episodeTitle,
-      artist: 'Migu',
-      artwork: [
-        {
-          src: nowPlaying.thumbnail ? nowPlaying.thumbnail : './logo_filled.png',
-          sizes: '256x256',
-          type: 'image/jpg'
-        }
-          ]
-        }
-    
-    if (SUPPORTS.isAndroid) window.Capacitor.Plugins.MediaSession.setMetadata(metadata)
     if (typeof MediaMetadata === 'undefined') return
-    navigator.mediaSession.metadata = new MediaMetadata(metadata)
+    const name = [nowPlaying.title, nowPlaying.episode, nowPlaying.episodeTitle, 'Migu'].filter(i => i).join(' - ')
+
+    const metadata =
+      nowPlaying.thumbnail
+        ? new MediaMetadata({
+          title: name,
+          artwork: [
+            {
+              src: nowPlaying.thumbnail,
+              sizes: '256x256',
+              type: 'image/jpg'
+            }
+          ]
+        })
+        : new MediaMetadata({ title: name })
+    navigator.mediaSession.metadata = metadata
   }
 
   function setDiscordRPC (np = nowPlaying.value) {

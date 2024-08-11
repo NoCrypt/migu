@@ -42,7 +42,6 @@
   }
 
   function updatew2g () {
-    if (SUPPORTS.isAndroid) window.Capacitor.Plugins.MediaSession.setPlaybackState( {playbackState: paused ? 'paused' : 'playing'} )
     w2gEmitter.emit('player', { time: Math.floor(currentTime), paused })
   }
 
@@ -283,8 +282,6 @@
   }
   function playPause () {
     paused = !paused
-    if (SUPPORTS.isAndroid) window.Capacitor.Plugins.MediaSession.setPlaybackState( {playbackState: paused ? 'paused' : 'playing'} )
-
     resetImmerse()
   }
   function toggleMute () {
@@ -738,31 +735,20 @@
       resetImmerse()
     }, 150)
   }
-
-  const mediaSession = navigator.mediaSession ? navigator.mediaSession : window.Capacitor.Plugins.MediaSession
-  $: mediaSession?.setPositionState({
+  $: navigator.mediaSession?.setPositionState({
     duration: Math.max(0, safeduration || 0),
     playbackRate: 1,
     position: Math.max(0, Math.min(safeduration || 0, currentTime || 0))
   })
 
   if ('mediaSession' in navigator) {
-    mediaSession.setActionHandler('play', playPause)
-    mediaSession.setActionHandler('pause', playPause)
-    mediaSession.setActionHandler('nexttrack', playNext)
-    mediaSession.setActionHandler('previoustrack', playLast)
-    mediaSession.setActionHandler('seekforward', forward)
-    mediaSession.setActionHandler('seekbackward', rewind)
-  } else {
-    mediaSession.setActionHandler({action: 'play'}, playPause)
-    mediaSession.setActionHandler({action: 'pause'}, playPause)
-    mediaSession.setActionHandler({action: 'nexttrack'}, playNext)
-    mediaSession.setActionHandler({action: 'previoustrack'}, playLast)
-    mediaSession.setActionHandler({action: 'seekforward'}, forward)
-    mediaSession.setActionHandler({action: 'seekbackward'}, rewind)
+    navigator.mediaSession.setActionHandler('play', playPause)
+    navigator.mediaSession.setActionHandler('pause', playPause)
+    navigator.mediaSession.setActionHandler('nexttrack', playNext)
+    navigator.mediaSession.setActionHandler('previoustrack', playLast)
+    navigator.mediaSession.setActionHandler('seekforward', forward)
+    navigator.mediaSession.setActionHandler('seekbackward', rewind)
   }
-
-
   let stats = null
   let requestCallback = null
   function toggleStats () {

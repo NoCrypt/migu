@@ -37,7 +37,6 @@
     "@capacitor/ios": "^6.1.1",
     "@capacitor/local-notifications": "^6.0.0",
     "@capacitor/status-bar": "^6.0.0",
-    "@jofr/capacitor-media-session": "github:NoCrypt/capacitor-media-session#main",
     "capacitor-nodejs": "https://github.com/hampoelz/Capacitor-NodeJS/releases/download/v1.0.0-beta.7/capacitor-nodejs.tgz",
     "capacitor-plugin-safe-area": "^3.0.3",
     "capacitor-volume-control": "^0.0.1",
