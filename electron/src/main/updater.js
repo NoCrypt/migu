@@ -10,9 +10,6 @@ autoUpdater.autoDownload = false
 ipcMain.on('update', async () => {
   await autoUpdater.checkForUpdates()
 })
-ipcMain.on('update-download', async () => {
-  await autoUpdater.downloadUpdate()
-})
 
 // ipcMain.on('quit-and-install') is on electron/src/main/app.js#L138
 
@@ -33,6 +30,10 @@ export default class Updater {
     autoUpdater.on('update-downloaded', () => {
       this.hasUpdate = true
       window.webContents.send('update-downloaded', true)
+    })
+    ipcMain.on('update-download', async () => {
+      await autoUpdater.downloadUpdate()
+      window.webContents.send('update-downloading', true)
     })
   }
 
