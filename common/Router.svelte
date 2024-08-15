@@ -36,39 +36,6 @@
     // Check update (ask if on Android, install if on PC)
     if($settings.enableAutoUpdate && SUPPORTS.update) IPC.emit('update')
     if (SUPPORTS.isAndroid) {
-      // Auto updater for android
-      IPC.on('android-update-available', () => {
-        toast.info('Update found', {
-          description: 'Wanna install it?',
-          action: {
-            label: 'Install now',
-            onClick: () => {
-              console.log(version)
-              IPC.emit('android-install-update')
-              toast.loading('Downloading...', {
-                description: 'Please allow the permission when asked. ',
-                duration: Number.POSITIVE_INFINITY, 
-                dismissable: false,
-                cancel:{
-                  label: 'Hide',
-                  onClick: () => {
-                    toast.dismiss()
-                  }
-                }
-              })
-            }
-          },
-          cancel: {
-            label: 'Never show again',
-            onClick: () => {
-              $settings.enableAutoUpdate = false
-              toast('Auto update disabled. You can re-enable it in Settings > App')
-            }
-          },
-          duration: Number.POSITIVE_INFINITY
-        })  
-      })
-
       // Back button support
       let backButtonPressTimeout;
       window.Capacitor.Plugins.App.addListener("backButton", () => {

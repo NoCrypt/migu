@@ -36,13 +36,16 @@ main.once('version', async () => {
 })
 
 const updater = new AutoUpdater('https://api.github.com/repos/NoCrypt/migu/releases/latest');
+
 main.on('update', async () => {
-  console.log('[Android Updater] Checking for update...')
   await updater.initialize()
-  // await updater.performUpdate();
-  if (await updater.checkForUpdate()) main.emit('android-update-available')
+  if (await updater.checkForUpdate()) main.emit('update-available')
 })
 
-main.on('android-install-update', async () => {
+main.on('update-download', async () => {
   await updater.performUpdate();
 })
+
+// main.on('quit-and-install', async () => {
+//   main.emit('android-update-downloaded')
+// })

@@ -10,33 +10,35 @@
   import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   import IPC from '@/modules/ipc.js'
 
-  let wasUpdated = false
+  // let wasUpdated = false
 
-  globalThis.dd = IPC
+  // globalThis.dd = IPC
 
-  IPC.on('update-available', () => {
-    console.log('uwu')
-    if (!wasUpdated) {
-      // insert icon in 2nd to last position
-      links.splice(links.length - 1, 0, {
-        click: () => {
-          toast('Update is downloading...')
-        },
-        icon: 'download',
-        text: 'Update Downloading...'
-      })
-      links = links
-    }
-    wasUpdated = true
-  })
-  IPC.on('update-downloaded', () => {
-    links[links.length - 2].css = 'update'
-    links[links.length - 2].text = 'Update Ready!'
-    links[links.length - 2].click = () => {
-      IPC.emit('quit-and-install')
-    }
-    links = links
-  })
+  // IPC.on('update-available', () => {
+  //   console.log('uwu')
+  //   if (!wasUpdated) {
+  //     // insert icon in 2nd to last position
+  //     links.splice(links.length - 1, 0, {
+  //       click: () => {
+  //         toast('Update is downloading...')
+  //       },
+  //       icon: 'download',
+  //       text: 'Update Downloading...'
+  //     })
+  //     links = links
+  //   }
+  //   wasUpdated = true
+  // })
+  // IPC.on('update-downloaded', () => {
+  //   links[links.length - 2].css = 'update'
+  //   links[links.length - 2].text = 'Update Ready!'
+  //   links[links.length - 2].click = () => {
+  //     IPC.emit('quit-and-install')
+  //   }
+  //   links = links
+  // })
+
+  // Cleaned up to: common/App.svelte#L40
 
   const view = getContext('view')
 
@@ -109,7 +111,8 @@
       },
       page: 'watchtogether',
       icon: 'groups',
-      text: 'Watch Together'
+      text: 'Watch Together',
+      css: 'mb-auto'
     },
     // {
     //   click: () => {
@@ -125,7 +128,6 @@
         $view = null
         $rss = null
       },
-      css: 'mt-auto',
       page: 'settings',
       icon: 'settings',
       text: 'Settings'

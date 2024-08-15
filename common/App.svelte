@@ -2,7 +2,6 @@
   import { setContext } from 'svelte'
   import { writable } from 'simple-store-svelte'
   import { anilistClient } from '@/modules/anilist.js'
-  import IPC from '@/modules/ipc.js'
 
   export const page = writable('home')
   export const view = writable(null)
@@ -14,6 +13,8 @@
   IPC.on('schedule', () => {
     page.set('schedule')
   })
+
+
 </script>
 
 <script>
@@ -22,17 +23,60 @@
   import ViewAnime from './views/ViewAnime/ViewAnime.svelte'
   import TorrentModal from './views/TorrentSearch/TorrentModal.svelte'
   import Menubar from './components/Menubar.svelte'
-  import { Toaster } from 'svelte-sonner'
+  import { toast, Toaster } from 'svelte-sonner'
   import Logout from './components/Logout.svelte'
   import Navbar from './components/Navbar.svelte'
   import { SUPPORTS } from '@/modules/support.js';
+  import IPC from '@/modules/ipc.js'
+  import UpdateModal, { changeLog, updateModal } from './components/UpdateModal.svelte';
 
   setContext('view', view)
+
+  // Cleaning up your messy IPC UPDATER listeners, 
+  // and unify them for android. smh.
+  // Client IPC listener: update-available, update-downloading, update-downloaded
+  // Server IPC listener: update, update-download, quit-and-install
+
+  IPC.on('update-available', async () => {
+    if (localStorage.getItem('ignoredVersion') !== await changeLog[0].version) {
+      $updateModal = true
+    }
+    
+  })
+
+  IPC.on('update-downloading', () => {
+    toast.loading('Downloading Update...', {
+      duration: Number.POSITIVE_INFINITY, 
+      dismissable: false,
+      cancel:{
+        label: 'Hide',
+        onClick: () => {
+          toast.dismiss()
+        }
+      }
+    })
+  })
+
+  IPC.on('update-downloaded', () => {
+    toast.dismiss()
+    toast.success('Update Downloaded.', {
+      duration: Number.POSITIVE_INFINITY, 
+      action: {
+        label: 'Install',
+        onClick: () => IPC.emit('quit-and-install')
+      }
+    })
+
+    $updateModal = false
+  })
+  $updateModal = true
+
 </script>
 
 <div class='page-wrapper with-transitions bg-dark position-relative' data-sidebar-type='overlayed-all'>
   <Menubar bind:page={$page} />
   <ViewAnime />
+  <UpdateModal />
   <Logout />
   <Sidebar bind:page={$page} />
   <div class='overflow-hidden content-wrapper h-full z-10'>

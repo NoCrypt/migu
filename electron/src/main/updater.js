@@ -5,11 +5,17 @@ import { ipcMain, shell } from 'electron'
 log.initialize({ spyRendererConsole: true })
 log.transports.file.level = 'info'
 autoUpdater.logger = log
-ipcMain.on('update', () => {
-  autoUpdater.checkForUpdatesAndNotify()
+autoUpdater.autoDownload = false
+
+ipcMain.on('update', async () => {
+  await autoUpdater.checkForUpdates()
+})
+ipcMain.on('update-download', async () => {
+  await autoUpdater.downloadUpdate()
 })
 
-// autoUpdater.checkForUpdatesAndNotify()
+// ipcMain.on('quit-and-install') is on electron/src/main/app.js#L138
+
 export default class Updater {
   hasUpdate = false
   window
