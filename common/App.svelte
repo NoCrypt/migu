@@ -37,11 +37,12 @@
   // Client IPC listener: update-available, update-downloading, update-downloaded
   // Server IPC listener: update, update-download, quit-and-install
 
-  IPC.on('update-available', async () => {
-    if (localStorage.getItem('ignoredVersion') !== await changeLog[0].version) {
-      $updateModal = true
-    }
-    
+  IPC.on('update-available', () => {
+    changeLog.then((cl)=>{
+      if (cl[0].version !== localStorage.getItem('ignoredVersion')) {
+        $updateModal = true
+      }
+    })
   })
 
   IPC.on('update-downloading', () => {
