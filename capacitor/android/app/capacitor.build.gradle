@@ -9,11 +9,10 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-    implementation project(':capacitor-community-file-opener')
     implementation project(':capacitor-community-screen-brightness')
     implementation project(':capacitor-app')
+    implementation project(':capacitor-app-launcher')
     implementation project(':capacitor-browser')
-    implementation project(':capacitor-filesystem')
     implementation project(':capacitor-local-notifications')
     implementation project(':capacitor-status-bar')
     implementation project(':capacitor-nodejs')

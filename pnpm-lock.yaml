@@ -63,9 +63,6 @@ importers:
 
   capacitor:
     dependencies:
-      '@capacitor-community/file-opener':
-        specifier: ^6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
       '@capacitor-community/screen-brightness':
         specifier: ^6.0.0
         version: 6.0.0(@capacitor/core@6.1.1)
@@ -75,6 +72,9 @@ importers:
       '@capacitor/app':
         specifier: ^6.0.0
         version: 6.0.0(@capacitor/core@6.1.1)
+      '@capacitor/app-launcher':
+        specifier: ^6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/browser':
         specifier: ^6.0.1
         version: 6.0.1(@capacitor/core@6.1.1)
@@ -84,9 +84,6 @@ importers:
       '@capacitor/core':
         specifier: ^6.1.1
         version: 6.1.1
-      '@capacitor/filesystem':
-        specifier: ^6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
       '@capacitor/ios':
         specifier: ^6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
@@ -314,12 +311,6 @@ packages:
     resolution: {integrity: sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==}
     engines: {node: '>=6.9.0'}
 
-  '@capacitor-community/file-opener@6.0.0':
-    resolution: {integrity: sha512-nJ9S5rCqnVDBKfqdjDhrYOIO9JLeScFkRfKLs2G+d6Df73vrJMes8dr+dGSEvKiPhyjRhICW5imDJEbzaD8KpA==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
-    peerDependencies:
-      '@capacitor/core': ^6.0.0
-
   '@capacitor-community/screen-brightness@6.0.0':
     resolution: {integrity: sha512-8yU2Epwym7IKJ3Ae8LDlo6RDbZuo4x2B2M1oKT04kaVjWRxHzx6wETpzLJqrwix1NyqbXIx5TPPBpk0Kxmv45w==}
     peerDependencies:
@@ -329,6 +320,11 @@ packages:
     resolution: {integrity: sha512-rhO/nH6NJizGV5KizoIoGxCmkos3HnyUzI9TNv8IVy/C8h6lPM5Gt9cxGclb6k0OBTtgv6iJVo654+m4kzv0Qg==}
     peerDependencies:
       '@capacitor/core': ^6.1.0
+
+  '@capacitor/app-launcher@6.0.2':
+    resolution: {integrity: sha512-g1hLHTnb7240HYcM28TBN3HbCkc6HV4242sj5/xxQyQ4N4R61DfJLpZDLtp0Wq9WkLlFCJ2B2svHU7ZvA3Tvgg==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
 
   '@capacitor/app@6.0.0':
     resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
@@ -358,11 +354,6 @@ packages:
 
   '@capacitor/core@6.1.1':
     resolution: {integrity: sha512-b1s4WDMy3Y1/owTG2/XNGCI6G5SDpF2NT1JMAgcShue13fiAuHA+Ans7Wfei6McvR0KdopAE6tMHmDAfL5PM8Q==}
-
-  '@capacitor/filesystem@6.0.0':
-    resolution: {integrity: sha512-GnC4CBfky7fvG9zSV/aQnZaGs6ZJ90AaQorr53z81ArTCqcrSUeBMuCxWmvti9HrdXLhBavyA1UOjvRGObOFjg==}
-    peerDependencies:
-      '@capacitor/core': ^6.0.0
 
   '@capacitor/ios@6.1.1':
     resolution: {integrity: sha512-he6+Fhj6x1dSnOzM98xaPvioOU8MNO+qpodCJwnHE3mIRonTpFutXJK8DP8fnNhjDPk2km9VafLSfOeiZXNv3Q==}
@@ -5713,15 +5704,15 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@capacitor-community/file-opener@6.0.0(@capacitor/core@6.1.1)':
-    dependencies:
-      '@capacitor/core': 6.1.1
-
   '@capacitor-community/screen-brightness@6.0.0(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
   '@capacitor/android@6.1.1(@capacitor/core@6.1.1)':
+    dependencies:
+      '@capacitor/core': 6.1.1
+
+  '@capacitor/app-launcher@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -5803,10 +5794,6 @@ snapshots:
   '@capacitor/core@6.1.1':
     dependencies:
       tslib: 2.6.3
-
-  '@capacitor/filesystem@6.0.0(@capacitor/core@6.1.1)':
-    dependencies:
-      '@capacitor/core': 6.1.1
 
   '@capacitor/ios@6.1.1(@capacitor/core@6.1.1)':
     dependencies:

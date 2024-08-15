@@ -44,7 +44,12 @@
     Export Settings To Clipboard
   </button>
   {#if SUPPORTS.update}
-    <SettingCard title='Enable auto update' description='Enables auto updater upon startup. Automatically update to a new version of Migu if possible after exiting. Disable this if you have issues with it.'>
+    <SettingCard title='Enable auto update' description='Check updates upon startup. Disable this if you have issues with it.'>
+      {#if SUPPORTS.isAndroid}
+        <div class='font-weight-bold'>
+          <p class="pre-wrap text-muted">This way of updating was served directly from the GitHub release. If you have downloaded this app from F-Droid or IzzyOnDroid, please be aware that updating this way did not go through the additional screening process typically performed by these platforms.</p>
+        </div>
+      {/if}
       <div class='custom-switch'>
         <input type='checkbox' id='enable-auto-updater' bind:checked={settings.enableAutoUpdate} />
         <label for='enable-auto-updater'>{settings.enableAutoUpdate ? 'On' : 'Off'}</label>

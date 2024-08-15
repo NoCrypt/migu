@@ -137,7 +137,7 @@ export const defaults = {
   slowSeeding: true,
   disableStartupVideo: true,
   amoledTheme: true,
-  enableAutoUpdate: true,
+  enableAutoUpdate: !SUPPORTS.isAndroid,
   sortByEco: true,
   torrentPersist: false,
   torrentDHT: false,
