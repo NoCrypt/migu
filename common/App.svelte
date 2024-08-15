@@ -69,7 +69,6 @@
 
     $updateModal = false
   })
-  $updateModal = true
 
 </script>
 
