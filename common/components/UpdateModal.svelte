@@ -65,12 +65,21 @@
           {:then changelog}
             {#each changelog as { version, date, body }}
               <div class='row px-20 px-sm-0 position-relative' tabindex='0' role='button'>
-                <div class='col-sm-9 pre-wrap text-muted'>
+                <div class='col-sm-9  text-muted'>
                   <h2 class='mt-0 font-weight-bold text-white'>New Update Available</h2>
                   {version} | {new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} <br/>
-                  <hr />
+                  {#if SUPPORTS.isAndroid}
+                    <div class='text-left mt-20'>
+                      <h4 class='mt-0 font-weight-bold text-white'>Notice</h4>
+                      <div class="text-muted" style='font-style: italic;'>This update was served directly from the GitHub release. If you have downloaded this app from F-Droid or IzzyOnDroid, please be aware that updating this way did not go through the additional screening process typically performed by these platforms.</div>
+                    </div>
+                  {/if}
+                  <hr class='my-20'/>
                   <h4 class='mt-0 font-weight-bold text-white'>Changelog</h4>
-                  {body.replaceAll('- ', '')}
+                  <div class="pre-wrap">
+                    {body.replaceAll('- ', '• ')}
+                  </div>
+                    
                 </div>
               </div>
             {/each}
@@ -97,11 +106,7 @@
             {/each}
           {/await} 
           </p>
-          {#if SUPPORTS.isAndroid}
-            <div class='px-20 text-left mt-20'>
-              <p class="pre-wrap text-muted italic">This update was served directly from the GitHub release. If you have downloaded this app from F-Droid or IzzyOnDroid, please be aware that updating this way did not go through the additional screening process typically performed by these platforms.</p>
-            </div>
-          {/if}
+
           <div class=' text-right mt-20'>
             <input type='checkbox' id='player-sub-blur' bind:checked={ignoreVersion}  />
             <label for='player-sub-blur'>Ignore this version</label>
