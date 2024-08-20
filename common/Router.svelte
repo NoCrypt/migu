@@ -33,34 +33,8 @@
   $: maxwidth = $isMobile ? '200px' : '60rem'
 
   onMount(() => {
-    // Check update (ask if on Android, install if on PC)
+    // Check update
     if($settings.enableAutoUpdate && SUPPORTS.update) IPC.emit('update')
-    if (SUPPORTS.isAndroid) {
-      // Back button support
-      let backButtonPressTimeout;
-      window.Capacitor.Plugins.App.addListener("backButton", () => {
-        if (page === "home" && $view === null && $rss === null) {
-          if (backButtonPressTimeout) {
-            clearTimeout(backButtonPressTimeout);
-            window.Capacitor.Plugins.App.exitApp();
-          } else {
-            toast.warning("Press again to exit", { duration: 1000 });
-            backButtonPressTimeout = setTimeout(() => {
-              backButtonPressTimeout = null;
-            }, 1000);
-          }
-        } else {
-          if (document.fullscreenElement) document.exitFullscreen();
-          page = "home";
-          $rss = null;
-          $view = null;
-        }
-      });
-    }
-  });
-
-  onDestroy(() => {
-    if (SUPPORTS.isAndroid) window.Capacitor.Plugins.App.removeAllListeners();
   });
 
   function closeMiniplayer() {
