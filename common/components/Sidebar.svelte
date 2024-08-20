@@ -6,18 +6,17 @@
   import { settings } from '@/modules/settings.js'
   import { toast } from 'svelte-sonner'
   import { logout } from './Logout.svelte'
-  import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   import IPC from '@/modules/ipc.js'
   import SidebarLink from './SidebarLink.svelte'
 
-  let updateState = ''
+  // let updateState = ''
 
-  IPC.on('update-available', () => {
-    updateState = 'downloading'
-  })
-  IPC.on('update-downloaded', () => {
-    updateState = 'ready'
-  })
+  // IPC.on('update-available', () => {
+  //   updateState = 'downloading'
+  // })
+  // IPC.on('update-downloaded', () => {
+  //   updateState = 'ready'
+  // })
 
   const view = getContext('view')
 

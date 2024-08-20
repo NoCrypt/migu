@@ -60,10 +60,11 @@
 
   IPC.on('update-downloaded', () => {
     toast.dismiss()
-    toast.success('Update Downloaded.', {
-      duration: Number.POSITIVE_INFINITY, 
+    toast.success('Update Downloaded', {
+      duration: Number.POSITIVE_INFINITY,
+      description: 'Click install now to install the update. Installation can also occur after you quit the app.',
       action: {
-        label: 'Install',
+        label: 'Install now',
         onClick: () => IPC.emit('quit-and-install')
       }
     })
@@ -83,7 +84,6 @@
     classes: {
       closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
     }
-
   }} style="margin-top: var(--safe-area-top)"/>
   <div class='overflow-hidden content-wrapper h-full z-10'>
     <TorrentModal />
