@@ -6,8 +6,11 @@ import { getEpisodeMetadataForMedia } from './anime.js'
 import AnimeResolver from '@/modules/animeresolver.js'
 import { hasNextPage } from '@/modules/sections.js'
 import IPC from '@/modules/ipc.js'
+import Debug from 'debug'
 
-export const exclusions = ['DTS', '[EMBER]']
+const debug = Debug('ui:rss')
+
+export const exclusions = ['DTS', 'TrueHD', '[EMBER]']
 const isDev = location.hostname === 'localhost'
 
 const video = document.createElement('video')
@@ -55,6 +58,7 @@ export async function getRSSContent (url) {
   if (!url) return null
   const res = await fetch(url)
   if (!res.ok) {
+    debug(`Failed to fetch RSS feed: ${res.statusText}`)
     throw new Error(res.statusText)
   }
   return DOMPARSER(await res.text(), 'text/xml')
@@ -70,9 +74,9 @@ class RSSMediaManager {
     if (!ignoreErrors) {
       res.catch(e => {
         toast.error('Search Failed', {
-          description: 'Failed to loading media for home feed!\n' + e.message
+          description: 'Failed to load media for home feed!\n' + e.message
         })
-        console.error('Failed to loading media for home feed', e)
+        debug('Failed to load media for home feed', e.stack)
       })
     }
     return Array.from({ length: perPage }, (_, i) => ({ type: 'episode', data: this.fromPending(res, i) }))
@@ -94,8 +98,10 @@ class RSSMediaManager {
   }
 
   async _getMediaForRSS (page, perPage, url) {
+    debug(`Getting media for RSS feed ${url} page ${page} perPage ${perPage}`)
     const changed = await this.getContentChanged(page, perPage, url)
     if (!changed) return this.resultMap[url].result
+    debug(`Feed ${url} has changed, updating`)
 
     const index = (page - 1) * perPage
     const targetPage = [...changed.content.querySelectorAll('item')].slice(index, index + perPage)
@@ -117,6 +123,7 @@ class RSSMediaManager {
 
     const res = await Promise.all(await results)
     const newReleases = res.filter(({ date }) => date > oldDate)
+    debug(`Found ${newReleases.length} new releases, notifying...`)
 
     for (const { media, parseObject, episode } of newReleases) {
       const options = {
@@ -142,7 +149,7 @@ class RSSMediaManager {
         try {
           res.episodeData = (await getEpisodeMetadataForMedia(res.media))?.[res.episode]
         } catch (e) {
-          console.warn('failed fetching episode metadata', e)
+          debug(`Warn: failed fetching episode metadata for ${res.media.title.userPreferred} episode ${res.episode}: ${e.stack}`)
         }
       }
       res.date = items[i].date

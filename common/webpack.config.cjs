@@ -62,6 +62,7 @@ module.exports = (parentDir, alias = {}, aliasFields = 'browser', filename = 'ap
       '@': __dirname,
       module: false,
       url: false,
+      debug: resolve(__dirname, './modules/debug.js'),
       'bittorrent-tracker/lib/client/websocket-tracker.js': resolve('../node_modules/bittorrent-tracker/lib/client/websocket-tracker.js')
     },
     extensions: ['.mjs', '.js', '.svelte']

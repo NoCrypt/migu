@@ -79,13 +79,13 @@
   <UpdateModal />
   <Logout />
   <Sidebar bind:page={$page} />
-  <div class='overflow-hidden content-wrapper h-full z-10'>
-    <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
-      classes: {
-        closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
-      }
+  <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
+    classes: {
+      closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
+    }
 
-    }} style="margin-top: var(--safe-area-top)"/>
+  }} style="margin-top: var(--safe-area-top)"/>
+  <div class='overflow-hidden content-wrapper h-full z-10'>
     <TorrentModal />
     <Router bind:page={$page} />
   </div>

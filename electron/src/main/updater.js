@@ -1,12 +1,7 @@
-import log from 'electron-log'
 import { autoUpdater } from 'electron-updater'
 import { ipcMain, shell } from 'electron'
 
-log.initialize({ spyRendererConsole: true })
-log.transports.file.level = 'info'
-autoUpdater.logger = log
 autoUpdater.autoDownload = false
-
 ipcMain.on('update', async () => {
   await autoUpdater.checkForUpdates()
 })
