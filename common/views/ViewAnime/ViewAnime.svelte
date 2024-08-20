@@ -126,16 +126,19 @@
                   {playButtonText}
                 </button>
                 <div class='mt-20'>
-                  <button class='btn bg-dark btn-lg btn-square material-symbols-outlined font-size-20 shadow-none border-0' class:filled={media.isFavourite} use:click={toggleFavourite} disabled={!alToken}>
+                  <button title="Favourite" class='btn bg-dark btn-lg btn-square material-symbols-outlined font-size-20 shadow-none border-0' class:filled={media.isFavourite} use:click={toggleFavourite} disabled={!alToken}>
                     favorite
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' class:filled={media.mediaListEntry} use:click={toggleStatus} disabled={!alToken}>
+                  <button title="Bookmark" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' class:filled={media.mediaListEntry} use:click={toggleStatus} disabled={!alToken}>
                     bookmark
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
+                  <button title="Share" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
                     share
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>
+                  <button title="Non-torrent alternatives" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://kuroiru.co/anime/${media.idMal}#tab=stream`)}>
+                    hub
+                  </button>
+                  <button title="Open AniList" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>
                     open_in_new
                   </button>
                 </div>
