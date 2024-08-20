@@ -27,8 +27,8 @@ export default class Updater {
       window.webContents.send('update-downloaded', true)
     })
     ipcMain.on('update-download', async () => {
-      await autoUpdater.downloadUpdate()
       window.webContents.send('update-downloading', true)
+      await autoUpdater.downloadUpdate()
     })
   }
 

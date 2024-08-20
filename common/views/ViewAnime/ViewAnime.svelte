@@ -135,7 +135,7 @@
                   <button title="Share" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
                     share
                   </button>
-                  <button title="Non-torrent alternatives" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://kuroiru.co/anime/${media.idMal}#tab=stream`)}>
+                  <button title="Non-torrent alternatives (uses kuroiru.co)" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://kuroiru.co/anime/${media.idMal}#tab=stream`)}>
                     hub
                   </button>
                   <button title="Open AniList" class='btn bg-dark btn-lg btn-square ml-10 material-symbols-outlined font-size-20 shadow-none border-0' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>
