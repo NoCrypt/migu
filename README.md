@@ -24,8 +24,6 @@ Includes all original Miru features, plus:
 - Miniplayer doesn’t load on startup
 - Swipe gestures for brightness and volume control on Android
 - Scroll wheel for volume control on PC
-- Customizable seek duration
-- Proper back button functionality on Android
 - Redesigned Android navigation bar for improved usability
 - Correctly implemented fullscreen mode on Android
 - Safe area padding and margin adjustments on Android to avoid overlap with the status bar
@@ -37,16 +35,32 @@ Includes all original Miru features, plus:
 - Volume and brightness indicators for swipe and scroll gestures
 - Torrent sorting by size (+seeders) to reduce bandwidth usage
 - Default new release RSS set to "ASW" to minimize bandwidth usage
-- Double-click back button to exit
 - Moved toast close button to the bottom for better reachability on Android
 - Disabled smooth scrolling by default due to poor performance on my device
 - Gesture lock on Android to prevent misclick
-- Right click or long press on RSS Section will open the anime episode list
-- Toggleable auto skip intro/outro
+
+<br>
+<details>
+<summary><b>Removed and Implemented features on miru</b></summary>
+
+- Proper back button functionality on Android ([better implementation on miru](https://github.com/ThaUnknown/miru/commit/32d1d03d11b380249e1f01b4cbbcb2f22591c403))
+- Double-click back button to exit (removed for now due to above)
+- Customizable seek duration ([implemented on miru](https://github.com/ThaUnknown/miru/commit/246e713c6e0eb3522d91dea9ecd2e9e29676ccbc) **without PR's author**) [[PR](https://github.com/ThaUnknown/miru/pull/391)]
+- Right click or long press on RSS Section will open the anime episode list ([implemented on miru](https://github.com/ThaUnknown/miru/commit/1d05a71b39f725d7e193c35041818fc9a3857ac5))
+- Toggleable auto skip intro/outro ([implemented on miru](https://github.com/ThaUnknown/miru/commit/848726bd2397b857a7c6e954e27e50130dd86db8)) (**Possibly that's inspired by my commit since it includes indonesia langugage and using `:active` instead of `:hover`**)
+- Home section re-ordering on android ([implemented on miru](https://github.com/ThaUnknown/miru/commit/a50b78590f2d024d5f2237edca44a1ed16d1aa2f)) (**Possibly that's [my commit](https://github.com/NoCrypt/migu/commit/2ff58ca5bbd3390baaf87ac7a20b042810b549d1)**)
+
+<br>
+
+> Hey ThaUnknown, It's fine if you want to commit features from this repo. But please if possible co-author the people who made said features. I genuinely kinda feel bad for the guy who [PR'ed](https://github.com/ThaUnknown/miru/pull/391) the Seek Duration on your repo.
+
+</details>
+
+
 
 ## **Building and Development**
 
-<sub>[~~*dont.*~~](https://github.com/ThaUnknown/miru/#:~:text=Building%20and%20Development-,dont,-Dependencies%3A)</sub>
+<sub>[~~*good luck he said lol.*~~](https://github.com/ThaUnknown/miru/#:~:text=Building%20and%20Development-,good%20luck,-Dependencies%3A)</sub>
 
 <u>***Please do! I highly encourage this!***</u>
 
