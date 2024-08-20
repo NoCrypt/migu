@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class='navbar-link navbar-link-with-icon pointer overflow-hidden {css}'
+  class='navbar-link navbar-link-with-icon pointer overflow-hidden mx-auto {css}'
   use:click={_click}>
   {#if image}
     <span class='material-symbols-outlined rounded' class:filled={page === _page}>
@@ -60,11 +60,18 @@
   }
 
   .material-symbols-outlined {
+    font-size: 2.5rem;
+    min-width: 4.2rem;
+    width: 6rem;
+    height: 4.2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     transition: background .8s cubic-bezier(0.25, 0.8, 0.25, 1), color .8s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  .navbar-link:hover > span {
+  .navbar-link:active > span {
     background: #fff;
     color: var(--dark-color);
   }

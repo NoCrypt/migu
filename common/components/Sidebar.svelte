@@ -49,13 +49,13 @@
       <SidebarLink click={() => { $view = $media.media }} icon='queue_music' text='Now Playing' {page} />
     {/if}
     <SidebarLink click={() => { page = 'watchtogether' }} _page='watchtogether' icon='groups' text='Watch Together' {page} />
-    <SidebarLink click={() => { IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/') }} icon='favorite' text='Support This App' css='mt-auto donate' {page} />
-    {#if updateState === 'downloading'}
+    <!-- <SidebarLink click={() => { IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/') }} icon='favorite' text='Support This App' css='mt-auto donate' {page} /> -->
+    <!-- {#if updateState === 'downloading'}
       <SidebarLink click={() => { toast('Update is downloading...') }} icon='download' text='Update Downloading...' {page} />
     {:else if updateState === 'ready'}
       <SidebarLink click={() => { IPC.emit('quit-and-install') }} css='update' icon='download' text='Update Ready!' {page} />
-    {/if}
-    <SidebarLink click={() => { page = 'settings' }} _page='settings' icon='settings' text='Settings' {page} />
+    {/if} -->
+    <SidebarLink click={() => { page = 'settings' }} _page='settings' icon='settings' text='Settings' css='mt-auto' {page} />
   </div>
 </div>
 

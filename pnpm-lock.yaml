@@ -138,7 +138,7 @@ importers:
         version: 4.1.5
       webpack-cli:
         specifier: ^5.1.4
-        version: 5.1.4(webpack@5.92.0)
+        version: 5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0)
       webpack-merge:
         specifier: ^5.10.0
         version: 5.10.0
@@ -361,15 +361,12 @@ packages:
   '@capacitor/core@6.1.1':
     resolution: {integrity: sha512-b1s4WDMy3Y1/owTG2/XNGCI6G5SDpF2NT1JMAgcShue13fiAuHA+Ans7Wfei6McvR0KdopAE6tMHmDAfL5PM8Q==}
 
-  /@capacitor/device@6.0.1(@capacitor/core@6.1.1):
+  '@capacitor/device@6.0.1':
     resolution: {integrity: sha512-Tlz67DAO5GKb5YAfupXiENZxDww6mHnG9iKI+8D5SVF82VLpEv5r9qwKtiounuQB2y2HWiHV8tlOk7DqnLVUqQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
-    dependencies:
-      '@capacitor/core': 6.1.1
-    dev: false
 
-  /@capacitor/ios@6.1.1(@capacitor/core@6.1.1):
+  '@capacitor/ios@6.1.1':
     resolution: {integrity: sha512-he6+Fhj6x1dSnOzM98xaPvioOU8MNO+qpodCJwnHE3mIRonTpFutXJK8DP8fnNhjDPk2km9VafLSfOeiZXNv3Q==}
     peerDependencies:
       '@capacitor/core': ^6.1.0
@@ -3364,8 +3361,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  jassub@1.7.15:
-    resolution: {integrity: sha512-8yKAJc++Y1gNfATOPRo3APk0JUhshKl5l7bRkT6WkJ8XP4RvYfVPb6ieH6WDxsMq523exwGzNvjjPEEWT+Z1nQ==}
+  jassub@1.7.17:
+    resolution: {integrity: sha512-573efPTIYLh9YaauuSX2mgPrrYedqdeu6KYNNjsJXbLbBsxPijcUHrMK4zpXCeBv955VTUlMX6l0Afa8AXf33A==}
 
   jest-worker@27.5.1:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
@@ -4949,6 +4946,12 @@ packages:
   svelte-miniplayer@1.0.5:
     resolution: {integrity: sha512-jzYqqBuXcSH5KzoPDlYQL6CQVbpY2LQB4/wBPG4T5R75wE8Dqu4auMU6NnJxHBRhgNCGlH+XBQvxy9G6yX/XQw==}
 
+  svelte-persisted-store@0.11.0:
+    resolution: {integrity: sha512-9RgJ5DrawGyyfK22A80cfu8Jose3CV8YjEZKz9Tn94rQ0tWyEmYr+XI+wrVF6wjRbW99JMDSVcFRiM3XzVJj/w==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
+
   svelte-preprocess@5.1.4:
     resolution: {integrity: sha512-IvnbQ6D6Ao3Gg6ftiM5tdbR6aAETwjhHV+UKGf5bHGYR69RQvF1ho0JKPcbUON4vy4R7zom13jPjgdOWCQ5hDA==}
     engines: {node: '>= 16.0.0'}
@@ -5809,6 +5812,10 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
+  '@capacitor/device@6.0.1(@capacitor/core@6.1.1)':
+    dependencies:
+      '@capacitor/core': 6.1.1
+
   '@capacitor/ios@6.1.1(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
@@ -6351,8 +6358,8 @@ snapshots:
 
   '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.12)(vite@5.1.5(@types/node@20.14.2)(terser@5.31.0)))(svelte@4.2.12)(vite@5.1.5(@types/node@20.14.2)(terser@5.31.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.0.2(svelte@4.2.12)(vite@5.1.5)
-      debug: 4.3.6
+      '@sveltejs/vite-plugin-svelte': 3.0.2(svelte@4.2.12)(vite@5.1.5(@types/node@20.14.2)(terser@5.31.0))
+      debug: 4.3.5
       svelte: 4.2.12
       vite: 5.1.5(@types/node@20.14.2)(terser@5.31.0)
     transitivePeerDependencies:
@@ -6749,25 +6756,32 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))':
+    dependencies:
+      webpack: 5.92.0(webpack-cli@5.1.4)
+      webpack-cli: 5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0)
+
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0))(webpack@5.91.0(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.91.0(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0)
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.92.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.92.0)
+      webpack-cli: 5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0)
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0))(webpack@5.91.0(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.91.0(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.92.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.92.0)
+      webpack-cli: 5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0)
+    optionalDependencies:
+      webpack-dev-server: 5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0)
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0))(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.91.0(webpack-cli@5.1.4))':
     dependencies:
@@ -6775,11 +6789,6 @@ snapshots:
       webpack-cli: 5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0)
     optionalDependencies:
       webpack-dev-server: 5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0)
-
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))':
-    dependencies:
-      webpack: 5.92.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.92.0)
 
   '@webtorrent/http-node@1.3.0':
     dependencies:
@@ -9400,8 +9409,7 @@ snapshots:
       filelist: 1.0.4
       minimatch: 3.1.2
 
-  /jassub@1.7.17:
-    resolution: {integrity: sha512-573efPTIYLh9YaauuSX2mgPrrYedqdeu6KYNNjsJXbLbBsxPijcUHrMK4zpXCeBv955VTUlMX6l0Afa8AXf33A==}
+  jassub@1.7.17:
     dependencies:
       rvfc-polyfill: 1.0.7
 
@@ -11112,56 +11120,13 @@ snapshots:
       svelte-dev-helper: 1.1.9
       svelte-hmr: 0.14.12(svelte@4.2.12)
 
-  /svelte-miniplayer@1.0.5:
-    resolution: {integrity: sha512-jzYqqBuXcSH5KzoPDlYQL6CQVbpY2LQB4/wBPG4T5R75wE8Dqu4auMU6NnJxHBRhgNCGlH+XBQvxy9G6yX/XQw==}
-    dev: false
+  svelte-miniplayer@1.0.5: {}
 
-  /svelte-persisted-store@0.11.0(svelte@4.2.12):
-    resolution: {integrity: sha512-9RgJ5DrawGyyfK22A80cfu8Jose3CV8YjEZKz9Tn94rQ0tWyEmYr+XI+wrVF6wjRbW99JMDSVcFRiM3XzVJj/w==}
-    engines: {node: '>=0.14'}
-    peerDependencies:
-      svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
+  svelte-persisted-store@0.11.0(svelte@4.2.12):
     dependencies:
       svelte: 4.2.12
-    dev: false
 
-  /svelte-preprocess@5.1.4(postcss@8.4.38)(svelte@4.2.12)(typescript@5.3.3):
-    resolution: {integrity: sha512-IvnbQ6D6Ao3Gg6ftiM5tdbR6aAETwjhHV+UKGf5bHGYR69RQvF1ho0JKPcbUON4vy4R7zom13jPjgdOWCQ5hDA==}
-    engines: {node: '>= 16.0.0'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-      svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
-      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
+  svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.38)(ts-node@10.9.2(typescript@5.4.5)))(postcss@8.4.38)(svelte@4.2.12)(typescript@5.3.3):
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
@@ -11625,6 +11590,25 @@ snapshots:
   webidl-conversions@4.0.2:
     optional: true
 
+  webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0):
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0))(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0(webpack-cli@5.1.4))
+      colorette: 2.0.20
+      commander: 10.0.1
+      cross-spawn: 7.0.3
+      envinfo: 7.13.0
+      fastest-levenshtein: 1.0.16
+      import-local: 3.1.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.92.0(webpack-cli@5.1.4)
+      webpack-merge: 5.10.0
+    optionalDependencies:
+      webpack-dev-server: 5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0)
+
   webpack-cli@5.1.4(webpack-dev-server@5.0.2)(webpack@5.91.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
@@ -11643,23 +11627,6 @@ snapshots:
       webpack-merge: 5.10.0
     optionalDependencies:
       webpack-dev-server: 5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0)
-
-  webpack-cli@5.1.4(webpack@5.92.0):
-    dependencies:
-      '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack@5.92.0))(webpack@5.92.0(webpack-cli@5.1.4))
-      colorette: 2.0.20
-      commander: 10.0.1
-      cross-spawn: 7.0.3
-      envinfo: 7.13.0
-      fastest-levenshtein: 1.0.16
-      import-local: 3.1.0
-      interpret: 3.1.1
-      rechoir: 0.8.0
-      webpack: 5.92.0(webpack-cli@5.1.4)
-      webpack-merge: 5.10.0
 
   webpack-dev-middleware@7.2.1(webpack@5.91.0(webpack-cli@5.1.4)):
     dependencies:
@@ -11787,7 +11754,7 @@ snapshots:
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack@5.92.0)
+      webpack-cli: 5.1.4(webpack-dev-server@5.0.2(bufferutil@4.0.8)(utf-8-validate@6.0.4)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.92.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
