@@ -20,10 +20,10 @@
   "devDependencies": {
     "@capacitor/assets": "github:thaunknown/capacitor-assets",
     "cordova-res": "^0.15.4",
-    "nodejs-mobile-gyp": "^0.3.1",
+    "nodejs-mobile-gyp": "^0.4.0",
     "npm-run-all": "^4.1.5",
     "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "@capacitor-community/screen-brightness": "^6.0.0",
@@ -35,9 +35,10 @@
     "@capacitor/core": "^6.1.1",
     "@capacitor/device": "^6.0.1",
     "@capacitor/ios": "^6.1.1",
-    "@capacitor/local-notifications": "^6.0.0",
-    "@capacitor/status-bar": "^6.0.0",
-    "capacitor-nodejs": "https://github.com/hampoelz/Capacitor-NodeJS/releases/download/v1.0.0-beta.7/capacitor-nodejs.tgz",
+    "@capacitor/local-notifications": "^6.1.0",
+    "@capacitor/status-bar": "^6.0.1",
+    "capacitor-folder-picker": "^0.0.2",
+    "capacitor-nodejs": "https://github.com/funniray/Capacitor-NodeJS/releases/download/nodejs-18/capacitor-nodejs-1.0.0-beta.6.tgz",
     "capacitor-plugin-safe-area": "^3.0.3",
     "capacitor-volume-control": "^0.0.1",
     "common": "workspace:*",
