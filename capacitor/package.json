@@ -38,6 +38,7 @@
     "@capacitor/local-notifications": "^6.1.0",
     "@capacitor/status-bar": "^6.0.1",
     "capacitor-folder-picker": "^0.0.2",
+    "capacitor-intent-uri": "^0.0.1",
     "capacitor-nodejs": "https://github.com/funniray/Capacitor-NodeJS/releases/download/nodejs-18/capacitor-nodejs-1.0.0-beta.6.tgz",
     "capacitor-plugin-safe-area": "^3.0.3",
     "capacitor-volume-control": "^0.0.1",

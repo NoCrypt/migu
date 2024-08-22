@@ -85,3 +85,12 @@ export async function add (torrentID, hide) {
     client.send('torrent', torrentID)
   }
 }
+// external player for android
+client.on('open', ({ detail }) => {
+  debug(`Open: ${detail}`)
+  IPC.emit('intent', detail)
+})
+
+IPC.on('intent-end', () => {
+  client.dispatch('externalWatched')
+})
