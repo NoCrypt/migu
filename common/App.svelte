@@ -36,6 +36,10 @@
     if (!state) return
     ignoreNext = true
     view.set(null)
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+      if (state.type === 'view') page.set('home')
+    }
     if (state.type === 'page') {
       page.set(state.value)
     } else {
