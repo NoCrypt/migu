@@ -7,7 +7,6 @@
   import { liveAnimeEpisodeProgress } from '@/modules/animeprogress.js'
   import { anilistClient } from '@/modules/anilist.js'
   import { SUPPORTS } from '@/modules/support.js';
-  import { longpress } from '@/modules/longpress.js'
   
   export let data
 
@@ -48,7 +47,7 @@
   const progress = liveAnimeEpisodeProgress(media?.id, data?.episode)
 </script>
 
-<div class='d-flex p-20 pb-10 position-relative episode-card' bind:this={thisElement} on:contextmenu={viewEpisodes} use:longpress={viewEpisodes} role="none">
+<div class='d-flex p-20 pb-10 position-relative episode-card' bind:this={thisElement} on:contextmenu={viewEpisodes} role="none">
   {#if preview}
     {#if !SUPPORTS.isAndroid}
     <EpisodePreviewCard {data} />
