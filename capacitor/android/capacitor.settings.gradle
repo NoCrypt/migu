@@ -23,6 +23,12 @@ project(':capacitor-local-notifications').projectDir = new File('../../node_modu
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../../node_modules/@capacitor/status-bar/android')
 
+include ':capacitor-folder-picker'
+project(':capacitor-folder-picker').projectDir = new File('../../node_modules/capacitor-folder-picker/android')
+
+include ':capacitor-intent-uri'
+project(':capacitor-intent-uri').projectDir = new File('../../node_modules/capacitor-intent-uri/android')
+
 include ':capacitor-nodejs'
 project(':capacitor-nodejs').projectDir = new File('../../node_modules/capacitor-nodejs/android')
 

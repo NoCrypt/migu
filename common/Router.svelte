@@ -43,6 +43,11 @@
     localStorage.setItem('torrent', '[]')
     client.send('torrent', null)
   }
+  onMount(() => {
+    window.addEventListener('popstate', e => {
+      $rss = null
+    })
+  })
 
 </script>
 

@@ -16,6 +16,8 @@ dependencies {
     implementation project(':capacitor-device')
     implementation project(':capacitor-local-notifications')
     implementation project(':capacitor-status-bar')
+    implementation project(':capacitor-folder-picker')
+    implementation project(':capacitor-intent-uri')
     implementation project(':capacitor-nodejs')
     implementation project(':capacitor-plugin-safe-area')
     implementation project(':capacitor-volume-control')
