@@ -2,6 +2,8 @@
   import { setContext } from 'svelte'
   import { writable } from 'simple-store-svelte'
   import { anilistClient } from '@/modules/anilist.js'
+  import IPC from '@/modules/ipc.js'
+  import { rss } from './views/TorrentSearch/TorrentModal.svelte'
 
   export const page = writable('home')
   export const view = writable(null)
@@ -36,6 +38,7 @@
     if (!state) return
     ignoreNext = true
     view.set(null)
+    rss.set(null)
     if (document.fullscreenElement) {
       document.exitFullscreen();
       if (state.type === 'view') page.set('home')

@@ -151,15 +151,9 @@ importers:
 
   common:
     dependencies:
-      '@fontsource-variable/material-symbols-outlined':
-        specifier: ^5.0.24
-        version: 5.0.24
       '@fontsource-variable/nunito':
         specifier: ^5.0.18
         version: 5.0.18
-      '@fontsource/roboto':
-        specifier: ^5.0.12
-        version: 5.0.12
       '@thaunknown/ani-resourced':
         specifier: ^1.0.3
         version: 1.0.3
@@ -181,6 +175,9 @@ importers:
       js-levenshtein:
         specifier: ^1.1.6
         version: 1.1.6
+      lucide-svelte:
+        specifier: ^0.429.0
+        version: 0.429.0(svelte@4.2.12)
       p2pt:
         specifier: github:ThaUnknown/p2pt#modernise
         version: https://codeload.github.com/ThaUnknown/p2pt/tar.gz/9ad7a56ed6ee43f5664ebad33b803702ee349316
@@ -200,8 +197,8 @@ importers:
         specifier: ^4.2.12
         version: 4.2.12
       svelte-keybinds:
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.9
+        version: 1.0.9
       svelte-loader:
         specifier: ^3.1.9
         version: 3.1.9(svelte@4.2.12)
@@ -211,6 +208,9 @@ importers:
       svelte-persisted-store:
         specifier: ^0.11.0
         version: 0.11.0(svelte@4.2.12)
+      svelte-radix:
+        specifier: ^1.1.0
+        version: 1.1.0(svelte@4.2.12)
       svelte-sonner:
         specifier: ^0.3.19
         version: 0.3.19(svelte@4.2.12)
@@ -8853,7 +8853,7 @@ snapshots:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.3.1
+      ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
 

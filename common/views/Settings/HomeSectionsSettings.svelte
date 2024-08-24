@@ -2,6 +2,7 @@
   import { click } from '@/modules/click.js'
   import { sections } from '@/modules/sections.js'
   import { SUPPORTS } from '@/modules/support.js';
+  import { ArrowDown, ArrowDownUp, ArrowUp, Trash2 } from 'lucide-svelte'
 
   const allowedHomeSections = sections.map(({ title }) => title)
   export let homeSections
@@ -16,7 +17,7 @@
 
   $: {
     if (draggingItemIndex != null && hoveredItemIndex != null && draggingItemIndex !== hoveredItemIndex) {
-      [homeSections[draggingItemIndex], homeSections[hoveredItemIndex]] = [homeSections[hoveredItemIndex], homeSections[draggingItemIndex]]
+      swapItem(draggingItemIndex, hoveredItemIndex)
 
       draggingItemIndex = hoveredItemIndex
     }
@@ -37,7 +38,7 @@
     class='input-group mb-10 ghost w-full'
     style='top: {mouseYCoordinate + distanceTopGrabbedVsPointer}px;'>
     <div class='input-group-prepend'>
-      <span class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20'>swap_vert</span>
+      <span class='input-group-text d-flex align-items-center px-5'><ArrowDownUp size='1.8rem' /></span>
     </div>
     <select class='form-control' value={draggingItem}>
       {#each allowedHomeSections as section}
@@ -45,7 +46,7 @@
       {/each}
     </select>
     <div class='input-group-append'>
-      <button type='button' class='btn btn-danger input-group-append px-5 material-symbols-outlined font-size-20'>delete</button>
+      <button type='button' class='btn btn-danger btn-square input-group-append px-5 d-flex align-items-center'><Trash2 size='1.8rem' /></button>
     </div>
   </div>
 {/if}
@@ -71,16 +72,18 @@
     }}>
     {#if !SUPPORTS.isAndroid}
       <div class='input-group-prepend grab'>
-        <span class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20'>swap_vert</span>
+        <span class='input-group-text d-flex align-items-center px-5'><ArrowDownUp size='1.8rem' /></span>
       </div>
     {:else}
       <div class='input-group-prepend'>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <button on:click={() => moveItem(index, 'up')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'>arrow_upward</button>
+        <button on:click={() => moveItem(index, 'up')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'><ArrowUp size='1.8rem' /></button>
+      </div>
+      <div class='input-group-prepend'>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <button on:click={() => moveItem(index, 'down')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'>arrow_downward</button>
+        <button on:click={() => moveItem(index, 'down')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'><ArrowDown size='1.8rem' /></button>
       </div>
     {/if}
     <select class='form-control bg-dark w-400 mw-full' bind:value={homeSections[index]}>
@@ -89,7 +92,7 @@
       {/each}
     </select>
     <div class='input-group-append'>
-      <button type='button' use:click={() => { homeSections.splice(index, 1); homeSections = homeSections }} class='btn btn-danger input-group-append px-5 material-symbols-outlined font-size-20'>delete</button>
+      <button type='button' use:click={() => { homeSections.splice(index, 1); homeSections = homeSections }} class='btn btn-danger btn-square input-group-append px-5 d-flex align-items-center'><Trash2 size='1.8rem' /></button>
     </div>
   </div>
 {/each}

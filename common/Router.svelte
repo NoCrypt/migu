@@ -10,17 +10,14 @@
 <script>
   import Home from './views/Home/Home.svelte'
   import MediaHandler, { media } from './views/Player/MediaHandler.svelte'
-  import Settings, { version } from '@/views/Settings/Settings.svelte'
+  import Settings from '@/views/Settings/Settings.svelte'
   import WatchTogether from './views/WatchTogether/WatchTogether.svelte'
   import Miniplayer from 'svelte-miniplayer'
   import Search from './views/Search.svelte'
-  import { toast } from 'svelte-sonner';
   import AiringSchedule from './views/AiringSchedule.svelte'
   import { readable } from 'simple-store-svelte'
   import { files } from './views/Player/MediaHandler.svelte' // this is sooo hacky and possibly delaying viewer on startup
-  import { rss } from './views/TorrentSearch/TorrentModal.svelte';
-  import { view } from './App.svelte';
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { SUPPORTS } from '@/modules/support.js';
   import { click } from '@/modules/click.js';
   import { client } from '@/modules/torrent.js';
@@ -43,11 +40,7 @@
     localStorage.setItem('torrent', '[]')
     client.send('torrent', null)
   }
-  onMount(() => {
-    window.addEventListener('popstate', e => {
-      $rss = null
-    })
-  })
+
 
 </script>
 
