@@ -140,7 +140,7 @@
                   <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={toggleStatus} disabled={!alToken}>
                     <Bookmark fill={media.mediaListEntry ? 'currentColor' : 'transparent'} size='1.7rem' />
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => copyToClipboard(`https://miru.watch/anime/${media.id}`)}>
+                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
                     <Share2 size='1.7rem' />
                   </button>
                   <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>

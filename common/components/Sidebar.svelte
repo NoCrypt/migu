@@ -28,7 +28,7 @@
     if (anilistClient.userID?.viewer?.data?.Viewer) {
       $logout = true
     } else {
-      IPC.emit('open', 'https://anilist.co/api/v2/oauth/authorize?client_id=20321&response_type=token') // Change redirect_url to miru://auth/
+      IPC.emit('open', 'https://anilist.co/api/v2/oauth/authorize?client_id=20321&response_type=token') // Change redirect_url to migu://auth/
       if (platformMap[window.version.platform] === 'Linux') {
         toast('Support Notification', {
           description: "If your linux distribution doesn't support custom protocol handlers, you can simply paste the full URL into the app.",

@@ -25,12 +25,12 @@
 
   const emit = createEventDispatcher()
 
-  w2gEmitter.on('playerupdate', ({ detail }) => {
+  w2gEmitter.on('playerupdate', detail => {
     currentTime = detail.time
     paused = detail.paused
   })
 
-  w2gEmitter.on('setindex', ({ detail }) => {
+  w2gEmitter.on('setindex', detail => {
     playFile(detail)
   })
 
