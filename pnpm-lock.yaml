@@ -210,7 +210,7 @@ importers:
         version: 0.11.0(svelte@4.2.12)
       svelte-radix:
         specifier: ^1.1.0
-        version: 1.1.0(svelte@4.2.12)
+        version: 1.1.1(svelte@4.2.12)
       svelte-sonner:
         specifier: ^0.3.19
         version: 0.3.19(svelte@4.2.12)
@@ -3532,6 +3532,11 @@ packages:
     resolution: {integrity: sha512-GhiKG7CGTXzOQq56tIx40Ae26EbrgBq1owuuPqgCTaJDQYO1qW5G+YGaurOLx7s+Aaeta8MputrVFDr0kuiogg==}
     engines: {node: '>=12.20.0'}
 
+  lucide-svelte@0.429.0:
+    resolution: {integrity: sha512-3LwbxQn5i9/zQwMg0ZWT875djOEQoR3eM8ytOGqk0eRk4wkoqqgZX0Gr+aQjkd+RSDEVMXkIEoyW/1zLyXr/6g==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
   magic-string@0.30.10:
     resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
 
@@ -4866,8 +4871,8 @@ packages:
     peerDependencies:
       svelte: ^3.19.0 || ^4.0.0
 
-  svelte-keybinds@1.0.8:
-    resolution: {integrity: sha512-clP0/5XgMWXNlImQALBQYyrfN06fgWKWufoMumeGOABOsewScPsv1jRFZzks9f3Xh2e53XgZIx57Fb/a6d/ptw==}
+  svelte-keybinds@1.0.9:
+    resolution: {integrity: sha512-bQt9azkXX4SgMJpJzYWQB6D0hj45+Ro2+2Awr4YNtjmuRuKdio+Rxuhky5JJyBBfyRQ7YT63nSR3whH4FACv1A==}
 
   svelte-loader@3.1.9:
     resolution: {integrity: sha512-RITPqze3TppOhaZF8SEFTDTwFHov17k3UkOjpxyL/No/YVrvckKmXWOEj7QEpsZZZSNQPb28tMZbHEI2xLhJMQ==}
@@ -4919,6 +4924,11 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  svelte-radix@1.1.1:
+    resolution: {integrity: sha512-TCbV7fzlJ2aEUB0nu2EodVA+r1eYj526IYpmGUTV32Z0bIrCUvx3K8xX3tcxR5dDFA5ZBU1Hxr4RYC4TDFEQ4A==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0 || ^5.0.0 || ^5.0.0-next.1
 
   svelte-sonner@0.3.19:
     resolution: {integrity: sha512-jpPOgLtHwRaB6Vqo2dUQMv15/yUV/BQWTjKpEqQ11uqRSHKjAYUKZyGrHB2cQsGmyjR0JUzBD58btpgNqINQ/Q==}
@@ -8853,7 +8863,7 @@ snapshots:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.3.2
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
 
@@ -9499,6 +9509,10 @@ snapshots:
       unordered-array-remove: 1.0.2
     transitivePeerDependencies:
       - supports-color
+
+  lucide-svelte@0.429.0(svelte@4.2.12):
+    dependencies:
+      svelte: 4.2.12
 
   magic-string@0.30.10:
     dependencies:
@@ -10976,7 +10990,7 @@ snapshots:
     dependencies:
       svelte: 4.2.12
 
-  svelte-keybinds@1.0.8: {}
+  svelte-keybinds@1.0.9: {}
 
   svelte-loader@3.1.9(svelte@4.2.12):
     dependencies:
@@ -11003,6 +11017,10 @@ snapshots:
       postcss: 8.4.38
       postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(typescript@5.4.5))
       typescript: 5.3.3
+
+  svelte-radix@1.1.1(svelte@4.2.12):
+    dependencies:
+      svelte: 4.2.12
 
   svelte-sonner@0.3.19(svelte@4.2.12):
     dependencies:
