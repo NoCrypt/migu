@@ -17,7 +17,7 @@
 
   $: {
     if (draggingItemIndex != null && hoveredItemIndex != null && draggingItemIndex !== hoveredItemIndex) {
-      swapItem(draggingItemIndex, hoveredItemIndex)
+      [homeSections[draggingItemIndex], homeSections[hoveredItemIndex]] = [homeSections[hoveredItemIndex], homeSections[draggingItemIndex]]
 
       draggingItemIndex = hoveredItemIndex
     }
@@ -78,12 +78,12 @@
       <div class='input-group-prepend'>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <button on:click={() => moveItem(index, 'up')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'><ArrowUp size='1.8rem' /></button>
+        <button on:click={() => moveItem(index, 'up')} class='input-group-text d-flex justify-content-center px-5 font-size-20 pointer'><ArrowUp size='1.8rem' /></button>
       </div>
       <div class='input-group-prepend'>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <button on:click={() => moveItem(index, 'down')} class='input-group-text d-flex justify-content-center px-5 material-symbols-outlined font-size-20 pointer'><ArrowDown size='1.8rem' /></button>
+        <button on:click={() => moveItem(index, 'down')} class='input-group-text d-flex justify-content-center px-5 font-size-20 pointer'><ArrowDown size='1.8rem' /></button>
       </div>
     {/if}
     <select class='form-control bg-dark w-400 mw-full' bind:value={homeSections[index]}>

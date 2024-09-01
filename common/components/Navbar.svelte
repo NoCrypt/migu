@@ -4,7 +4,7 @@
   import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   import NavbarLink from './NavbarLink.svelte'
   import { MagnifyingGlass } from 'svelte-radix'
-  import { Users, Clock, Settings, Heart, ListVideo } from 'lucide-svelte'
+  import { Users, Clock, Settings, Heart, ListVideo, House } from 'lucide-svelte'
   const view = getContext('view')
   export let page
 
@@ -15,34 +15,34 @@
     $rss = null
   }
 
-  function close () {
-    page = 'home'
-    noModals()
-  }
 </script>
 
-<nav class='navbar navbar-fixed-bottom d-block d-md-none border-0 bg-dark'>
+<nav class='navbar navbar-fixed-bottom d-block d-md-none border-0 bg-dark' style='border-top: 1.5px #fff2 solid !important;'>
   <div class='navbar-menu h-full d-flex flex-row justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
-    <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} />
-    <NavbarLink click={() => { page = 'search' }} _page='search' css='ml-auto' icon='search' {page} let:active>
-      <MagnifyingGlass size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' stroke-width={active ? '2' : '0'} stroke='currentColor' />
+    <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico'  /> -->
+    <NavbarLink click={() => { page = 'home'; noModals()}} _page='home' icon='home' {page} let:active>
+      <House size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
     </NavbarLink>
-    <NavbarLink click={() => { page = 'schedule' }} _page='schedule' icon='schedule' {page} let:active>
-      <Clock size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+    <NavbarLink click={() => { page = 'search'; noModals()}} _page='search' icon='search' {page} let:active>
+      <MagnifyingGlass size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' stroke-width={active ? '2' : '0'} stroke='currentColor' />
     </NavbarLink>
     {#if $media?.media}
-      <NavbarLink click={() => { $view = $media.media }} icon='queue_music' {page} let:active>
-        <ListVideo size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+      <NavbarLink click={() => { noModals(false) }} icon='queue_music' {page} let:active>
+        <ListVideo size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+      </NavbarLink>
+    {:else}
+      <NavbarLink click={() => { page = 'schedule'; noModals() }} _page='schedule' icon='schedule' {page} let:active>
+        <Clock size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
       </NavbarLink>
     {/if}
-    <NavbarLink click={() => { page = 'watchtogether' }} _page='watchtogether' icon='groups' {page} let:active>
-      <Users size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+    <NavbarLink click={() => { page = 'watchtogether'; noModals() }} _page='watchtogether' icon='groups' {page} let:active>
+      <Users size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
     </NavbarLink>
     <!-- <NavbarLink click={() => { IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/') }} icon='favorite' css='ml-auto donate' {page} let:active>
-      <Heart size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded donate' strokeWidth={active ? '3.5' : '2'} fill='currentColor' />
+      <Heart size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded donate' strokeWidth={active ? '3.5' : '2'} fill='currentColor' />
     </NavbarLink> -->
-    <NavbarLink click={() => { page = 'settings' }} _page='settings' icon='settings' css='ml-auto' {page} let:active>
-      <Settings size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+    <NavbarLink click={() => { page = 'settings'; noModals() }} _page='settings' icon='settings' css='ml-auto' {page} let:active>
+      <Settings size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
     </NavbarLink>
   </div>
 </nav>

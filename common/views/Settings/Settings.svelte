@@ -16,7 +16,7 @@
     sunos: 'SunOS',
     win32: 'Windows'
   }
-  export let version = '1.0.0'
+  let version = '1.0.0'
   IPC.on('version', data => (version = data))
   IPC.emit('version')
 
@@ -57,11 +57,11 @@
     app: {
       name: 'App',
       icon: Settings
+    },
+    changelog: {
+      name: 'Changelog',
+      icon: Logs
     }
-    // changelog: {
-    //   name: 'Changelog',
-    //   icon: Logs
-    // }
   }
   function pathListener (data) {
     $settings.torrentPathNew = data
@@ -75,7 +75,7 @@
     if (anilistClient.userID?.viewer?.data?.Viewer) {
       $logout = true
     } else {
-      IPC.emit('open', 'https://anilist.co/api/v2/oauth/authorize?client_id=20321&response_type=token') // Change redirect_url to migu://auth/
+      IPC.emit('open', 'https://anilist.co/api/v2/oauth/authorize?client_id=20321&response_type=token') // Change redirect_url to migu://auth
       if (platformMap[window.version.platform] === 'Linux') {
         toast('Support Notification', {
           description: "If your linux distribution doesn't support custom protocol handlers, you can simply paste the full URL into the app.",
@@ -95,7 +95,7 @@
 </script>
 
 <Tabs>
-  <div class='d-flex w-full h-full position-relative settings root flex-md-row flex-column overflow-y-auto overflow-y-md-hidden' style="padding-top: var(--safe-area-top)" use:smoothScroll>
+  <div class='d-flex w-full h-full position-relative settings root flex-md-row flex-column overflow-y-auto overflow-y-md-hidden' use:smoothScroll>
     <div class='d-flex flex-column flex-row h-full w-md-300 bg-dark position-relative px-20 px-md-0 flex-basis-0-md-custom'>
       <div class='px-20 py-15 font-size-24 font-weight-semi-bold'>Settings</div>
       {#each Object.values(groups) as group}
@@ -106,8 +106,8 @@
           </div>
         </TabLabel>
       {/each}
-      <div class='pointer my-5 rounded' tabindex='0' role='button' use:click={() => IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')}>
-        <!-- <div class='px-20 py-10 d-flex align-items-center'>
+      <!-- <div class='pointer my-5 rounded' tabindex='0' role='button' use:click={() => IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/')}>
+        <div class='px-20 py-10 d-flex align-items-center'>
           <Heart class='pr-10 d-inline-flex' size='3.1rem' />
           <div class='font-size-16 line-height-normal'>Donate</div>
         </div>
@@ -150,11 +150,11 @@
     </Tab>
     <Tab>
       <div class='root h-full w-full overflow-y-md-auto p-20' use:smoothScroll>
-        <AppSettings {version} bind:settings={$settings} />
+        <AppSettings {version} settings={$settings} />
         <div class='h-250' />
       </div>
     </Tab>
-    <!-- <Tab>
+    <Tab>
       <div class='root my-20 px-20 overflow-y-md-auto w-full' use:smoothScroll>
         <div class='h-300 row px-20 px-sm-0'>
           <div class='col-sm-3 d-none d-sm-flex' />
@@ -220,10 +220,10 @@
               </div>
             </div>
           {/each}
-        {/await} 
+        {/await}
         <div class='h-250 d-md-none' />
       </div>
-    </Tab> -->
+    </Tab>
   </div>
 </Tabs>
 

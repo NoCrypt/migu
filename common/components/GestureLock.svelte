@@ -1,5 +1,6 @@
 <script>
   import { click } from "@/modules/click.js";
+  import { Lock } from 'lucide-svelte'
 
   export let isLocked = false;
   let lockImmersed = false;
@@ -34,9 +35,12 @@
     style="padding: 28px"
   >
     <span
-      class="material-symbols-outlined pointer lock-button"
+      class="icon pointer lock-button"
       class:opacity-0={lockImmersed}
-      use:click={() => (isLocked = false)}>lock</span
+      use:click={() => (isLocked = false)}>
+        <Lock size='2.5rem' strokeWidth={2.5} />
+
+      </span
     >
   </div>
 {/if}
@@ -54,7 +58,7 @@
     color: white;
   }
 
-  .material-symbols-outlined {
+  .icon {
     font-size: 2.8rem;
     padding: 1.5rem;
     display: flex;

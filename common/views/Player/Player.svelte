@@ -18,7 +18,7 @@
   import { SUPPORTS } from '@/modules/support.js'
   import 'rvfc-polyfill'
   import IPC from '@/modules/ipc.js'
-  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX } from 'lucide-svelte'
+  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, Keyboard, List, ListMusic, ListVideo, Lock, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX } from 'lucide-svelte'
   import { swipeControls } from '@/modules/swipecontrol.js';
   import { volumeScroll } from '@/modules/volumescroll.js';
   import GestureLock from '@/components/GestureLock.svelte';
@@ -1249,7 +1249,9 @@
         <Keyboard size='2.5rem' strokeWidth={2.5} />
       </span>
       {#if SUPPORTS.isAndroid}
-        <span class='material-symbols-outlined ctrl' use:click={() => (isLocked = true)}> lock </span>
+        <span class='icon ctrl mr-5 d-flex align-items-center h-full' use:click={() => (isLocked = true)}>
+          <Lock size='2.5rem' strokeWidth={2.5} />
+        </span>
       {/if}
       {#if 'audioTracks' in HTMLVideoElement.prototype && video?.audioTracks?.length > 1}
         <div class='dropdown dropup with-arrow' use:click={toggleDropdown}>
@@ -1433,10 +1435,6 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-  }
-  .bind.material-symbols-outlined {
-    font-size: 2.2rem !important;
-    font-weight: unset !important;
   }
   .stats {
     font-size: 2.3rem !important;

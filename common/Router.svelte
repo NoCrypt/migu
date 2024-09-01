@@ -23,6 +23,7 @@
   import { client } from '@/modules/torrent.js';
   import { settings } from '@/modules/settings.js';
   import IPC from '@/modules/ipc.js';
+  import { rss } from './views/TorrentSearch/TorrentModal.svelte';
 
   export let page = 'home'
 
@@ -32,6 +33,10 @@
   onMount(() => {
     // Check update
     if($settings.enableAutoUpdate && SUPPORTS.update) IPC.emit('update')
+
+    window.addEventListener('popstate', e => {
+      $rss = null
+    })
   });
 
   function closeMiniplayer() {
