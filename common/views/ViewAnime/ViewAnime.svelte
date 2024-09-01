@@ -12,7 +12,7 @@
   import smoothScroll from '@/modules/scroll.js'
   import IPC from '@/modules/ipc.js'
   import { alToken } from '@/modules/settings.js'
-  import { Bookmark, Clapperboard, ExternalLink, Heart, Play, Share2, Timer, TrendingUp, Tv } from 'lucide-svelte'
+  import { Bookmark, Clapperboard, ExternalLink, Heart, LibraryBig, Play, Share2, Timer, TrendingUp, Tv } from 'lucide-svelte'
 
   const view = getContext('view')
   function close () {
@@ -134,16 +134,19 @@
                   {playButtonText}
                 </button>
                 <div class='mt-20 d-flex'>
-                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0' use:click={toggleFavourite} disabled={!alToken}>
+                  <button title="Favourite" class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0' use:click={toggleFavourite} disabled={!alToken}>
                     <Heart fill={media.isFavourite ? 'currentColor' : 'transparent'} size='1.7rem' />
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={toggleStatus} disabled={!alToken}>
+                  <button title="Bookmark" class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={toggleStatus} disabled={!alToken}>
                     <Bookmark fill={media.mediaListEntry ? 'currentColor' : 'transparent'} size='1.7rem' />
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
+                  <button title="Share" class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => copyToClipboard(`https://miguapp.pages.dev/anime/${media.id}`)}>
                     <Share2 size='1.7rem' />
                   </button>
-                  <button class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>
+                  <button title="Non-torrent alternatives" class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => openInBrowser(`https://kuroiru.co/anime/${media.idMal}#tab=stream`)}>
+                    <LibraryBig size='1.7rem' />
+                  </button>
+                  <button title="Open AniList" class='btn bg-dark btn-lg btn-square d-flex align-items-center justify-content-center shadow-none border-0 ml-10' use:click={() => openInBrowser(`https://anilist.co/anime/${media.id}`)}>
                     <ExternalLink size='1.7rem' />
                   </button>
                   <!-- <div class='input-group shadow-lg mb-5 font-size-16'>
