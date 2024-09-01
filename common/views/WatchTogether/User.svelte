@@ -3,7 +3,7 @@
   import IPC from '@/modules/ipc.js'
   import { ExternalLink } from 'lucide-svelte'
 
-  /** @type {import("d:/Webdevelopment/miru/common/modules/al").Viewer | {}} */
+  /** @type {import("../../modules/al").Viewer | {}} */
   export let user = {}
 </script>
 

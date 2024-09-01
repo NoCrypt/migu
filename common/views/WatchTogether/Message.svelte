@@ -1,5 +1,5 @@
 <script>
-  /** @type {import("d:/Webdevelopment/miru/common/modules/al").Viewer | {}} */
+  /** @type {import("../../modules/al").Viewer | {}} */
   export let user = {}
 
   /** @type {string[]} */
