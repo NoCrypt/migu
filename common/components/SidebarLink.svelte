@@ -12,7 +12,7 @@
 </script>
 
 <div class='sidebar-link sidebar-link-with-icon pointer overflow-hidden {css}'
-  use:click={_click}>
+  use:click={() => { _click(); if (!icon.includes("login") && !icon.includes("favorite")) { window.dispatchEvent(new Event('overlay-check')) } } }>
   <span class='text-nowrap d-flex align-items-center w-full h-full'>
     {#if image}
       <span class='rounded d-flex'>

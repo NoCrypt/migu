@@ -1,54 +1,39 @@
 <script>
   import { getContext } from 'svelte'
-  import { anilistClient } from '@/modules/anilist.js'
-  import { media } from '../views/Player/MediaHandler.svelte'
-  import { platformMap } from '@/views/Settings/Settings.svelte'
+  import { media } from '@/views/Player/MediaHandler.svelte'
   import { settings } from '@/modules/settings.js'
-  import { toast } from 'svelte-sonner'
-  import { logout } from './Logout.svelte'
-  import IPC from '@/modules/ipc.js'
+  // import { toast } from 'svelte-sonner'
+  import { profileView } from './Profiles.svelte'
+  import Helper from '@/modules/helper.js'
+  // import IPC from '@/modules/ipc.js'
   import SidebarLink from './SidebarLink.svelte'
   import { Clock, Download, Heart, Home, ListVideo, LogIn, Settings, Users } from 'lucide-svelte'
   import { MagnifyingGlass } from 'svelte-radix'
 
-  let updateState = ''
+  // let updateState = ''
 
-  IPC.on('update-available', () => {
-    updateState = 'downloading'
-  })
-  IPC.on('update-downloaded', () => {
-    updateState = 'ready'
-  })
+  // IPC.on('update-available', () => {
+  //   updateState = 'downloading'
+  // })
+  // IPC.on('update-downloaded', () => {
+  //   updateState = 'ready'
+  // })
 
   const view = getContext('view')
 
   export let page
-
-  function handleAlLogin () {
-    if (anilistClient.userID?.viewer?.data?.Viewer) {
-      $logout = true
-    } else {
-      IPC.emit('open', 'https://anilist.co/api/v2/oauth/authorize?client_id=20321&response_type=token') // Change redirect_url to migu://auth/
-      if (platformMap[window.version.platform] === 'Linux') {
-        toast('Support Notification', {
-          description: "If your linux distribution doesn't support custom protocol handlers, you can simply paste the full URL into the app.",
-          duration: 300000
-        })
-      }
-    }
-  }
 </script>
 
 <div class='sidebar z-30 d-md-block' class:animated={$settings.expandingSidebar}>
   <div class='sidebar-overlay pointer-events-none h-full position-absolute' />
   <div class='sidebar-menu h-full d-flex flex-column justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
-    <SidebarLink click={handleAlLogin} icon='login' text={anilistClient.userID?.viewer?.data?.Viewer ? 'Logout' : 'Login With AniList'} css='mt-auto' {page} image={anilistClient.userID?.viewer?.data?.Viewer?.avatar.medium}>
+    <SidebarLink click={() => { $profileView = true }} icon='login' text={Helper.getUser() ? 'Profiles' : 'Login'} css='mt-auto' {page} image={Helper.getUserAvatar()}>
       <LogIn size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' />
     </SidebarLink>
-    <SidebarLink click={() => { page = 'home' }} _page='home' text='Home' {page} let:active>
+    <SidebarLink click={() => { page = 'home'; if ($view) $view = null }} _page='home' text='Home' {page} let:active>
       <Home size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
     </SidebarLink>
-    <SidebarLink click={() => { page = 'search' }} _page='search' text='Search' {page} let:active>
+    <SidebarLink click={() => { page = 'search'; if ($view) $view = null }} _page='search' text='Search' {page} let:active>
       <MagnifyingGlass size='2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' stroke-width={active ? '2' : '0'} stroke='currentColor' />
     </SidebarLink>
     <SidebarLink click={() => { page = 'schedule' }} _page='schedule' icon='schedule' text='Schedule' {page} let:active>
@@ -117,6 +102,9 @@
   }
   .sidebar.animated:hover {
     width: 22rem
+  }
+  .sidebar.animated {
+    z-index: 60 !important;
   }
   .sidebar-overlay {
     width: var(--sidebar-width);

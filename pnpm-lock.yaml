@@ -32,6 +32,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.35.1
         version: 2.35.1(eslint@8.57.0)(svelte@4.2.12)(ts-node@10.9.2(typescript@5.4.5))
+      fuse.js:
+        specifier: ^7.0.0
+        version: 7.0.0
       html-webpack-plugin:
         specifier: ^5.6.0
         version: 5.6.0(webpack@5.91.0(webpack-cli@5.1.4))
@@ -76,8 +79,8 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/browser':
-        specifier: ^6.0.1
-        version: 6.0.1(@capacitor/core@6.1.1)
+        specifier: ^6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/cli':
         specifier: ^6.1.1
         version: 6.1.1
@@ -349,8 +352,8 @@ packages:
     engines: {node: '>=10.3.0'}
     hasBin: true
 
-  '@capacitor/browser@6.0.1':
-    resolution: {integrity: sha512-KBK0PKfmUj0if+gYWEh0+LG70l1gcLGbDCWJt2Ig3naXHGlrLoWBqVArCgbwBzwJZL+VlwW7iEhAzGOWpg2jhw==}
+  '@capacitor/browser@6.0.2':
+    resolution: {integrity: sha512-mJjdKbpdCAaaDVZD/vjzpJJxL1VvwsGTcEGn+4PpCQyPu3+yNQO7vgjwBV7ZYS6+mZIKeYn5swWq0BFuAcDqFg==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -2754,6 +2757,10 @@ packages:
 
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+
+  fuse.js@7.0.0:
+    resolution: {integrity: sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==}
+    engines: {node: '>=10'}
 
   get-browser-rtc@1.1.0:
     resolution: {integrity: sha512-MghbMJ61EJrRsDe7w1Bvqt3ZsBuqhce5nrn/XAwgwOXhcsz53/ltdxOse1h/8eKXj5slzxdsz56g5rzOFSGwfQ==}
@@ -5687,7 +5694,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@capacitor/browser@6.0.1(@capacitor/core@6.1.1)':
+  '@capacitor/browser@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -6586,7 +6593,7 @@ snapshots:
       '@typescript-eslint/types': 7.1.1
       '@typescript-eslint/typescript-estree': 7.1.1(typescript@5.4.5)
       '@typescript-eslint/visitor-keys': 7.1.1
-      debug: 4.3.4
+      debug: 4.3.5
       eslint: 8.57.0
     optionalDependencies:
       typescript: 5.4.5
@@ -7716,10 +7723,10 @@ snapshots:
     dependencies:
       '@ionic/utils-array': 2.1.6
       '@ionic/utils-fs': 3.1.7
-      debug: 4.3.4
+      debug: 4.3.5
       elementtree: 0.1.7
       sharp: 0.29.3
-      tslib: 2.6.2
+      tslib: 2.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -8741,6 +8748,8 @@ snapshots:
       functions-have-names: 1.2.3
 
   functions-have-names@1.2.3: {}
+
+  fuse.js@7.0.0: {}
 
   get-browser-rtc@1.1.0: {}
 

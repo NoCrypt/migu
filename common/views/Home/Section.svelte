@@ -15,7 +15,7 @@
   function deferredLoad (element) {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        if (!opts.preview.value) opts.preview.value = opts.load(1, 15)
+        if (!opts.preview.value) opts.preview.value = opts.load(1, 15, { ...opts.variables })
         observer.unobserve(element)
       }
     }, { threshold: 0 })
@@ -27,7 +27,8 @@
   function _click () {
     $search = {
       ...opts.variables,
-      load: opts.load
+      load: opts.load,
+      title: opts.title,
     }
     $page = 'search'
   }
@@ -46,7 +47,7 @@
        class:fader={!SUPPORTS.isAndroid}
        >
     {#each $preview || fakecards as card}
-      <Card {card} />
+      <Card {card} variables={{...opts.variables}} />
     {/each}
     {#if $preview?.length}
       <ErrorCard promise={$preview[0].data} />

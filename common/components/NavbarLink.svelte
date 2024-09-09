@@ -11,8 +11,7 @@
 
 <div
   class='navbar-link navbar-link-with-icon pointer overflow-hidden mx-auto {css}'
-  use:click={_click}>
-
+  use:click={() => { _click(); if (!icon.includes("favorite")) { window.dispatchEvent(new Event('overlay-check')) } } }>
   <span class='rounded d-flex'>
     <slot active={page === _page}>{icon}</slot>
   </span>

@@ -9,7 +9,7 @@ export default class Discord {
       details: 'Stream anime torrents, real-time.',
       state: 'Watching anime',
       assets: {
-        small_image: 'https://raw.githubusercontent.com/NoCrypt/migu/main/common/public/logo_filled.png',
+        small_image: 'logo',
         small_text: 'https://github.com/NoCrypt/migu'
       },
       buttons: [

@@ -5,6 +5,7 @@
   import { tick } from 'svelte'
   import { state } from '../WatchTogether/WatchTogether.svelte'
   import IPC from '@/modules/ipc.js'
+  import { anilistClient } from "@/modules/anilist.js"
   import Debug from 'debug'
 
   const debug = Debug('ui:mediahandler')
@@ -63,7 +64,7 @@
 
       const np = {
         media,
-        title: media?.title.userPreferred || parseObject.anime_title,
+        title: anilistClient.title(media) || parseObject.anime_title,
         episode: ep,
         episodeTitle: streamingEpisode && episodeRx.exec(streamingEpisode.title)[2],
         thumbnail: streamingEpisode?.thumbnail || media?.coverImage.extraLarge
@@ -112,11 +113,11 @@
   }
 
   function fileListToDebug (files) {
-    return files.map(({ name, media, url }) => `\n${name} ${media?.parseObject.anime_title} ${media?.parseObject.episode_number} ${media?.media?.title.userPreferred} ${media?.episode}`).join('')
+    return files?.map(({ name, media, url }) => `\n${name} ${media?.parseObject?.anime_title} ${media?.parseObject?.episode_number} ${media?.media?.title?.userPreferred} ${media?.episode}`).join('')
   }
 
   async function handleFiles (files) {
-    debug(`Got ${files.length} files`, fileListToDebug(files))
+    debug(`Got ${files?.length} files`, fileListToDebug(files))
     if (!files?.length) return processed.set(files)
     let videoFiles = []
     const otherFiles = []
@@ -144,11 +145,11 @@
       if (nowPlaying.episode) videoFiles[0].media.episode = nowPlaying.episode
     }
 
-    debug(`Resolved ${videoFiles.length} video files`, fileListToDebug(videoFiles))
+    debug(`Resolved ${videoFiles?.length} video files`, fileListToDebug(videoFiles))
 
     if (!nowPlaying) {
       nowPlaying = findPreferredPlaybackMedia(videoFiles)
-      debug(`Found preferred playback media: ${nowPlaying.media?.id}:${nowPlaying.media?.title.userPreferred} ${nowPlaying.episode}`)
+      debug(`Found preferred playback media: ${nowPlaying?.media?.id}:${nowPlaying?.media?.title?.userPreferred} ${nowPlaying?.episode}`)
     }
 
     const filtered = nowPlaying?.media && videoFiles.filter(file => file.media?.media?.id && file.media?.media?.id === nowPlaying.media.id)
@@ -160,7 +161,7 @@
       result = filtered
     } else {
       const max = highestOccurence(videoFiles, file => file.media.parseObject.anime_title).media.parseObject.anime_title
-      debug(`Highest occurence anime title: ${max}`)
+      debug(`Highest occurrence anime title: ${max}`)
       result = videoFiles.filter(file => file.media.parseObject.anime_title === max)
     }
 
@@ -263,6 +264,7 @@
 
   export let miniplayer = false
   export let page = 'home'
+  export let overlay = 'none'
 </script>
 
-<Player files={$processed} {miniplayer} media={$nowPlaying} bind:playFile bind:page on:current={handleCurrent} />
+<Player files={$processed} {miniplayer} media={$nowPlaying} bind:playFile bind:page bind:overlay on:current={handleCurrent} />

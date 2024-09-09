@@ -6,6 +6,7 @@
   // import { rss } from './views/TorrentSearch/TorrentModal.svelte'
 
   export const page = writable('home')
+  export const overlay = writable('none')
   export const view = writable(null)
   export async function handleAnime (anime) {
     view.set(null)
@@ -58,7 +59,7 @@
   import TorrentModal from './views/TorrentSearch/TorrentModal.svelte'
   import Menubar from './components/Menubar.svelte'
   import { toast, Toaster } from 'svelte-sonner'
-  import Logout from './components/Logout.svelte'
+  import Profiles from './components/Profiles.svelte'
   import Navbar from './components/Navbar.svelte'
   import { SUPPORTS } from '@/modules/support.js';
   import UpdateModal, { changeLog, updateModal } from './components/UpdateModal.svelte';
@@ -108,20 +109,20 @@
 
 </script>
 
-<div class='page-wrapper with-transitions bg-dark position-relative' data-sidebar-type='overlayed-all'>
+<div class="page-wrapper with-transitions bg-dark position-relative" data-sidebar-type='overlayed-all'>
   <Menubar bind:page={$page} />
-  <ViewAnime />
-  <UpdateModal />
-  <Logout />
+  <Profiles />
   <Sidebar bind:page={$page} />
-  <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
-    classes: {
-      closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
-    }
-  }} style="margin-top: var(--safe-area-top)"/>
-  <div class='overflow-hidden content-wrapper h-full z-10'>
-    <TorrentModal />
-    <Router bind:page={$page} />
+  <div class='overflow-hidden content-wrapper h-full'>
+    <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
+      classes: {
+        closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
+      }
+    }} />
+    <ViewAnime bind:overlay={$overlay} />
+    <UpdateModal/>
+    <TorrentModal bind:overlay={$overlay} />
+    <Router bind:page={$page} bind:overlay={$overlay} />
   </div>
   <Navbar bind:page={$page} />
 </div>
@@ -145,6 +146,7 @@
 
   .content-wrapper {
     will-change: width;
+    white-space: pre-line;
     top: 0 !important;
   }
 

@@ -4,7 +4,6 @@
   import { playAnime } from '@/views/TorrentSearch/TorrentModal.svelte'
   import { client } from '@/modules/torrent.js'
   import { createEventDispatcher } from 'svelte'
-  import { anilistClient } from '@/modules/anilist.js'
   import Subtitles from '@/modules/subtitles.js'
   import { toTS, fastPrettyBytes, videoRx } from '@/modules/util.js'
   import { toast } from 'svelte-sonner'
@@ -12,16 +11,17 @@
   import Seekbar from 'perfect-seekbar'
   import { click } from '@/modules/click.js'
   import VideoDeband from 'video-deband'
+  import Helper from '@/modules/helper.js'
 
   import { w2gEmitter, state } from '../WatchTogether/WatchTogether.svelte'
   import Keybinds, { loadWithDefaults, condition } from 'svelte-keybinds'
   import { SUPPORTS } from '@/modules/support.js'
   import 'rvfc-polyfill'
   import IPC from '@/modules/ipc.js'
-  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, Keyboard, List, ListMusic, ListVideo, Lock, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX } from 'lucide-svelte'
   import { swipeControls } from '@/modules/swipecontrol.js';
   import { volumeScroll } from '@/modules/volumescroll.js';
   import GestureLock from '@/components/GestureLock.svelte';
+  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, RefreshCw, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX, Lock } from 'lucide-svelte'
 
   const emit = createEventDispatcher()
 
@@ -49,6 +49,7 @@
   export let miniplayer = false
   $condition = () => !miniplayer && SUPPORTS.keybinds && !document.querySelector('.modal.show')
   export let page
+  export let overlay
   export let files = []
   $: updateFiles(files)
   let src = null
@@ -109,15 +110,15 @@
   // document.fullscreenElement isn't reactive
   document.addEventListener('fullscreenchange', () => {
     isFullscreen = !!document.fullscreenElement
+    if (!SUPPORTS.isAndroid) return
     if (document.fullscreenElement) {
       // window.Capacitor.Plugins.StatusBar.hide()
-      window.AndroidFullScreen.immersiveMode()
+      window.AndroidFullScreen?.immersiveMode()
       screen.orientation.lock('landscape')
     } else {
       // window.Capacitor.Plugins.StatusBar.show()
-      window.AndroidFullScreen.showSystemUI()
+      window.AndroidFullScreen?.showSystemUI()
       window.Capacitor.Plugins.StatusBar.setOverlaysWebView({ overlay: true })
-
       screen.orientation.unlock()
     }
   })
@@ -984,7 +985,7 @@
       if (media?.media?.episodes || media?.media?.nextAiringEpisode?.episode) {
         if (media.media.episodes || media.media.nextAiringEpisode?.episode > media.episode) {
           completed = true
-          anilistClient.alEntry(media)
+          Helper.updateEntry(media)
         }
       }
     }
@@ -1166,10 +1167,10 @@
   </div>
   <div class='middle d-flex align-items-center justify-content-center flex-grow-1 position-relative'>
     <!-- eslint-disable-next-line svelte/valid-compile -->
-    <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={() => { if (page === 'player') playPause(); page = 'player' }} />
+    <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={toggleFullscreen} on:click|self={() => { if (page === 'player' && ['none', 'player'].includes(overlay)) playPause(); page = 'player'; window.dispatchEvent(new Event('overlay-check')) }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
-    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={toggleImmerse} />
-    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; toggleFullscreen() }} />
+    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={toggleFullscreen} on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={toggleImmerse} />
+    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; window.dispatchEvent(new Event('overlay-check')) }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <span class='icon ctrl h-full align-items-center justify-content-end w-150 mw-full mr-auto' on:click={rewind}>
       <Rewind size='3rem' />
@@ -1245,14 +1246,19 @@
       {#if playbackRate !== 1}
         <div class='ts mr-auto'>x{playbackRate.toFixed(1)}</div>
       {/if}
+      {#if video}
+        <span class='icon ctrl mr-5 d-flex align-items-center reload-video' title='Reload Video' use:click={() => video.load()}>
+          <RefreshCw size='2.5rem' strokeWidth={2.5} />
+        </span>
+      {/if}
+      {#if SUPPORTS.isAndroid}
+      <span class='icon ctrl mr-5 d-flex align-items-center h-full' use:click={() => (isLocked = true)}>
+        <Lock size='2.5rem' strokeWidth={2.5} />
+      </span>
+    {/if}
       <span class='icon ctrl mr-5 d-flex align-items-center keybinds' title='Keybinds [`]' use:click={() => (showKeybinds = true)}>
         <Keyboard size='2.5rem' strokeWidth={2.5} />
       </span>
-      {#if SUPPORTS.isAndroid}
-        <span class='icon ctrl mr-5 d-flex align-items-center h-full' use:click={() => (isLocked = true)}>
-          <Lock size='2.5rem' strokeWidth={2.5} />
-        </span>
-      {/if}
       {#if 'audioTracks' in HTMLVideoElement.prototype && video?.audioTracks?.length > 1}
         <div class='dropdown dropup with-arrow' use:click={toggleDropdown}>
           <span class='icon ctrl mr-5 d-flex align-items-center h-full' title='Audio Tracks'>
@@ -1627,6 +1633,12 @@
 
   .seekbar {
     font-size: 2rem !important;
+  }
+  .miniplayer .mobile-focus-target {
+    display: block !important;
+  }
+  .miniplayer .mobile-focus-target:focus-visible {
+    background: hsla(209, 100%, 55%, 0.3);
   }
 
   @media (pointer: none), (pointer: coarse) {

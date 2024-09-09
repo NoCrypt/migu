@@ -4,7 +4,7 @@
   import { resetSettings } from '@/modules/settings.js'
   import IPC from '@/modules/ipc.js'
   import { SUPPORTS } from '@/modules/support.js'
-  import SettingCard from './SettingCard.svelte';
+  import SettingCard from './SettingCard.svelte'
 
   async function importSettings () {
     try {
@@ -91,7 +91,7 @@
 </script>
 
 <h4 class='mb-10 font-weight-bold'>Debug Settings</h4>
-<SettingCard title='Logging Levels' description='Enable logging of specific parts of the app. These logs are saved to %appdata$/Miru/logs/main.log or ~/config/Miru/logs/main.log.'>
+<SettingCard title='Logging Levels' description='Enable logging of specific parts of the app. These logs are saved to %appdata$/Migu/logs/main.log or ~/config/Migu/logs/main.log.'>
   <select class='form-control bg-dark w-300 mw-full' bind:value={$debug}>
     <option value='' selected>None</option>
     <option value='*'>All</option>
@@ -140,10 +140,7 @@
     Export Settings To Clipboard
   </button>
   {#if SUPPORTS.update}
-    <button
-      use:click={checkUpdate}
-      class='btn btn-primary mt-10'
-      type='button'>
+    <button use:click={checkUpdate} class='btn btn-primary mt-10' type='button'>
       Check For Updates
     </button>
   {/if}

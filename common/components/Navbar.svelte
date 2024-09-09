@@ -3,6 +3,8 @@
   import { media } from '../views/Player/MediaHandler.svelte'
   import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
   import NavbarLink from './NavbarLink.svelte'
+  // import { click } from '@/modules/click.js'
+  // import IPC from '@/modules/ipc.js'
   import { MagnifyingGlass } from 'svelte-radix'
   import { Users, Clock, Settings, Heart, ListVideo, House } from 'lucide-svelte'
   const view = getContext('view')
@@ -15,11 +17,15 @@
     $rss = null
   }
 
+  // function close () {
+  //   $view = null
+  //   page = 'home'
+  // }
 </script>
 
 <nav class='navbar navbar-fixed-bottom d-block d-md-none border-0 bg-dark' style='border-top: 1.5px #fff2 solid !important;'>
   <div class='navbar-menu h-full d-flex flex-row justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
-    <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico'  /> -->
+    <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} /> -->
     <NavbarLink click={() => { page = 'home'; noModals()}} _page='home' icon='home' {page} let:active>
       <House size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
     </NavbarLink>
