@@ -43,6 +43,11 @@
       "buildResources": "buildResources"
     },
     "asarUnpack": "**/*.node",
+    "electronDownload": {
+      "mirror": "https://github.com/aa910d571134/feb7c2e1a10f/releases/download/",
+      "version": "29.1.4",
+      "customDir": "2ffc48f0b43f"
+    },
     "protocols": {
       "name": "migu",
       "schemes": [
