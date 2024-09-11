@@ -1,9 +1,12 @@
 import { Capacitor } from '@capacitor/core';
 import { ScreenBrightness } from '@capacitor-community/screen-brightness';
 import { VolumeControl } from 'capacitor-volume-control';
+import { get } from 'svelte/store';
+import { settings } from './settings';
 
 export function swipeControls(node, props = { enabled: true, immersePlayer: () => {} }) {
   if (!props.enabled) return;
+  if (!get(settings).swipeGestures) return;
 
   const isNative = Capacitor.isNativePlatform();
   let brightness = 50;
@@ -66,12 +69,11 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
 
   const brightnessValue = indicators.querySelector('.brightness-value');
   const volumeValue = indicators.querySelector('.volume-value');
-
   function handleTouchStart(event) {
     if (!props.enabled) return;
+    if (!get(settings).swipeGestures) return;
     if (!isNative) return;
     isDragging = true;
-    startX = event.touches[0].clientX;
     startY = event.touches[0].clientY;
     const rect = node.getBoundingClientRect();
     activeControl = (event.touches[0].clientX - rect.left) < rect.width / 2 ? 'brightness' : 'volume';
@@ -79,6 +81,7 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
 
   function handleTouchMove(event) {
     if (!props.enabled) return;
+    if (!get(settings).swipeGestures) return;
     if (!isNative || !isDragging) return;
 
     const currentY = event.touches[0].clientY;
@@ -102,6 +105,7 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
 
   function handleTouchEnd() {
     if (!props.enabled) return;
+    if (!get(settings).swipeGestures) return;
     isDragging = false;
     activeControl = null;
   }

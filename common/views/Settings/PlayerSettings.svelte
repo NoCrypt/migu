@@ -167,6 +167,21 @@
     <label for='player-deband'>{settings.playerDeband ? 'On' : 'Off'}</label>
   </div>
 </SettingCard>
+{#if SUPPORTS.isAndroid}
+  <SettingCard title='Swipe Gestures' description='Swiping the video vertically will change the brightness and volume.'>
+    <div class='custom-switch'>
+      <input type='checkbox' id='swipe-gestures' bind:checked={settings.swipeGestures} />
+      <label for='swipe-gestures'>{settings.swipeGestures ? 'On' : 'Off'}</label>
+    </div>
+  </SettingCard>
+{:else}
+  <SettingCard title='Volume Scroll' description='Scrolling the mouse wheel will change the volume.'>
+    <div class='custom-switch'>
+      <input type='checkbox' id='volume-scroll' bind:checked={settings.volumeScroll} />
+      <label for='volume-scroll'>{settings.volumeScroll ? 'On' : 'Off'}</label>
+    </div>
+  </SettingCard>
+{/if}
 
 <h4 class='mb-10 font-weight-bold'>External Player Settings</h4>
 <SettingCard title='Enable External Player' description='Tells Migu to open a custom user-picked external video player to play video, instead of using the built-in one.'>

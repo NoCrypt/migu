@@ -1,3 +1,6 @@
+import { get } from 'svelte/store';
+import { settings } from './settings';
+
 export function volumeScroll(node, options = {}) {
     const {
       minVolume = 0,
@@ -30,6 +33,7 @@ export function volumeScroll(node, options = {}) {
         border-radius: 4px;
         font-family: Arial, sans-serif;
         font-size: 14px;
+        z-index: 39;
       `;
       
       indicator.innerHTML = `
@@ -44,8 +48,9 @@ export function volumeScroll(node, options = {}) {
       node.style.position = 'relative';
       node.appendChild(indicator);
     }
-  
+
     function updateIndicator(volume) {
+      if (!get(settings).volumeScroll) return;
       if (!indicator) createIndicator();
       const percentage = Math.round(volume * 100);
       const volumeValue = indicator.querySelector('.volume-value');
@@ -60,6 +65,7 @@ export function volumeScroll(node, options = {}) {
     }
   
     function handleWheel(e) {
+      if (!get(settings).volumeScroll) return;
       if (!video) return;
   
       const volumeChange = e.deltaY * sensitivity;

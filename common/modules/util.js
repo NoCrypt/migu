@@ -195,7 +195,9 @@ export const defaults = {
   sources: {},
   enableExternal: false,
   playerPath: '',
-  playerSeek: 5
+  playerSeek: 5,
+  swipeGestures: SUPPORTS.isAndroid,
+  volumeScroll: !SUPPORTS.isAndroid
 }
 
 export const subtitleExtensions = ['srt', 'vtt', 'ass', 'ssa', 'sub', 'txt']
