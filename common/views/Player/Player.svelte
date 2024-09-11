@@ -1071,7 +1071,6 @@
   class:fitWidth
   bind:this={container}
   role='none'
-  use:swipeControls={{enabled: SUPPORTS.isAndroid, immersePlayer}}
   use:volumeScroll
   on:pointermove={resetImmerse}
   on:keypress={resetImmerse}
@@ -1165,12 +1164,12 @@
     </div>
     <div class='col-4' />
   </div>
-  <div class='middle d-flex align-items-center justify-content-center flex-grow-1 position-relative'>
+  <div class='middle d-flex align-items-center justify-content-center flex-grow-1 position-relative' use:swipeControls={{enabled: SUPPORTS.isAndroid, immersePlayer}}>
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <div class='w-full h-full position-absolute toggle-fullscreen' on:dblclick={toggleFullscreen} on:click|self={() => { if (page === 'player' && ['none', 'player'].includes(overlay)) playPause(); page = 'player'; window.dispatchEvent(new Event('overlay-check')) }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
-    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={toggleFullscreen} on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={toggleImmerse} />
-    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; window.dispatchEvent(new Event('overlay-check')) }} />
+    <div class='w-full h-full position-absolute toggle-immerse d-none' on:dblclick={!SUPPORTS.isAndroid ? toggleFullscreen : executeSeek} on:click|self={toggleImmerse} />
+    <div class='w-full h-full position-absolute mobile-focus-target d-none' use:click={() => { page = 'player'; window.dispatchEvent(new Event('overlay-check')); toggleFullscreen() }} />
     <!-- eslint-disable-next-line svelte/valid-compile -->
     <span class='icon ctrl h-full align-items-center justify-content-end w-150 mw-full mr-auto' on:click={rewind}>
       <Rewind size='3rem' />
@@ -1633,12 +1632,6 @@
 
   .seekbar {
     font-size: 2rem !important;
-  }
-  .miniplayer .mobile-focus-target {
-    display: block !important;
-  }
-  .miniplayer .mobile-focus-target:focus-visible {
-    background: hsla(209, 100%, 55%, 0.3);
   }
 
   @media (pointer: none), (pointer: coarse) {

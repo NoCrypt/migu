@@ -33,6 +33,7 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
     border-radius: 4px;
     font-family: Arial, sans-serif;
     font-size: 14px;
+    z-index: 39;
   `;
   
   indicators.innerHTML = `
