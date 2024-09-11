@@ -8,7 +8,6 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
   const isNative = Capacitor.isNativePlatform();
   let brightness = 50;
   let volume = 50; // Start at middle volume (range 0-100)
-  let startX = 0;
   let startY = 0;
   let isDragging = false;
   let activeControl = null;
@@ -86,16 +85,18 @@ export function swipeControls(node, props = { enabled: true, immersePlayer: () =
     const rect = node.getBoundingClientRect();
     const sensitivity = 0.5 * (200 / rect.height);
 
-    if (activeControl === 'brightness') {
-      brightness = Math.max(0, Math.min(100, brightness + deltaY * sensitivity));
-      updateBrightness();
-    } else if (activeControl === 'volume') {
-      volume = Math.max(0, Math.min(100, volume + deltaY * sensitivity));
-      debouncedUpdateVolume();
-    }
+    if (Math.abs(deltaY) > 5) {
+      if (activeControl === 'brightness') {
+        brightness = Math.max(0, Math.min(100, brightness + deltaY * sensitivity));
+        updateBrightness();
+      } else if (activeControl === 'volume') {
+        volume = Math.max(0, Math.min(100, volume + deltaY * sensitivity));
+        debouncedUpdateVolume();
+      }
 
-    showControlsIndicator();
-    startY = currentY;
+      showControlsIndicator();
+      startY = currentY;
+    }
   }
 
   function handleTouchEnd() {
