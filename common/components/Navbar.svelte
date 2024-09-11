@@ -27,28 +27,28 @@
   <div class='navbar-menu h-full d-flex flex-row justify-content-center align-items-center m-0 pb-5' class:animate={page !== 'player'}>
     <!-- <img src='./logo_filled.png' class='w-50 h-50 m-10 pointer p-5' alt='ico' use:click={close} /> -->
     <NavbarLink click={() => { page = 'home'; noModals()}} _page='home' icon='home' {page} let:active>
-      <House size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+      <House size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
-    <NavbarLink click={() => { page = 'search'; noModals()}} _page='search' icon='search' {page} let:active>
-      <MagnifyingGlass size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' stroke-width={active ? '2' : '0'} stroke='currentColor' />
+    <NavbarLink click={() => { page = 'search'; noModals()}} _page='search' icon='search' {page}>
+      <MagnifyingGlass size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' stroke-width='0.9' style="color: {page==='search' ? 'currentColor':'#888'}" stroke='currentColor'/>
     </NavbarLink>
     {#if $media?.media}
       <NavbarLink click={() => { noModals(false) }} icon='queue_music' {page} let:active>
-        <ListVideo size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+        <ListVideo size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
       </NavbarLink>
     {:else}
       <NavbarLink click={() => { page = 'schedule'; noModals() }} _page='schedule' icon='schedule' {page} let:active>
-        <Clock size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+        <Clock size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
       </NavbarLink>
     {/if}
     <NavbarLink click={() => { page = 'watchtogether'; noModals() }} _page='watchtogether' icon='groups' {page} let:active>
-      <Users size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+      <Users size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
     <!-- <NavbarLink click={() => { IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/') }} icon='favorite' css='ml-auto donate' {page} let:active>
-      <Heart size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded donate' strokeWidth={active ? '3.5' : '2'} fill='currentColor' />
+      <Heart size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded donate' strokeWidth='2.5' fill={active ? 'currentColor':'#888'} />
     </NavbarLink> -->
     <NavbarLink click={() => { page = 'settings'; noModals() }} _page='settings' icon='settings' css='ml-auto' {page} let:active>
-      <Settings size='2.2rem' class='flex-shrink-0 p-5 w-30 h-30 m-5 rounded' strokeWidth={active ? '3.5' : '2'} />
+      <Settings size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
   </div>
 </nav>
