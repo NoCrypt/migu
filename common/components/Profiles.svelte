@@ -7,7 +7,7 @@
   import { click } from '@/modules/click.js'
   import { toast } from 'svelte-sonner'
   import { LogOut, Plus } from 'lucide-svelte'
-  import IPC from "@/modules/ipc"
+  import IPC from "@/modules/ipc.js"
 
   export const profileView = writable(false)
   const profileAdd = writable(false)

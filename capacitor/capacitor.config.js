@@ -14,7 +14,7 @@ const config = {
   },
   plugins: {
     SplashScreen: { launchShowDuration: 0 },
-    CapacitorHttp: { enabled: false },
+    CapacitorHttp: { enabled: true },
     CapacitorNodeJS: { nodeDir: 'nodejs' }
   },
   server: {
