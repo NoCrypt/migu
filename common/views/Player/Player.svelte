@@ -21,7 +21,7 @@
   import { swipeControls } from '@/modules/swipecontrol.js';
   import { volumeScroll } from '@/modules/volumescroll.js';
   import GestureLock from '@/components/GestureLock.svelte';
-  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, RefreshCw, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX, Lock } from 'lucide-svelte'
+  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, RefreshCw, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX, Lock, CircleGauge, Minus, Plus } from 'lucide-svelte'
 
   const emit = createEventDispatcher()
 
@@ -1241,20 +1241,34 @@
         </span>
         <input class='ctrl h-full custom-range' type='range' min='0' max='1' step='any' data-name='setVolume' bind:value={volume} />
       </div>
-      <div class='ts' class:mr-auto={playbackRate === 1}>{toTS(targetTime, safeduration > 3600 ? 2 : 3)} / {toTS(safeduration - targetTime, safeduration > 3600 ? 2 : 3)}</div>
-      {#if playbackRate !== 1}
+      <div class='ts mr-auto' >{toTS(targetTime, safeduration > 3600 ? 2 : 3)} / {toTS(safeduration - targetTime, safeduration > 3600 ? 2 : 3)}</div>
+      <!-- {#if playbackRate !== 1}
         <div class='ts mr-auto'>x{playbackRate.toFixed(1)}</div>
-      {/if}
+      {/if} -->
       {#if video}
         <span class='icon ctrl mr-5 d-flex align-items-center reload-video' title='Reload Video' use:click={() => video.load()}>
           <RefreshCw size='2.5rem' strokeWidth={2.5} />
         </span>
       {/if}
+      <div class='dropdown dropup with-arrow' >
+        <span class='icon ctrl mr-5 d-flex align-items-center h-full' title='Playback Rate' use:click={toggleDropdown}>
+          <CircleGauge size='2.5rem'strokeWidth={2.5} />
+        </span>
+        <div class='dropdown-menu dropdown-menu-right d-flex align-items-center justify-content-center ctrl pb-5 text-capitalize'>
+          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Slower' use:click={() => playbackRate = video.defaultPlaybackRate -= 0.1}>
+            <Minus size='2.5rem'strokeWidth={2.5} />
+          </span>
+          <span role='button' tabindex="0" title='Click to Reset' use:click={() => playbackRate = video.defaultPlaybackRate = 1}>x{playbackRate.toFixed(1)}</span>
+          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Faster' use:click={() => playbackRate = video.defaultPlaybackRate += 0.1}>
+            <Plus size='2.5rem'strokeWidth={2.5} />
+          </span>
+        </div>
+      </div>
       {#if SUPPORTS.isAndroid}
-      <span class='icon ctrl mr-5 d-flex align-items-center h-full' use:click={() => (isLocked = true)}>
-        <Lock size='2.5rem' strokeWidth={2.5} />
-      </span>
-    {/if}
+        <span class='icon ctrl mr-5 d-flex align-items-center h-full' use:click={() => (isLocked = true)}>
+          <Lock size='2.5rem' strokeWidth={2.5} />
+        </span>
+      {/if}
       <span class='icon ctrl mr-5 d-flex align-items-center keybinds' title='Keybinds [`]' use:click={() => (showKeybinds = true)}>
         <Keyboard size='2.5rem' strokeWidth={2.5} />
       </span>
