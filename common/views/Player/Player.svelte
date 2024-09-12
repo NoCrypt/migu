@@ -627,14 +627,14 @@
       desc: 'Volume Down'
     },
     BracketLeft: {
-      fn: () => { playbackRate = video.defaultPlaybackRate -= 0.1 },
+      fn: () => {if(playbackRate >= 0.1) playbackRate = video.defaultPlaybackRate -= 0.1},
       id: 'history',
       icon: RotateCcw,
       type: 'icon',
       desc: 'Decrease Playback Rate'
     },
     BracketRight: {
-      fn: () => { playbackRate = video.defaultPlaybackRate += 0.1 },
+      fn: () => {if(playbackRate <= 10) playbackRate = video.defaultPlaybackRate += 0.1},
       id: 'update',
       icon: RotateCw,
       type: 'icon',
@@ -1255,11 +1255,11 @@
           <CircleGauge size='2.5rem'strokeWidth={2.5} />
         </span>
         <div class='dropdown-menu dropdown-menu-right d-flex align-items-center justify-content-center ctrl pb-5 text-capitalize'>
-          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Slower' use:click={() => playbackRate = video.defaultPlaybackRate -= 0.1}>
+          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Slower' use:click={() => {if(playbackRate >= 0.1) playbackRate = video.defaultPlaybackRate -= 0.1}}>
             <Minus size='2.5rem'strokeWidth={2.5} />
           </span>
           <span role='button' tabindex="0" title='Click to Reset' use:click={() => playbackRate = video.defaultPlaybackRate = 1}>x{playbackRate.toFixed(1)}</span>
-          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Faster' use:click={() => playbackRate = video.defaultPlaybackRate += 0.1}>
+          <span role='button' tabindex="0" class='icon ctrl d-flex align-items-center h-full' title='Faster' use:click={() => {if(playbackRate <= 10) playbackRate = video.defaultPlaybackRate += 0.1}}>
             <Plus size='2.5rem'strokeWidth={2.5} />
           </span>
         </div>
