@@ -155,7 +155,7 @@
 </SettingCard>
 <SettingCard title='Seek Duration' description='Seconds to seek an episode with arrow keys'>
   <div class='input-group w-100 mw-full'>
-    <input type='number' bind:value={settings.playerSeek} min='1' max='50' class='form-control text-right bg-dark' />
+    <input type='number' bind:value={settings.playerSeek} min='1' max='120' class='form-control text-right bg-dark' />
     <div class='input-group-append'>
       <span class='input-group-text bg-dark'>s</span>
     </div>
@@ -181,7 +181,22 @@
       <label for='volume-scroll'>{settings.volumeScroll ? 'On' : 'Off'}</label>
     </div>
   </SettingCard>
+  {#if settings.volumeScroll}
+    <SettingCard title='Volume Scroll Step' description='How big is the volume scroll change the volume.'>
+      <div class='input-group w-100 mw-full'>
+        <input type='number' bind:value={settings.volumeScrollStep} min='1' max='50' class='form-control text-right bg-dark' />
+        <div class='input-group-append'>
+          <span class='input-group-text bg-dark'>%</span>
+        </div>
+      </div>
+    </SettingCard>
+  {/if}
 {/if}
+<SettingCard title='Playback Rate Step' description='How fast does the playback rate changes.'>
+  <div class='input-group w-100 mw-full'>
+    <input type='number' step='0.1' bind:value={settings.playbackRateStep} min='0.1' max='3' class='form-control text-right bg-dark' />
+  </div>
+</SettingCard>
 
 <h4 class='mb-10 font-weight-bold'>External Player Settings</h4>
 <SettingCard title='Enable External Player' description='Tells Migu to open a custom user-picked external video player to play video, instead of using the built-in one.'>

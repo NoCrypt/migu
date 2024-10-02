@@ -5,7 +5,6 @@ export function volumeScroll(node, options = {}) {
     const {
       minVolume = 0,
       maxVolume = 1,
-      sensitivity = 0.001,
       videoSelector = 'video',
       indicatorFadeDelay = 500,
     } = options;
@@ -67,8 +66,9 @@ export function volumeScroll(node, options = {}) {
     function handleWheel(e) {
       if (!get(settings).volumeScroll) return;
       if (!video) return;
-  
-      const volumeChange = e.deltaY * sensitivity;
+      
+      const step = get(settings).volumeScrollStep;
+      const volumeChange = e.deltaY > 0 ? 0.01 * step : -0.01 * step;
       let newVolume = video.volume - volumeChange;
       newVolume = Math.max(minVolume, Math.min(maxVolume, newVolume));
       video.volume = newVolume;

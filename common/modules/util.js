@@ -197,7 +197,9 @@ export const defaults = {
   playerPath: '',
   playerSeek: 5,
   swipeGestures: SUPPORTS.isAndroid,
-  volumeScroll: !SUPPORTS.isAndroid
+  volumeScroll: !SUPPORTS.isAndroid,
+  volumeScrollStep: 5,
+  playbackRateStep: 0.1
 }
 
 export const subtitleExtensions = ['srt', 'vtt', 'ass', 'ssa', 'sub', 'txt']
