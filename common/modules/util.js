@@ -160,7 +160,7 @@ export const defaults = {
   torrentSpeed: 5, // legacy
   downloadSpeed: 5,
   uploadSpeed: 1,
-  slowSeeding: true,
+  slowSeeding: false,
   disableStartupVideo: true,
   amoledTheme: true,
   enableAutoUpdate: !SUPPORTS.isAndroid,
