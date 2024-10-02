@@ -1,6 +1,6 @@
 <script>
   import { anilistClient, codes } from '@/modules/anilist.js'
-  import { profiles } from '@/modules/settings.js'
+  import { profiles, settings } from '@/modules/settings.js'
   import { click } from '@/modules/click.js'
   import { get, writable } from 'svelte/store'
   import { toast } from 'svelte-sonner'
@@ -148,6 +148,7 @@
       debug(`List Updated${who}: ${description.replace(/\n/g, ', ')}`)
       if (!profile) {
         if (save) {
+          if(!get(settings).listUpdateToast) return;
           toast.success('List Updated', {
             description,
             duration: 6000

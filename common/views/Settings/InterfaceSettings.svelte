@@ -100,6 +100,12 @@
       <label for='hide-my-anime'>{settings.hideMyAnime ? 'On' : 'Off'}</label>
     </div>
   </SettingCard>
+  <SettingCard title='Show List Updated Toast' description={'Some people might find the "List Updated" toast annoying. Disabling this will hide that toast, while still showing a toast if there\'s an error.'}>
+    <div class='custom-switch'>
+      <input type='checkbox' id='list-update-toast' bind:checked={settings.listUpdateToast} />
+      <label for='list-update-toast'>{settings.listUpdateToast ? 'On' : 'Off'}</label>
+    </div>
+  </SettingCard>
 {/if}
 <SettingCard title='RSS Feeds' description={'RSS feeds to display on the home screen. This needs to be a CORS enabled URL to a Nyaa or Tosho like RSS feed which cotains either an "infoHash" or "enclosure" tag.\nThis only shows the releases on the home screen, it doesn\'t automatically download the content.\nSince the feeds only provide the name of the file, Migu might not always detect the anime correctly!\nSome presets for popular groups are already provided as an example, custom feeds require the FULL URL.'}>
   <div>

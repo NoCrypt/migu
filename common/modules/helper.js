@@ -2,7 +2,7 @@ import { alToken, malToken, isAuthorized } from '@/modules/settings.js'
 import { anilistClient, codes } from '@/modules/anilist.js'
 import { malClient } from '@/modules/myanimelist.js'
 import { malDubs } from "@/modules/animedubs.js"
-import { profiles } from '@/modules/settings.js'
+import { profiles, settings } from '@/modules/settings.js'
 import { toast } from 'svelte-sonner'
 import { get } from 'svelte/store'
 import Fuse from 'fuse.js'
@@ -295,6 +295,7 @@ export default class Helper {
     if (res?.data?.mediaListEntry || res?.data?.SaveMediaListEntry) {
       debug(`List Updated ${who}: ${description.replace(/\n/g, ', ')}`)
       if (!profile) {
+        if(!get(settings).listUpdateToast) return;
         toast.success('List Updated', {
           description,
           duration: 6000
