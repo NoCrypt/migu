@@ -21,7 +21,7 @@
   import { swipeControls } from '@/modules/swipecontrol.js';
   import { volumeScroll } from '@/modules/volumescroll.js';
   import GestureLock from '@/components/GestureLock.svelte';
-  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, RefreshCw, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX, Lock, CircleGauge, Minus, Plus } from 'lucide-svelte'
+  import { ArrowDown, ArrowUp, Captions, Cast, CircleHelp, Contrast, FastForward, Keyboard, List, ListMusic, ListVideo, Maximize, Minimize, Pause, PictureInPicture, PictureInPicture2, Play, Proportions, RefreshCcw, Rewind, RotateCcw, RotateCw, ScreenShare, SkipBack, SkipForward, Users, Volume1, Volume2, VolumeX, RefreshCw, CircleGauge, Minus, Plus, Lock} from 'lucide-svelte'
 
   const emit = createEventDispatcher()
 
@@ -77,6 +77,13 @@
   let playbackRate = 1
   $: localStorage.setItem('volume', (volume || 0).toString())
   $: safeduration = (isFinite(duration) ? duration : currentTime) || 0
+  $: {
+    if (hidden) {
+      setDiscordRPC(media, video?.currentTime)
+    } else {
+      setDiscordRPC(media, (paused && miniplayer))
+    }
+  }
 
   function checkAudio () {
     if ('audioTracks' in HTMLVideoElement.prototype) {
@@ -291,7 +298,8 @@
   }
   const handleVisibility = visibility => {
     if (!video?.ended && $settings.playerPause && !pip) {
-      if (visibility === 'hidden') {
+      hidden = (visibility === 'hidden')
+      if (hidden) {
         visibilityPaused = paused
         paused = true
       } else {
@@ -299,6 +307,7 @@
       }
     }
   }
+  let hidden = false
   let visibilityPaused = true
   document.addEventListener('visibilitychange', () => handleVisibility(document.visibilityState))
   IPC.on('visibilitychange', handleVisibility)
@@ -376,7 +385,7 @@
       for (const track of video.audioTracks) {
         track.enabled = track.id === id
       }
-      seek(-0.2) // stupid fix because video freezes up when chaging tracks
+      seek(-0.2) // stupid fix because video freezes up when changing tracks
     }
   }
   function selectVideo (id) {
@@ -1007,7 +1016,7 @@
         console.warn('A network error caused the video download to fail part-way.', target.error)
         toast.error('Video Network Error', {
           description: 'A network error caused the video download to fail part-way. Dismiss this toast to reload the video.',
-          duration: 10000,
+          duration: Infinity,
           onDismiss: () => target.load()
         })
         break
@@ -1015,7 +1024,7 @@
         console.warn('The video playback was aborted due to a corruption problem or because the video used features your browser did not support.', target.error)
         toast.error('Video Decode Error', {
           description: 'The video playback was aborted due to a corruption problem. Dismiss this toast to reload the video.',
-          duration: 10000,
+          duration: Infinity,
           onDismiss: () => target.load()
         })
         break
@@ -1054,6 +1063,76 @@
   }
 
   let isLocked = false;
+  function setDiscordRPC (np = media, browsing) {
+    if ((!np || Object.keys(np).length === 0) && !browsing) return
+    if (hidden) {
+      IPC.emit('discord-hidden')
+      return
+    }
+    let activity
+    if (!browsing) {
+      const w2g = state.value?.code
+      const details = np.title || undefined
+      const timeLeft = safeduration - targetTime;
+      const timestamps = !paused ? {
+        start: Date.now() - (targetTime > 0 ? targetTime * 1000 : 0),
+        end: Date.now() + timeLeft * 1000
+      } : undefined
+       activity = {
+        details,
+        state: (details && (np.media?.format === 'MOVIE' ? 'The Movie' : (np.episode ? 'Episode: ' + np.episode + (np.media?.episodes ? ' of ' + np.media.episodes : '') : 'Streaming the Universe'))),
+        timestamps,
+        assets: {
+          large_text: np.title,
+          large_image: np.thumbnail,
+          small_image: !paused ? 'logo' : 'paused',
+          small_text: (!paused ? '(Playing)' : '(Paused)') + ' https://github.com/NoCrypt/migu'
+        },
+        instance: true,
+        type: 3
+      }
+      // cannot have buttons and secrets at once
+      if (w2g) {
+        activity.secrets = {
+          join: w2g,
+          match: w2g + 'm'
+        }
+        activity.party.id = w2g + 'p'
+      } else {
+        activity.buttons = [
+          {
+            label: 'Download app',
+            url: 'https://github.com/NoCrypt/migu/releases/latest'
+          },
+          {
+            label: 'Watch on Migu',
+            url: `migu://anime/${np.media?.id}`
+          }
+        ]
+      }
+    } else {
+      activity = {
+        timestamps: { start: Date.now() },
+        details: 'Stream anime torrents',
+        state: 'Browsing for anime',
+        assets: {
+          large_image: 'logo',
+          large_text: 'https://github.com/NoCrypt/migu',
+          small_image: 'search',
+          small_text: 'Browsing for anime',
+        },
+        buttons: [
+          {
+            label: 'Download app',
+            url: 'https://github.com/NoCrypt/migu/releases/latest'
+          }
+        ],
+        instance: true,
+        type: 3
+      }
+    }
+    IPC.emit('discord', { activity })
+  }
 </script>
 
 {#if SUPPORTS.isAndroid}

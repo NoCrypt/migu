@@ -29,6 +29,7 @@ class TorrentWorker extends EventTarget {
         if (torrentRx.exec(text)) {
           media.set(null)
           add(text)
+          this.dispatch('info', 'A Magnet Link has been detected and is being processed. Files will be loaded shortly...')
         }
       }
     })

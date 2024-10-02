@@ -6,7 +6,7 @@ export default class Discord {
   defaultStatus = {
     activity: {
       timestamps: { start: Date.now() },
-      details: 'Stream anime torrents, real-time.',
+      details: 'Stream anime torrents',
       state: 'Watching anime',
       assets: {
         small_image: 'logo',
@@ -46,6 +46,10 @@ export default class Discord {
 
     ipcMain.on('toggle-rpc', (event, data) => {
       this.toggleRPC(data)
+    })
+
+    ipcMain.on('discord-hidden', () => {
+      this.debouncedDiscordRPC(undefined, true)
     })
 
     this.discord.on('ready', async () => {

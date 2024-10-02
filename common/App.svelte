@@ -111,7 +111,6 @@
 
 <div class="page-wrapper with-transitions bg-dark position-relative" data-sidebar-type='overlayed-all'>
   <Menubar bind:page={$page} />
-  <Profiles />
   <Sidebar bind:page={$page} />
   <div class='overflow-hidden content-wrapper h-full'>
     <Toaster visibleToasts={6} position='top-right' theme='dark' richColors duration={10000} closeButton toastOptions={{
@@ -119,6 +118,7 @@
         closeButton: SUPPORTS.isAndroid ? "toast-close-button" : ""
       }
     }} />
+    <Profiles />
     <ViewAnime bind:overlay={$overlay} />
     <UpdateModal/>
     <TorrentModal bind:overlay={$overlay} />

@@ -1,10 +1,11 @@
 <script>
   import { getContext } from 'svelte'
-  import { media } from '../views/Player/MediaHandler.svelte'
   import { rss } from '@/views/TorrentSearch/TorrentModal.svelte'
+  import { media } from '@/views/Player/MediaHandler.svelte'
+  import { profileView } from './Profiles.svelte'
+  import { click } from '@/modules/click.js'
+  import IPC from '@/modules/ipc.js'
   import NavbarLink from './NavbarLink.svelte'
-  // import { click } from '@/modules/click.js'
-  // import IPC from '@/modules/ipc.js'
   import { MagnifyingGlass } from 'svelte-radix'
   import { Users, Clock, Settings, Heart, ListVideo, House } from 'lucide-svelte'
   const view = getContext('view')
@@ -29,25 +30,27 @@
     <NavbarLink click={() => { page = 'home'; noModals()}} _page='home' icon='home' {page} let:active>
       <House size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
-    <NavbarLink click={() => { page = 'search'; noModals()}} _page='search' icon='search' {page}>
-      <MagnifyingGlass size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' stroke-width='0.9' style="color: {page==='search' ? 'currentColor':'#888'}" stroke='currentColor'/>
+    <NavbarLink click={() => { page = 'search'; noModals()}} _page='search' css='ml-auto' icon='search' {page} overlay={($view || $profileView || $rss) && 'active'} let:active>
+      <MagnifyingGlass size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' stroke-width={active ? '1' : '0.9'} style="color: {page==='search' ? 'currentColor':'#888'}" stroke='currentColor'/>
     </NavbarLink>
     {#if $media?.media}
-      <NavbarLink click={() => { noModals(false) }} icon='queue_music' {page} let:active>
+      {@const currentMedia = $view}
+      {@const active = $view && !$profileView && 'active'}
+      <NavbarLink click={() => { $view = (currentMedia?.id === $media.media.id && active ? null : $media.media) }} icon='queue_music' {page} overlay={active} nowPlaying={$view === $media.media} let:active>
         <ListVideo size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
       </NavbarLink>
     {:else}
-      <NavbarLink click={() => { page = 'schedule'; noModals() }} _page='schedule' icon='schedule' {page} let:active>
+      <NavbarLink click={() => { page = 'schedule'; noModals() }} _page='schedule' icon='schedule' {page} overlay={($view || $profileView || $rss) && 'active'} let:active>
         <Clock size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
       </NavbarLink>
     {/if}
-    <NavbarLink click={() => { page = 'watchtogether'; noModals() }} _page='watchtogether' icon='groups' {page} let:active>
+    <NavbarLink click={() => { page = 'watchtogether'; noModals() }} _page='watchtogether' icon='groups' {page} overlay={($view || $profileView || $rss) && 'active'} let:active>
       <Users size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
     <!-- <NavbarLink click={() => { IPC.emit('open', 'https://github.com/sponsors/ThaUnknown/') }} icon='favorite' css='ml-auto donate' {page} let:active>
       <Heart size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded donate' strokeWidth='2.5' fill={active ? 'currentColor':'#888'} />
     </NavbarLink> -->
-    <NavbarLink click={() => { page = 'settings'; noModals() }} _page='settings' icon='settings' css='ml-auto' {page} let:active>
+    <NavbarLink click={() => { page = 'settings'; noModals() }} _page='settings' icon='settings' css='ml-auto' {page} overlay={($view || $profileView || $rss) && 'active'} let:active>
       <Settings size='3.3rem' class='flex-shrink-0 p-5 m-5 rounded' strokeWidth='2.5' color={active ? 'currentColor':'#888'} />
     </NavbarLink>
   </div>

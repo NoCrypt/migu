@@ -83,7 +83,7 @@ function createSections () {
     }),
     // user specific sections
     {
-      title: 'Sequels You Missed', variables : { sort: 'POPULARITY_DESC', userList: true, disableHide: true },
+      title: 'Sequels You Missed', variables : { sort: 'POPULARITY_DESC', userList: true, missedList: true, disableHide: true },
       load: (page = 1, perPage = 50, variables = {}) => {
         if (Helper.isMalAuth()) return {} // not going to bother handling this, see below.
         const res = Helper.userLists(variables).then(res => {
@@ -99,6 +99,24 @@ function createSections () {
         return SectionsManager.wrapResponse(res, perPage)
       },
       hide: !Helper.isAuthorized() || Helper.isMalAuth() // disable this section when authenticated with MyAnimeList. API for userLists fail to return relations and likely will never be fixed on their end.
+    },
+    {
+      title: 'Stories You Missed', variables : { sort: 'POPULARITY_DESC', userList: true, missedList: true, disableHide: true },
+      load: (page = 1, perPage = 50, variables = {}) => {
+        if (Helper.isMalAuth()) return {} // same as Sequels You Missed
+        const res = Helper.userLists(variables).then(res => {
+          const mediaList = res.data.MediaListCollection.lists.find(({ status }) => status === 'COMPLETED')?.entries
+          const excludeIds = res.data.MediaListCollection.lists.reduce((filtered, { status, entries }) => { return (['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED', 'PAUSED'].includes(status)) ? filtered.concat(entries) : filtered}, []).map(({ media }) => media.id) || []
+          if (!mediaList) return {}
+          const ids = mediaList.flatMap(({ media }) => {
+            return media.relations.edges.filter(edge => !['SEQUEL', 'CHARACTER', 'OTHER'].includes(edge.relationType))
+          }).map(({ node }) => node.id)
+          if (!ids.length) return {}
+          return anilistClient.searchIDS({ page, perPage, id: ids, id_not: excludeIds, ...SectionsManager.sanitiseObject(variables), status: ['FINISHED', 'RELEASING'] })
+        })
+        return SectionsManager.wrapResponse(res, perPage)
+      },
+      hide: !Helper.isAuthorized() || Helper.isMalAuth()
     },
     {
       title: 'Continue Watching', variables: { sort: 'UPDATED_TIME_DESC', userList: true, continueWatching: true, disableHide: true },
@@ -143,7 +161,7 @@ function createSections () {
       hide: !Helper.isAuthorized()
     },
     {
-      title: 'Planning List', variables : { test: 'Planning', sort: 'POPULARITY_DESC', userList: true, disableHide: true },
+      title: 'Planning List', variables : { test: 'Planning', sort: 'POPULARITY_DESC', planningList: true, userList: true, disableHide: true },
       load: (page = 1, perPage = 50, variables = {}) => {
         const res = Helper.userLists(variables).then(res => {
           const mediaList = Helper.isAniAuth()
@@ -171,7 +189,7 @@ function createSections () {
       hide: !Helper.isAuthorized()
     },
     {
-      title: 'Dropped List', variables : { sort: 'UPDATED_TIME_DESC', userList: true, disableHide: true },
+      title: 'Dropped List', variables : { sort: 'UPDATED_TIME_DESC', droppedList: true, userList: true, disableHide: true },
       load: (page = 1, perPage = 50, variables = {}) => {
         const res = Helper.userLists(variables).then(res => {
           const mediaList = Helper.isAniAuth()
@@ -185,12 +203,13 @@ function createSections () {
       hide: !Helper.isAuthorized()
     },
     // common, non-user specific sections
-    { title: 'Popular This Season', variables: { sort: 'POPULARITY_DESC', season: currentSeason, year: currentYear, hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'Trending Now', variables: { sort: 'TRENDING_DESC', hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'All Time Popular', variables: { sort: 'POPULARITY_DESC', hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'Romance', variables: { sort: 'TRENDING_DESC', genre: ['Romance'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'Action', variables: { sort: 'TRENDING_DESC', genre: ['Action'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'Adventure', variables: { sort: 'TRENDING_DESC', genre: ['Adventure'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } },
-    { title: 'Fantasy', variables: { sort: 'TRENDING_DESC', genre: ['Fantasy'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['COMPLETED', 'DROPPED'] } }
+    { title: 'Popular This Season', variables: { sort: 'POPULARITY_DESC', season: currentSeason, year: currentYear, hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Trending Now', variables: { sort: 'TRENDING_DESC', hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'All Time Popular', variables: { sort: 'POPULARITY_DESC', hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Romance', variables: { sort: 'TRENDING_DESC', genre: ['Romance'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Action', variables: { sort: 'TRENDING_DESC', genre: ['Action'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Adventure', variables: { sort: 'TRENDING_DESC', genre: ['Adventure'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Fantasy', variables: { sort: 'TRENDING_DESC', genre: ['Fantasy'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } },
+    { title: 'Comedy', variables: { sort: 'TRENDING_DESC', genre: ['Comedy'], hideMyAnime: settings.value.hideMyAnime, hideStatus: ['CURRENT', 'REPEATING', 'COMPLETED', 'DROPPED'] } }
   ]
 }
