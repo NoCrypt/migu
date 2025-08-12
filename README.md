@@ -1,3 +1,13 @@
+
+# Unmaintained ⚠️
+This project is now unmaintained. I recommend moving to [Shiru](https://github.com/RockinChaos/Shiru) made by [RockinChaos](https://github.com/RockinChaos), which has almost all the necessary features you might want from Migu, such as disabling the miniplayer, disabling autoplay, and more.
+
+I was inspired to fork this project due to the absurdity of Miru making the APK not freely available to everyone despite being an open-source project. I also disliked how you couldn't disable the miniplayer and other features. However, since then, the developer has been trying to find creative ways to "sabotage" forks of their project by making the custom Electron download private using a private submodule (now you have to pray you won't get a virus from their build, lol). 
+
+It's become more of a losing battle since what I did was simply monkey-patch their code to make it work the way I like it.
+
+---
+
 <p align="center">
 	<a href="https://github.com/NoCrypt/migu">
 		<img src="./common/public/logo_filled.png" width="250">
